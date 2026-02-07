@@ -75,7 +75,7 @@ public class BoardController : MonoBehaviour
                     (CARD_LOCATION_Y - i * CARD_OFFSET) + cardButtonParentPosition.y,
                     0
                 ), Quaternion.identity, cardButtonsParent.transform);
-            tile.name = $"RowValue_{i}";
+                tile.name = $"RowValue_{i}";
         }
     }
 
