@@ -10,6 +10,8 @@ public class BoardController : MonoBehaviour
 
     public GameObject cardButton;
 
+    public GameObject valueTile;
+
     private Vector3 cardButtonParentPosition;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
