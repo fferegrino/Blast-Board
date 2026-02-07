@@ -72,21 +72,21 @@ public class GameStateTests
             { 1, 0, 0, 0, 1 },
             { 0, 2, 0, 0, 2 },
             { 0, 3, 3, 0, 3 },
-            { 0, 0, 3, 0, 4 },
-            { 0, 0, 0, 0, 5 }
+            { 0, 0, 3, 0, 3 },
+            { 0, 0, 0, 0, 3 }
         });
         var state = new GameState(board);
 
-        int[] expectedColumnSumValues = { 1, 5, 6, 0, 15 };
-        int[] expectedColumnMultValues = { 1, 6, 9, 0, 120 };
+        int[] expectedColumnSumValues = { 1, 5, 6, 0, 12 };
+        int[] expectedColumnMultValues = { 1, 6, 9, 0, 54 };
         int[] expectedColumnBombs = { 4, 3, 3, 5, 0 };
 
         Assert.That(state.ColumnSumValues, Is.EqualTo(expectedColumnSumValues));
         Assert.That(state.ColumnMultValues, Is.EqualTo(expectedColumnMultValues));
         Assert.That(state.ColumnBombs, Is.EqualTo(expectedColumnBombs));
 
-        int[] expectedRowSumValues = { 2, 4, 9, 7, 5 };
-        int[] expectedRowMultValues = { 1, 4, 27, 12, 5 };
+        int[] expectedRowSumValues = { 2, 4, 9, 6, 3 };
+        int[] expectedRowMultValues = { 1, 4, 27, 9, 3 };
         int[] expectedRowBombs = { 3, 3, 2, 3, 4 };
 
         Assert.That(state.RowSumValues, Is.EqualTo(expectedRowSumValues));
