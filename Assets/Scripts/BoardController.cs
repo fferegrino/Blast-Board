@@ -29,6 +29,12 @@ public class BoardController : MonoBehaviour
             Destroy(child.gameObject);
         }
 
+        RecreateCards();
+        CreateValueTiles();
+    }
+
+    void RecreateCards()
+    {
         for (int i = 0; i < 5; i++)
         {
             for (int j = 0; j < 5; j++)
@@ -42,6 +48,34 @@ public class BoardController : MonoBehaviour
                     Quaternion.identity, cardButtonsParent.transform);
                 card.name = $"CardButton_{i}_{j}";
             }
+        }
+    }
+
+    void CreateValueTiles()
+    {
+        // Column values
+        for (int i = 0; i < 5; i++)
+        {
+            var tile = Instantiate(valueTile,
+                new Vector3(
+                    (CARD_LOCATION_X + i * CARD_OFFSET) + cardButtonParentPosition.x,
+                    (CARD_LOCATION_Y - 5 * CARD_OFFSET) + cardButtonParentPosition.y,
+                    0
+                ),
+                Quaternion.identity, cardButtonsParent.transform);
+            tile.name = $"ColumnValue_{i}";
+        }
+
+        // Row values
+        for (int i = 0; i < 5; i++)
+        {
+            var tile = Instantiate(valueTile,
+                new Vector3(
+                    (CARD_LOCATION_X + 5 * CARD_OFFSET) + cardButtonParentPosition.x,
+                    (CARD_LOCATION_Y - i * CARD_OFFSET) + cardButtonParentPosition.y,
+                    0
+                ), Quaternion.identity, cardButtonsParent.transform);
+            tile.name = $"RowValue_{i}";
         }
     }
 

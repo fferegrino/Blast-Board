@@ -255,6 +255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   cardButtonsParent: {fileID: 1703359810}
   cardButton: {fileID: 4519782851597962810, guid: 1bcc7df0317b34fcfb52bfc8ef9ce422, type: 3}
+  valueTile: {fileID: 3138687590804678878, guid: 8e295968476dd4818bbb18133708d92a, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
