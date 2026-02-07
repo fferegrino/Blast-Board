@@ -24,9 +24,10 @@ public class GameState
     private CellState[,] cellStates;
     private CellMarks[,] cellMarks;
 
-    public int[] ColumnValues { get; private set; }
-    public int[] RowValues { get; private set; }
-
+    public int[] ColumnSumValues { get; private set; }
+    public int[] RowSumValues { get; private set; }
+    public int[] ColumnMultValues { get; private set; }
+    public int[] RowMultValues { get; private set; }
     public int[] ColumnBombs { get; private set; }
     public int[] RowBombs { get; private set; }
 
@@ -45,19 +46,63 @@ public class GameState
             }
         }
 
-        this.ColumnValues = new int[5];
-        this.RowValues = new int[5];
+        this.ColumnSumValues = new int[5];
+        this.RowSumValues = new int[5];
+        this.ColumnMultValues = new int[5];
+        this.RowMultValues = new int[5];
         this.ColumnBombs = new int[5];
         this.RowBombs = new int[5];
 
         for (int i = 0; i < 5; i++)
         {
-            int points = 1;
+            int sumPoints = 0;
+            int multPoints = 0;
+            int bombs = 0;
             for (int j = 0; j < 5; j++)
             {
-                points += board[i, j];
+                sumPoints += board[i, j];
+                if (board[i, j] == 0)
+                {
+                    bombs++;
+                }
+                else
+                {
+                    if (multPoints == 0)
+                    {
+                        multPoints = 1;
+                    }
+                    multPoints *= board[i, j];
+                }
             }
-            RowValues[i] = points;
+            RowSumValues[i] = sumPoints;
+            RowMultValues[i] = multPoints;
+            RowBombs[i] = bombs;
+        }
+
+        for (int j = 0; j < 5; j++)
+        {
+            int sumPoints = 0;
+            int multPoints = 0;
+            int bombs = 0;
+            for (int i = 0; i < 5; i++)
+            {
+                sumPoints += board[i, j];
+                if (board[i, j] == 0)
+                {
+                    bombs++;
+                }
+                else
+                {
+                    if (multPoints == 0)
+                    {
+                        multPoints = 1;
+                    }
+                    multPoints *= board[i, j];
+                }
+            }
+            ColumnSumValues[j] = sumPoints;
+            ColumnMultValues[j] = multPoints;
+            ColumnBombs[j] = bombs;
         }
     }
 
