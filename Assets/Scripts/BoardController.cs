@@ -14,14 +14,24 @@ public class BoardController : MonoBehaviour
 
     private Vector3 cardButtonParentPosition;
 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         cardButtonParentPosition = cardButtonsParent.transform.position;
-        ResetBoard();
+        ResetBoard(new GameState(
+            new RawBoard(new int[,]
+            {
+                { 1, 0, 0, 0, 1 },
+                { 0, 2, 0, 0, 2 },
+                { 0, 3, 3, 0, 3 },
+                { 0, 0, 3, 0, 3 },
+                { 0, 0, 0, 0, 3 }
+            }
+        )));
     }
 
-    void ResetBoard()
+    void ResetBoard(GameState gameState)
     {
         foreach (Transform child in cardButtonsParent.transform)
         {
@@ -29,11 +39,11 @@ public class BoardController : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        RecreateCards();
-        CreateValueTiles();
+        RecreateCards(gameState);
+        CreateValueTiles(gameState);
     }
 
-    void RecreateCards()
+    void RecreateCards(GameState gameState)
     {
         for (int i = 0; i < 5; i++)
         {
@@ -51,7 +61,7 @@ public class BoardController : MonoBehaviour
         }
     }
 
-    void CreateValueTiles()
+    void CreateValueTiles(GameState gameState)
     {
         // Column values
         for (int i = 0; i < 5; i++)
@@ -64,6 +74,7 @@ public class BoardController : MonoBehaviour
                 ),
                 Quaternion.identity, cardButtonsParent.transform);
             tile.name = $"ColumnValue_{i}";
+            tile.GetComponent<ValuesTile>().SetValues(gameState.ColumnBombs[i], gameState.ColumnSumValues[i]);
         }
 
         // Row values
@@ -76,6 +87,7 @@ public class BoardController : MonoBehaviour
                     0
                 ), Quaternion.identity, cardButtonsParent.transform);
                 tile.name = $"RowValue_{i}";
+            tile.GetComponent<ValuesTile>().SetValues(gameState.RowBombs[i], gameState.RowSumValues[i]);
         }
     }
 

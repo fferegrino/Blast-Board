@@ -285,6 +285,7 @@ GameObject:
   - component: {fileID: 5028975131165183941}
   - component: {fileID: 7516940807984127002}
   - component: {fileID: 3477536982566461791}
+  - component: {fileID: 1655231479800252868}
   m_Layer: 0
   m_Name: ValuesTile
   m_TagString: Untagged
@@ -351,3 +352,17 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1655231479800252868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3138687590804678878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 887b7090526a746b38bd492725048792, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  bombsText: {fileID: 2550034839791940930}
+  pointsText: {fileID: 2733151021906937324}
