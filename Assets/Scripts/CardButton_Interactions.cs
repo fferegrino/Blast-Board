@@ -11,6 +11,8 @@ public class CardButton_Interactions : MonoBehaviour, UnityEngine.EventSystems.I
     public Image numberImage;
     private bool isTargeted = false;
 
+    private int value;
+
     public Sprite mark0;
     public Sprite mark1;
     public Sprite mark2;
@@ -20,7 +22,15 @@ public class CardButton_Interactions : MonoBehaviour, UnityEngine.EventSystems.I
     {
         // isTargeted = !isTargeted;
         // // targetAnimator.SetBool("IsTargeted", isTargeted);
-        cardRevealAnimator.SetBool("IsRevealed", true);
+        
+        if (value == 0)
+        {
+        cardRevealAnimator.SetBool("IsExploded", true);
+        }
+        else
+        {
+            cardRevealAnimator.SetBool("IsRevealed", true);
+        }
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -43,7 +53,7 @@ public class CardButton_Interactions : MonoBehaviour, UnityEngine.EventSystems.I
             Debug.LogError($"Image not found for {name}");
             return;
         }
-        
+        this.value = value;
         if (value == 0)
         {
             numberImage.sprite = mark0;
