@@ -31,6 +31,10 @@ public class GameState
     public int[] ColumnBombs { get; private set; }
     public int[] RowBombs { get; private set; }
 
+    public int PointsToWin { get; private set; }
+
+    public List<Tuple<int, int>> ZeroLocations { get; private set; }
+
 
     public GameState(RawBoard board)
     {
@@ -52,6 +56,23 @@ public class GameState
         this.RowMultValues = new int[5];
         this.ColumnBombs = new int[5];
         this.RowBombs = new int[5];
+
+        this.ZeroLocations = new List<Tuple<int, int>>();
+        this.PointsToWin = 1;
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                if (board[i, j] != 0)
+                {
+                    PointsToWin *= board[i, j];
+                }
+                else
+                {
+                    ZeroLocations.Add(new Tuple<int, int>(i, j));
+                }
+            }
+        }
 
         for (int i = 0; i < 5; i++)
         {
@@ -109,5 +130,15 @@ public class GameState
     public int this[int row, int col]
     {
         get => board[row, col];
+    }
+
+    public int GetRowPoints(int row)
+    {
+        return RowSumValues[row];
+    }
+
+    public int GetColumnPoints(int column)
+    {
+        return ColumnSumValues[column];
     }
 }

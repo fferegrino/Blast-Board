@@ -603,6 +603,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2a2d117771e4061be27ef74d27a961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  numberImage: {fileID: 7871133513090751918}
+  mark0: {fileID: 7742789435413177243, guid: 8e766c4ab40204643bda6e1546a25d07, type: 3}
+  mark1: {fileID: 3325238831654624633, guid: 8e766c4ab40204643bda6e1546a25d07, type: 3}
+  mark2: {fileID: -6386002234096485676, guid: 8e766c4ab40204643bda6e1546a25d07, type: 3}
+  mark3: {fileID: -5074477277766616056, guid: 8e766c4ab40204643bda6e1546a25d07, type: 3}
 --- !u!1 &5393145985789641128
 GameObject:
   m_ObjectHideFlags: 0
