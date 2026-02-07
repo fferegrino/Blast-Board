@@ -31,7 +31,6 @@ public class BoardController : MonoBehaviour
         {
             for (int j = 0; j < 5; j++)
             {
-                Debug.Log($"Instantiating card at {CARD_LOCATION_X + i * CARD_OFFSET}, {CARD_LOCATION_Y - j * CARD_OFFSET}");
                 var card = Instantiate(cardButton,
                     new Vector3(
                         (CARD_LOCATION_X + i * CARD_OFFSET) + cardButtonParentPosition.x,
