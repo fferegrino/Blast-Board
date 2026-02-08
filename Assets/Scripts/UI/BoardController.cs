@@ -47,71 +47,93 @@ public class BoardController : MonoBehaviour
         CreateValueTiles(gameState);
     }
 
-    void RecreateCards(GameState gameState)
+    void RecreateCards(GameState state)
     {
-        cardButtons = new CardButton[25];
-        for (int row = 0; row < 5; row++)
+        int size = GameState.BoardSize;
+        cardButtons = new CardButton[size * size];
+        for (int row = 0; row < size; row++)
         {
-            for (int col = 0; col < 5; col++)
+            for (int col = 0; col < size; col++)
             {
                 var card = Instantiate(cardButton,
                     new Vector3(
                         (CARD_LOCATION_X + col * CARD_OFFSET) + cardButtonParentPosition.x,
                         (CARD_LOCATION_Y - row * CARD_OFFSET) + cardButtonParentPosition.y,
                         0
-                    ), 
+                    ),
                     Quaternion.identity, cardButtonsParent.transform);
-                var backingClass = card.GetComponent<CardButton>();
+                var btn = card.GetComponent<CardButton>();
 
                 card.name = $"CardButton_{row}_{col}";
-                backingClass.SetPosition(row, col);
-                backingClass.SetValue(gameState[row, col]);
-                backingClass.OnClick += OnCardButtonClick;
-                cardButtons[row * 5 + col] = backingClass;
+                btn.SetPosition(row, col);
+                btn.SetValue(state[row, col]);
+                btn.SetCellState(state.GetCellState(row, col));
+                btn.SetMark(
+                    state.HasCellMark(row, col, CellMarks.Mark0),
+                    state.HasCellMark(row, col, CellMarks.Mark1),
+                    state.HasCellMark(row, col, CellMarks.Mark2),
+                    state.HasCellMark(row, col, CellMarks.Mark3));
+                btn.OnClick += OnCardButtonClick;
+                cardButtons[row * size + col] = btn;
             }
         }
     }
 
-    void OnCardButtonClick(CardButton cardButton)
+    CardButton GetCard(int row, int col)
     {
-        var wasAbleToReveal = gameState.TryRevealCell(cardButton.Row, cardButton.Column);
-        if (wasAbleToReveal)
-        {
-            cardButton.SetCellState(CellState.Revealed);
-        }
-        else
-        {
-            Debug.Log($"Unable to reveal card. Game state: {gameState.Outcome}");
-        }
+        int size = GameState.BoardSize;
+        if (row < 0 || row >= size || col < 0 || col >= size) return null;
+        return cardButtons[row * size + col];
     }
 
-    void CreateValueTiles(GameState gameState)
+    void RefreshCardFromState(int row, int col)
     {
-        // Column values
-        for (int i = 0; i < 5; i++)
+        var card = GetCard(row, col);
+        if (card == null) return;
+        card.SetCellState(gameState.GetCellState(row, col));
+        card.SetMark(
+            gameState.HasCellMark(row, col, CellMarks.Mark0),
+            gameState.HasCellMark(row, col, CellMarks.Mark1),
+            gameState.HasCellMark(row, col, CellMarks.Mark2),
+            gameState.HasCellMark(row, col, CellMarks.Mark3));
+    }
+
+    void OnCardButtonClick(CardButton card)
+    {
+        var wasRevealed = gameState.TryRevealCell(card.Row, card.Column);
+        if (wasRevealed)
+            RefreshCardFromState(card.Row, card.Column);
+        else
+            Debug.Log($"Unable to reveal card. Game state: {gameState.Outcome}");
+    }
+
+    void CreateValueTiles(GameState state)
+    {
+        int size = GameState.BoardSize;
+        for (int i = 0; i < size; i++)
         {
             var tile = Instantiate(valueTile,
                 new Vector3(
                     (CARD_LOCATION_X + i * CARD_OFFSET) + cardButtonParentPosition.x,
-                    (CARD_LOCATION_Y - 5 * CARD_OFFSET) + cardButtonParentPosition.y,
+                    (CARD_LOCATION_Y - size * CARD_OFFSET) + cardButtonParentPosition.y,
                     0
                 ),
                 Quaternion.identity, cardButtonsParent.transform);
             tile.name = $"ColumnValue_{i}";
-            tile.GetComponent<ValuesTile>().SetValues(gameState.ColumnBombs[i], gameState.ColumnSumValues[i]);
+            tile.GetComponent<ValuesTile>().SetValues(state.ColumnBombs[i], state.ColumnSumValues[i]);
         }
 
-        // Row values
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < size; i++)
         {
             var tile = Instantiate(valueTile,
                 new Vector3(
-                    (CARD_LOCATION_X + 5 * CARD_OFFSET) + cardButtonParentPosition.x,
+                    (CARD_LOCATION_X + size * CARD_OFFSET) + cardButtonParentPosition.x,
                     (CARD_LOCATION_Y - i * CARD_OFFSET) + cardButtonParentPosition.y,
                     0
-                ), Quaternion.identity, cardButtonsParent.transform);
-                tile.name = $"RowValue_{i}";
-            tile.GetComponent<ValuesTile>().SetValues(gameState.RowBombs[i], gameState.RowSumValues[i]);
+                ),
+                Quaternion.identity, cardButtonsParent.transform);
+            tile.name = $"RowValue_{i}";
+            tile.GetComponent<ValuesTile>().SetValues(state.RowBombs[i], state.RowSumValues[i]);
         }
     }
 

@@ -11,19 +11,26 @@ public class CardButton : MonoBehaviour, UnityEngine.EventSystems.IPointerDownHa
     private Animator cardRevealAnimator;
 
     public Image numberImage;
-    private bool isTargeted = false;
-
     private int value;
+
+    [Header("Mark icons (optional)")]
+    [Tooltip("Icons shown when the user marks the cell. Enable/disable based on CellMarks.")]
+    public GameObject markIcon0;
+    public GameObject markIcon1;
+    public GameObject markIcon2;
+    public GameObject markIcon3;
 
     private int _row;
     private int _col;
     public int Row => _row;
     public int Column => _col;
 
-    public Sprite mark0;
-    public Sprite mark1;
-    public Sprite mark2;
-    public Sprite mark3;
+    [Header("Sprites")]
+    [Tooltip("Sprites for cell values 0 (bomb), 1, 2, 3")]
+    public Sprite valueSprite0;
+    public Sprite valueSprite1;
+    public Sprite valueSprite2;
+    public Sprite valueSprite3;
 
     
 
@@ -44,64 +51,60 @@ public class CardButton : MonoBehaviour, UnityEngine.EventSystems.IPointerDownHa
         cardRevealAnimator = cardReveal.GetComponent<Animator>();
     }
 
+    /// <summary>
+    /// Sets the card's visual state. Resets other states so only this one is active (e.g. clearing Targeted when Revealed).
+    /// </summary>
     public void SetCellState(CellState cellState)
     {
-        switch (cellState)
+        if (targetAnimator != null)
+            targetAnimator.SetBool("IsTargeted", cellState == CellState.Targeted);
+
+        if (cardRevealAnimator != null)
         {
-            case CellState.Hidden:
-                cardRevealAnimator.SetBool("IsHidden", true);
-                break;
-            case CellState.Revealed:
-                if (value == 0)
-                {
-                    cardRevealAnimator.SetBool("IsExploded", true);
-                }
-                else
-                {
-                    cardRevealAnimator.SetBool("IsRevealed", true);
-                }
-                break;
-            case CellState.Targeted:
-                targetAnimator.SetBool("IsTargeted", true);
-                break;
+            cardRevealAnimator.SetBool("IsHidden", cellState == CellState.Hidden);
+            if (cellState == CellState.Revealed)
+            {
+                cardRevealAnimator.SetBool("IsExploded", value == 0);
+                cardRevealAnimator.SetBool("IsRevealed", value != 0);
+            }
+            else
+            {
+                cardRevealAnimator.SetBool("IsExploded", false);
+                cardRevealAnimator.SetBool("IsRevealed", false);
+            }
         }
     }
 
     public void SetValue(int value)
-    {   
-        if (numberImage == null)
-        {
-            Debug.LogError($"Image not found for {name}");
-            return;
-        }
+    {
         this.value = value;
-        if (value == 0)
+        if (numberImage == null) return;
+        var sprite = value switch
         {
-            numberImage.sprite = mark0;
-        }
-        else if (value == 1)
-        {
-            numberImage.sprite = mark1;
-        }
-        else if (value == 2)
-        {
-            numberImage.sprite = mark2;
-        }
-        else if (value == 3)
-        {
-            numberImage.sprite = mark3;
-        }
+            0 => valueSprite0,
+            1 => valueSprite1,
+            2 => valueSprite2,
+            3 => valueSprite3,
+            _ => null
+        };
+        if (sprite != null)
+            numberImage.sprite = sprite;
     }
 
     public void SetPosition(int row, int col)
     {
-        this._row = row;
-        this._col = col;
+        _row = row;
+        _col = col;
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// Shows or hides each mark icon. BoardController can pass gameState.HasCellMark(row, col, CellMarks.Mark0), etc.
+    /// </summary>
+    public void SetMark(bool showMark0, bool showMark1, bool showMark2, bool showMark3)
     {
-        
+        if (markIcon0 != null) markIcon0.SetActive(showMark0);
+        if (markIcon1 != null) markIcon1.SetActive(showMark1);
+        if (markIcon2 != null) markIcon2.SetActive(showMark2);
+        if (markIcon3 != null) markIcon3.SetActive(showMark3);
     }
 }

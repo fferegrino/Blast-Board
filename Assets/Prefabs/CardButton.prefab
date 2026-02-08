@@ -604,10 +604,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   numberImage: {fileID: 7871133513090751918}
-  mark0: {fileID: 7742789435413177243, guid: 8e766c4ab40204643bda6e1546a25d07, type: 3}
-  mark1: {fileID: 3325238831654624633, guid: 8e766c4ab40204643bda6e1546a25d07, type: 3}
-  mark2: {fileID: -6386002234096485676, guid: 8e766c4ab40204643bda6e1546a25d07, type: 3}
-  mark3: {fileID: -5074477277766616056, guid: 8e766c4ab40204643bda6e1546a25d07, type: 3}
+  markIcon0: {fileID: 5482954080462456070}
+  markIcon1: {fileID: 1943251162494931009}
+  markIcon2: {fileID: 4424808022571684198}
+  markIcon3: {fileID: 3558210424195789844}
+  valueSprite0: {fileID: 7742789435413177243, guid: 8e766c4ab40204643bda6e1546a25d07, type: 3}
+  valueSprite1: {fileID: 3325238831654624633, guid: 8e766c4ab40204643bda6e1546a25d07, type: 3}
+  valueSprite2: {fileID: -6386002234096485676, guid: 8e766c4ab40204643bda6e1546a25d07, type: 3}
+  valueSprite3: {fileID: -5074477277766616056, guid: 8e766c4ab40204643bda6e1546a25d07, type: 3}
 --- !u!1 &5393145985789641128
 GameObject:
   m_ObjectHideFlags: 0
