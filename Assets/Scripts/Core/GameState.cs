@@ -46,6 +46,11 @@ public class GameState
     public GameOutcome Outcome { get; private set; }
     public IReadOnlyList<Tuple<int, int>> ZeroLocations => zeroLocations;
 
+    /// <summary>Row of the currently targeted (selected) cell, or -1 if none.</summary>
+    public int TargetedRow { get; private set; } = -1;
+    /// <summary>Column of the currently targeted cell, or -1 if none.</summary>
+    public int TargetedColumn { get; private set; } = -1;
+
     public GameState(RawBoard board)
     {
         this.board = board ?? throw new ArgumentNullException(nameof(board));
@@ -176,10 +181,41 @@ public class GameState
         if (CurrentPoints >= PointsToWin)
             Outcome = GameOutcome.Won;
 
+        if (row == TargetedRow && col == TargetedColumn)
+            ClearTargetedCell();
+
         return true;
     }
 
-    public CellState GetCellState(int row, int col) => cellStates[row, col];
+    /// <summary>
+    /// Targets (selects) the cell for the next reveal. Only hidden cells can be targeted; game must be in progress.
+    /// Returns true if the cell was set as targeted.
+    /// </summary>
+    public bool SetTargetedCell(int row, int col)
+    {
+        if (Outcome != GameOutcome.InProgress)
+            return false;
+        if (cellStates[row, col] != CellState.Hidden)
+            return false;
+        TargetedRow = row;
+        TargetedColumn = col;
+        return true;
+    }
+
+    /// <summary>Clears the current target. No-op if none was set.</summary>
+    public void ClearTargetedCell()
+    {
+        TargetedRow = -1;
+        TargetedColumn = -1;
+    }
+
+    /// <summary>Returns the effective cell state: Targeted if this cell is the current target and still hidden, otherwise the stored state.</summary>
+    public CellState GetCellState(int row, int col)
+    {
+        if (row == TargetedRow && col == TargetedColumn && cellStates[row, col] == CellState.Hidden)
+            return CellState.Targeted;
+        return cellStates[row, col];
+    }
 
     public CellMarks GetCellMark(int row, int col) => cellMarks[row, col];
 

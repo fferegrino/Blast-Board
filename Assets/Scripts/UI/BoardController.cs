@@ -18,9 +18,6 @@ public class BoardController : MonoBehaviour
 
     private GameState gameState;
 
-    private CardButton highlightedCard;
-
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -108,22 +105,26 @@ public class BoardController : MonoBehaviour
             return;
         }
 
-        if (highlightedCard != null && highlightedCard == card)
+        int r = card.Row, c = card.Column;
+        bool isAlreadyTargeted = gameState.TargetedRow == r && gameState.TargetedColumn == c;
+
+        if (isAlreadyTargeted)
         {
-            var wasRevealed = gameState.TryRevealCell(card.Row, card.Column);
+            var wasRevealed = gameState.TryRevealCell(r, c);
             if (wasRevealed)
-                RefreshCardFromState(card.Row, card.Column);
+                RefreshCardFromState(r, c);
             else
                 Debug.Log($"Unable to reveal card. Game state: {gameState.Outcome}");
         }
         else
         {
-            highlightedCard = card;
-            foreach (var cardButton in cardButtons)
+            int prevR = gameState.TargetedRow, prevC = gameState.TargetedColumn;
+            if (gameState.SetTargetedCell(r, c))
             {
-                cardButton.ClearTargetedState();
+                if (prevR >= 0 && prevC >= 0)
+                    RefreshCardFromState(prevR, prevC);
+                RefreshCardFromState(r, c);
             }
-            highlightedCard.SetCellState(CellState.Targeted);
         }
     }
 

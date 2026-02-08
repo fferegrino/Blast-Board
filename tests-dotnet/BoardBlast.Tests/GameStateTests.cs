@@ -324,4 +324,66 @@ public class GameStateTests
 
         Assert.That(state.GetCellMark(4, 4), Is.EqualTo(CellMarks.None));
     }
+
+    [Test]
+    public void SetTargetedCell_WhenHidden_SetsTarget_GetCellStateReturnsTargeted()
+    {
+        var board = new RawBoard(new int[,]
+        {
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 }
+        });
+        var state = new GameState(board);
+
+        var set = state.SetTargetedCell(2, 3);
+
+        Assert.That(set, Is.True);
+        Assert.That(state.TargetedRow, Is.EqualTo(2));
+        Assert.That(state.TargetedColumn, Is.EqualTo(3));
+        Assert.That(state.GetCellState(2, 3), Is.EqualTo(CellState.Targeted));
+        Assert.That(state.GetCellState(0, 0), Is.EqualTo(CellState.Hidden));
+    }
+
+    [Test]
+    public void SetTargetedCell_WhenRevealed_ReturnsFalse()
+    {
+        var board = new RawBoard(new int[,]
+        {
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 }
+        });
+        var state = new GameState(board);
+        state.TryRevealCell(1, 1);
+
+        var set = state.SetTargetedCell(1, 1);
+
+        Assert.That(set, Is.False);
+        Assert.That(state.GetCellState(1, 1), Is.EqualTo(CellState.Revealed));
+    }
+
+    [Test]
+    public void TryRevealCell_ClearsTargetedCell()
+    {
+        var board = new RawBoard(new int[,]
+        {
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 }
+        });
+        var state = new GameState(board);
+        state.SetTargetedCell(0, 0);
+
+        state.TryRevealCell(0, 0);
+
+        Assert.That(state.TargetedRow, Is.EqualTo(-1));
+        Assert.That(state.TargetedColumn, Is.EqualTo(-1));
+    }
 }
