@@ -23,36 +23,36 @@ public class BoardController : MonoBehaviour
 
     private CardButton[] cardButtons;
 
-    private GameState gameState;
+    private GameSession gameSession;
 
+    GameState gameState => gameSession?.CurrentGame;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         cardButtonParentPosition = cardButtonsParent.transform.position;
-        gameState = new GameState(
-            new RawBoard(new int[,]
-            {
-                { 1, 0, 0, 0, 1 },
-                { 0, 2, 0, 0, 2 },
-                { 0, 3, 3, 0, 3 },
-                { 0, 0, 3, 0, 3 },
-                { 0, 0, 0, 0, 3 }
-            }
-        ));
-        ResetBoard(gameState);
+        gameSession = GameSession.DemoSession();
+        ResetBoard(gameSession.CurrentGame);
+        UpdateScoreboards();
     }
 
-    void ResetBoard(GameState gameState)
+    void ResetBoard(GameState state)
     {
         foreach (Transform child in cardButtonsParent.transform)
         {
             Destroy(child.gameObject);
         }
 
-        RecreateCards(gameState);
-        CreateValueTiles(gameState);
+        RecreateCards(state);
+        CreateValueTiles(state);
+        UpdateScoreboards();
+    }
+
+    void UpdateScoreboards()
+    {
+        if (gameSession == null) return;
         levelScoreboard.SetScoreboardValue(gameState.CurrentPoints);
+        sessionScoreboard.SetScoreboardValue(gameSession.SessionPoints);
+        levelDisplay.SetScoreboardValue(gameSession.Level);
     }
 
     void RecreateCards(GameState state)
@@ -121,9 +121,19 @@ public class BoardController : MonoBehaviour
         {
             var wasRevealed = gameState.TryRevealCell(r, c);
             if (wasRevealed)
+            {
                 RefreshCardFromState(r, c);
+                if (gameState.Outcome == GameOutcome.Won)
+                {
+                    gameSession.AdvanceToNextLevel();
+                    ResetBoard(gameSession.CurrentGame);
+                    return;
+                }
+            }
             else
+            {
                 Debug.Log($"Unable to reveal card. Game state: {gameState.Outcome}");
+            }
         }
         else
         {
@@ -135,7 +145,7 @@ public class BoardController : MonoBehaviour
                 RefreshCardFromState(r, c);
             }
         }
-        levelScoreboard.SetScoreboardValue(gameState.CurrentPoints);
+        UpdateScoreboards();
     }
 
     void CreateValueTiles(GameState state)
