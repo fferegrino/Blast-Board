@@ -53,6 +53,12 @@ public class BackgroundMusicManager : MonoBehaviour
             _source.Play();
     }
 
+    public void PlayDefault()
+    {
+        if (defaultClip != null)
+            Play(defaultClip);
+    }
+
     /// <summary>Stops background music.</summary>
     public void Stop()
     {

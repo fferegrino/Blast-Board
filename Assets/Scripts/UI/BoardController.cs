@@ -44,6 +44,10 @@ public class BoardController : MonoBehaviour
     public AudioClip cardMarkSound;
     public AudioClip cardUnmarkSound;
 
+
+    [Header("Background Music")]
+    public AudioClip backgroundMusic;
+
     [Header("UI")]
     public Button settingsButton;
 
@@ -70,6 +74,12 @@ public class BoardController : MonoBehaviour
     {
         settingsUI.gameObject.SetActive(true);
     }
+
+    // void PlayBackgroundMusic()
+    // {
+    //     if (backgroundMusic != null && BackgroundMusicManager.Instance != null)
+    //         BackgroundMusicManager.Instance.Play(backgroundMusic);
+    // }
 
     private void PlaySound(AudioClip audioClip)
     {
@@ -126,6 +136,7 @@ public class BoardController : MonoBehaviour
         UpdateScoreboards();
         levelEndScreen.gameObject.SetActive(false);
         PlaySound(gameStartSound);
+        BackgroundMusicManager.Instance.PlayDefault();
     }
 
     void UpdateScoreboards()
@@ -243,6 +254,7 @@ public class BoardController : MonoBehaviour
 
     IEnumerator LoseGame()
     {
+        BackgroundMusicManager.Instance.Stop();
         UpdateScoreboards();
         yield return StartCoroutine(RevealCardsVisuallyForEffect(gameState.ZeroLocations));
         yield return new WaitForSeconds(0.5f);
@@ -315,11 +327,5 @@ public class BoardController : MonoBehaviour
             tile.name = $"RowValue_{i}";
             tile.GetComponent<ValuesTile>().SetValues(state.RowBombs[i], state.RowSumValues[i]);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
