@@ -27,6 +27,9 @@ public class BoardController : MonoBehaviour
     [Header("Screens")]
     public LevelEndScreen levelEndScreen;
 
+    [Header("Sound FX")]
+    public AudioClip cardTargetSound;
+
     private Vector3 cardButtonParentPosition;
 
     private CardButton[] cardButtons;
@@ -191,6 +194,7 @@ public class BoardController : MonoBehaviour
                 if (prevR >= 0 && prevC >= 0)
                     RefreshCardFromState(prevR, prevC);
                 RefreshCardFromState(r, c);
+                SoundFXManager.Instance.PlaySound(cardTargetSound, transform);
             }
         }
         UpdateScoreboards();
