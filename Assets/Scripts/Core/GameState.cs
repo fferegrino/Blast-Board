@@ -169,6 +169,7 @@ public class GameState
             return false;
 
         cellStates[row, col] = CellState.Revealed;
+        cellMarks[row, col] = CellMarks.None;
 
         int value = board[row, col];
         if (value == 0)

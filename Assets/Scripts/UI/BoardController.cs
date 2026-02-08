@@ -45,7 +45,16 @@ public class BoardController : MonoBehaviour
 
     void OnMemoPadClick(CellMarks mark)
     {
-        Debug.Log($"OnMemoPadClick: {mark}");
+        if (gameState.Outcome != GameOutcome.InProgress) return;
+        if (gameState.TargetedRow < 0 || gameState.TargetedColumn < 0) return;
+
+        int r = gameState.TargetedRow, c = gameState.TargetedColumn;
+        if (gameState.HasCellMark(r, c, mark))
+            gameState.RemoveCellMark(r, c, mark);
+        else
+            gameState.AddCellMark(r, c, mark);
+
+        RefreshCardFromState(r, c);
     }
 
     void OnLevelEndScreenActionButtonClick()
