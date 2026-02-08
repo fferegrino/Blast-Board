@@ -51,6 +51,10 @@ public class BoardController : MonoBehaviour
             gameSession.RetryCurrentLevel();
             ResetBoard(gameSession.CurrentGame);
         }
+        else
+        {
+            levelEndScreen.gameObject.SetActive(false);
+        }
     }
 
     void ResetBoard(GameState state)
@@ -144,6 +148,7 @@ public class BoardController : MonoBehaviour
                 RefreshCardFromState(r, c);
                 if (gameState.Outcome == GameOutcome.Won)
                 {
+                    UpdateScoreboards();
                     levelEndScreen.gameObject.SetActive(true);
                     levelEndScreen.SetActionButtonText("Next Level");
                     levelEndScreen.SetScreenText("You won the level!");
@@ -151,6 +156,7 @@ public class BoardController : MonoBehaviour
                 }
                 else if (gameState.Outcome == GameOutcome.Lost)
                 {
+                    UpdateScoreboards();
                     levelEndScreen.gameObject.SetActive(true);
                     levelEndScreen.SetActionButtonText("Restart Level");
                     levelEndScreen.SetScreenText("You lost the level!");

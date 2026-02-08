@@ -12,36 +12,31 @@ public class LevelEndScreen : MonoBehaviour
 
     private TextMeshProUGUI screenText;
 
-    void Start()
+    void Awake()
     {
-
-        var allChildren = GetComponentsInChildren<Transform>();
+        var allChildren = GetComponentsInChildren<Transform>(true);
         actionButton = allChildren.First(child => child.name == "ActionButton").GetComponent<Button>();
         actionButtonText = allChildren.First(child => child.name == "Text").GetComponent<TextMeshProUGUI>();
         screenText = allChildren.First(child => child.name == "ScreenText").GetComponent<TextMeshProUGUI>();
+    }
 
-
-        actionButton.onClick.AddListener(InnerOnActionButtonClick);  
+    void Start()
+    {
+        actionButton.onClick.AddListener(InnerOnActionButtonClick);
     }
 
     public void SetActionButtonText(string text)
     {
-        actionButtonText.text = text;
+        if (actionButtonText != null) actionButtonText.text = text;
     }
 
     public void SetScreenText(string text)
     {
-        screenText.text = text;
+        if (screenText != null) screenText.text = text;
     }
 
     void InnerOnActionButtonClick()
     {
         OnActionButtonClick?.Invoke();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
