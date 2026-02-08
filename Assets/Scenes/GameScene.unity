@@ -1169,14 +1169,19 @@ MonoBehaviour:
   cardButtonsParent: {fileID: 1703359810}
   cardButton: {fileID: 4519782851597962810, guid: 1bcc7df0317b34fcfb52bfc8ef9ce422, type: 3}
   valueTile: {fileID: 3138687590804678878, guid: 8e295968476dd4818bbb18133708d92a, type: 3}
-  memoPad: {fileID: 0}
+  memoPad: {fileID: 1803556525}
   levelScoreboard: {fileID: 829484677}
   sessionScoreboard: {fileID: 1924180905}
   levelDisplay: {fileID: 1081571347}
   levelEndScreen: {fileID: 1443821180}
   cardTargetSound: {fileID: 8300000, guid: 6da308746da274dc4ae328e15b36a601, type: 3}
-  cardRevealSound: {fileID: 0}
+  cardRevealSound: {fileID: 8300000, guid: 27a567d2e079f4d14b6639e1973dc539, type: 3}
   cardExplodeSound: {fileID: 8300000, guid: 581a3ad69af2849429761114d4ade68f, type: 3}
+  gameOverSound: {fileID: 8300000, guid: 07b7c6e5e222048c4a731d5de6c42464, type: 3}
+  gameWonSound: {fileID: 8300000, guid: 92d7054a5551245d4b5dd58ab26c3cba, type: 3}
+  gameStartSound: {fileID: 8300000, guid: 1b19ca61863774defabc348d140e3c4e, type: 3}
+  cardMarkSound: {fileID: 8300000, guid: a714d3b3236c742d281708bb3e264b64, type: 3}
+  cardUnmarkSound: {fileID: 8300000, guid: a714d3b3236c742d281708bb3e264b64, type: 3}
 --- !u!224 &1278546796 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5028975131165183941, guid: 8e295968476dd4818bbb18133708d92a, type: 3}
@@ -1791,10 +1796,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 009d23f8191934bda817218c020d3d13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MemoPad
-  mark0Button: {fileID: 0}
-  mark1Button: {fileID: 0}
-  mark2Button: {fileID: 0}
-  mark3Button: {fileID: 0}
+  mark0Button: {fileID: 1847915453}
+  mark1Button: {fileID: 681337953}
+  mark2Button: {fileID: 1495817807}
+  mark3Button: {fileID: 934194750}
 --- !u!1 &1847915451
 GameObject:
   m_ObjectHideFlags: 0
