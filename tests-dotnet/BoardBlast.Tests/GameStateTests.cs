@@ -93,4 +93,66 @@ public class GameStateTests
         Assert.That(state.RowMultValues, Is.EqualTo(expectedRowMultValues));
         Assert.That(state.RowBombs, Is.EqualTo(expectedRowBombs));
     }
+
+    [Test]
+    public void TryRevealCell_OnBomb_SetsOutcomeToLost()
+    {
+        var board = new RawBoard(new int[,]
+        {
+            { 1, 2, 0, 2, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 }
+        });
+        var state = new GameState(board);
+
+        var outcome = state.TryRevealCell(0, 2);
+
+        Assert.That(outcome, Is.EqualTo(GameOutcome.Lost));
+        Assert.That(state.Outcome, Is.EqualTo(GameOutcome.Lost));
+    }
+
+    [Test]
+    public void TryRevealCell_WhenProductReachesPointsToWin_SetsOutcomeToWon()
+    {
+        // PointsToWin = 1*2*2*1 * 1s... = 4. Reveal (0,0)=1 then (0,1)=2 then (0,3)=2 -> 1*2*2=4
+        var board = new RawBoard(new int[,]
+        {
+            { 1, 2, 0, 2, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 }
+        });
+        var state = new GameState(board);
+
+        Assert.That(state.TryRevealCell(0, 0), Is.EqualTo(GameOutcome.InProgress));
+        Assert.That(state.CurrentPoints, Is.EqualTo(1));
+        Assert.That(state.TryRevealCell(0, 1), Is.EqualTo(GameOutcome.InProgress));
+        Assert.That(state.CurrentPoints, Is.EqualTo(2));
+        var outcome = state.TryRevealCell(0, 3);
+
+        Assert.That(outcome, Is.EqualTo(GameOutcome.Won));
+        Assert.That(state.CurrentPoints, Is.EqualTo(4));
+    }
+
+    [Test]
+    public void TryRevealCell_WhenAlreadyRevealed_DoesNotDoubleCountPoints()
+    {
+        var board = new RawBoard(new int[,]
+        {
+            { 2, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 }
+        });
+        var state = new GameState(board);
+
+        state.TryRevealCell(0, 0);
+        Assert.That(state.CurrentPoints, Is.EqualTo(2));
+        state.TryRevealCell(0, 0); // same cell again
+        Assert.That(state.CurrentPoints, Is.EqualTo(2));
+    }
 }

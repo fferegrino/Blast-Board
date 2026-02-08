@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 
 public enum CellState
 {
@@ -8,137 +8,184 @@ public enum CellState
     Targeted = 2,
 }
 
+public enum GameOutcome
+{
+    InProgress = 0,
+    Won = 1,
+    Lost = 2,
+}
+
 [Flags]
-public enum CellMarks {
-    None      = 0b_0000_0000,  // 0
-    Mark0     = 0b_0000_0001,  // 1
-    Mark1     = 0b_0000_0010,  // 2
-    Mark2     = 0b_0000_0100,  // 4
-    Mark3     = 0b_0000_1000,  // 8
+public enum CellMarks
+{
+    None  = 0b_0000_0000,  // 0
+    Mark0 = 0b_0000_0001,  // 1
+    Mark1 = 0b_0000_0010,  // 2
+    Mark2 = 0b_0000_0100,  // 4
+    Mark3 = 0b_0000_1000,  // 8
 }
 
 public class GameState
 {
+    public const int BoardSize = 5;
+
     private readonly RawBoard board;
+    private readonly CellState[,] cellStates;
+    private readonly CellMarks[,] cellMarks;
+    private readonly List<Tuple<int, int>> zeroLocations;
 
-    private CellState[,] cellStates;
-    private CellMarks[,] cellMarks;
+    public int[] ColumnSumValues { get; }
+    public int[] RowSumValues { get; }
+    public int[] ColumnMultValues { get; }
+    public int[] RowMultValues { get; }
+    public int[] ColumnBombs { get; }
+    public int[] RowBombs { get; }
 
-    public int[] ColumnSumValues { get; private set; }
-    public int[] RowSumValues { get; private set; }
-    public int[] ColumnMultValues { get; private set; }
-    public int[] RowMultValues { get; private set; }
-    public int[] ColumnBombs { get; private set; }
-    public int[] RowBombs { get; private set; }
-
-    public int PointsToWin { get; private set; }
-
-    public List<Tuple<int, int>> ZeroLocations { get; private set; }
-
+    public int PointsToWin { get; }
+    public int CurrentPoints { get; private set; }
+    public GameOutcome Outcome { get; private set; }
+    public IReadOnlyList<Tuple<int, int>> ZeroLocations => zeroLocations;
 
     public GameState(RawBoard board)
     {
-        this.board = board;
-        this.cellStates = new CellState[5, 5];
-        this.cellMarks = new CellMarks[5, 5];
-        for (int i = 0; i < 5; i++)
+        this.board = board ?? throw new ArgumentNullException(nameof(board));
+        cellStates = new CellState[BoardSize, BoardSize];
+        cellMarks = new CellMarks[BoardSize, BoardSize];
+        zeroLocations = new List<Tuple<int, int>>();
+
+        for (int i = 0; i < BoardSize; i++)
         {
-            for (int j = 0; j < 5; j++)
+            for (int j = 0; j < BoardSize; j++)
             {
-                this.cellStates[i, j] = CellState.Hidden;
-                this.cellMarks[i, j] = CellMarks.None;
+                cellStates[i, j] = CellState.Hidden;
+                cellMarks[i, j] = CellMarks.None;
             }
         }
 
-        this.ColumnSumValues = new int[5];
-        this.RowSumValues = new int[5];
-        this.ColumnMultValues = new int[5];
-        this.RowMultValues = new int[5];
-        this.ColumnBombs = new int[5];
-        this.RowBombs = new int[5];
+        PointsToWin = ComputePointsToWin();
+        CurrentPoints = 0;
+        Outcome = GameOutcome.InProgress;
 
-        this.ZeroLocations = new List<Tuple<int, int>>();
-        this.PointsToWin = 1;
-        for (int i = 0; i < 5; i++)
+        ComputeRowHints(out int[] rowSums, out int[] rowMults, out int[] rowBombs);
+        ComputeColumnHints(out int[] colSums, out int[] colMults, out int[] colBombs);
+
+        RowSumValues = rowSums;
+        RowMultValues = rowMults;
+        RowBombs = rowBombs;
+        ColumnSumValues = colSums;
+        ColumnMultValues = colMults;
+        ColumnBombs = colBombs;
+    }
+
+    private int ComputePointsToWin()
+    {
+        int product = 1;
+        for (int i = 0; i < BoardSize; i++)
         {
-            for (int j = 0; j < 5; j++)
+            for (int j = 0; j < BoardSize; j++)
             {
-                if (board[i, j] != 0)
+                int value = board[i, j];
+                if (value != 0)
+                    product *= value;
+                else
+                    zeroLocations.Add(Tuple.Create(i, j));
+            }
+        }
+        return product;
+    }
+
+    private void ComputeRowHints(out int[] sums, out int[] mults, out int[] bombs)
+    {
+        sums = new int[BoardSize];
+        mults = new int[BoardSize];
+        bombs = new int[BoardSize];
+
+        for (int row = 0; row < BoardSize; row++)
+        {
+            int sum = 0, mult = 0, bombCount = 0;
+            for (int col = 0; col < BoardSize; col++)
+            {
+                int value = board[row, col];
+                if (value == 0)
                 {
-                    PointsToWin *= board[i, j];
+                    bombCount++;
                 }
                 else
                 {
-                    ZeroLocations.Add(new Tuple<int, int>(i, j));
+                    sum += value;
+                    mult = mult == 0 ? value : mult * value;
                 }
             }
+            sums[row] = sum;
+            mults[row] = mult;
+            bombs[row] = bombCount;
         }
+    }
 
-        for (int i = 0; i < 5; i++)
+    private void ComputeColumnHints(out int[] sums, out int[] mults, out int[] bombs)
+    {
+        sums = new int[BoardSize];
+        mults = new int[BoardSize];
+        bombs = new int[BoardSize];
+
+        for (int col = 0; col < BoardSize; col++)
         {
-            int sumPoints = 0;
-            int multPoints = 0;
-            int bombs = 0;
-            for (int j = 0; j < 5; j++)
+            int sum = 0, mult = 0, bombCount = 0;
+            for (int row = 0; row < BoardSize; row++)
             {
-                sumPoints += board[i, j];
-                if (board[i, j] == 0)
+                int value = board[row, col];
+                if (value == 0)
                 {
-                    bombs++;
+                    bombCount++;
                 }
                 else
                 {
-                    if (multPoints == 0)
-                    {
-                        multPoints = 1;
-                    }
-                    multPoints *= board[i, j];
+                    sum += value;
+                    mult = mult == 0 ? value : mult * value;
                 }
             }
-            RowSumValues[i] = sumPoints;
-            RowMultValues[i] = multPoints;
-            RowBombs[i] = bombs;
+            sums[col] = sum;
+            mults[col] = mult;
+            bombs[col] = bombCount;
         }
+    }
 
-        for (int j = 0; j < 5; j++)
+    /// <summary>
+    /// Reveals the cell at (row, col). If it's a bomb (0), the game is lost.
+    /// Otherwise multiplies CurrentPoints by the cell value; if that reaches PointsToWin, the game is won.
+    /// </summary>
+    /// <returns>Current game outcome after this reveal.</returns>
+    public GameOutcome TryRevealCell(int row, int col)
+    {
+        if (Outcome != GameOutcome.InProgress)
+            return Outcome;
+
+        if (cellStates[row, col] == CellState.Revealed)
+            return Outcome;
+
+        cellStates[row, col] = CellState.Revealed;
+
+        int value = board[row, col];
+        if (value == 0)
         {
-            int sumPoints = 0;
-            int multPoints = 0;
-            int bombs = 0;
-            for (int i = 0; i < 5; i++)
-            {
-                sumPoints += board[i, j];
-                if (board[i, j] == 0)
-                {
-                    bombs++;
-                }
-                else
-                {
-                    if (multPoints == 0)
-                    {
-                        multPoints = 1;
-                    }
-                    multPoints *= board[i, j];
-                }
-            }
-            ColumnSumValues[j] = sumPoints;
-            ColumnMultValues[j] = multPoints;
-            ColumnBombs[j] = bombs;
+            Outcome = GameOutcome.Lost;
+            return Outcome;
         }
+
+        CurrentPoints = CurrentPoints == 0 ? value : CurrentPoints * value;
+        if (CurrentPoints >= PointsToWin)
+            Outcome = GameOutcome.Won;
+
+        return Outcome;
     }
 
-    public int this[int row, int col]
-    {
-        get => board[row, col];
-    }
+    public CellState GetCellState(int row, int col) => cellStates[row, col];
 
-    public int GetRowPoints(int row)
-    {
-        return RowSumValues[row];
-    }
+    public CellMarks GetCellMarks(int row, int col) => cellMarks[row, col];
 
-    public int GetColumnPoints(int column)
-    {
-        return ColumnSumValues[column];
-    }
+    public int this[int row, int col] => board[row, col];
+
+    public int GetRowPoints(int row) => RowSumValues[row];
+
+    public int GetColumnPoints(int column) => ColumnSumValues[column];
 }
