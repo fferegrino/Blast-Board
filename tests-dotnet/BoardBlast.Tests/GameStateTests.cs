@@ -95,7 +95,7 @@ public class GameStateTests
     }
 
     [Test]
-    public void TryRevealCell_OnBomb_SetsOutcomeToLost()
+    public void TryRevealCell_OnBomb_ReturnsTrueAndSetsOutcomeToLost()
     {
         var board = new RawBoard(new int[,]
         {
@@ -107,9 +107,9 @@ public class GameStateTests
         });
         var state = new GameState(board);
 
-        var outcome = state.TryRevealCell(0, 2);
+        var revealed = state.TryRevealCell(0, 2);
 
-        Assert.That(outcome, Is.EqualTo(GameOutcome.Lost));
+        Assert.That(revealed, Is.True);
         Assert.That(state.Outcome, Is.EqualTo(GameOutcome.Lost));
     }
 
@@ -127,18 +127,18 @@ public class GameStateTests
         });
         var state = new GameState(board);
 
-        Assert.That(state.TryRevealCell(0, 0), Is.EqualTo(GameOutcome.InProgress));
+        Assert.That(state.TryRevealCell(0, 0), Is.True);
         Assert.That(state.CurrentPoints, Is.EqualTo(1));
-        Assert.That(state.TryRevealCell(0, 1), Is.EqualTo(GameOutcome.InProgress));
+        Assert.That(state.TryRevealCell(0, 1), Is.True);
         Assert.That(state.CurrentPoints, Is.EqualTo(2));
-        var outcome = state.TryRevealCell(0, 3);
+        Assert.That(state.TryRevealCell(0, 3), Is.True);
 
-        Assert.That(outcome, Is.EqualTo(GameOutcome.Won));
+        Assert.That(state.Outcome, Is.EqualTo(GameOutcome.Won));
         Assert.That(state.CurrentPoints, Is.EqualTo(4));
     }
 
     [Test]
-    public void TryRevealCell_WhenAlreadyRevealed_DoesNotDoubleCountPoints()
+    public void TryRevealCell_WhenAlreadyRevealed_ReturnsFalseAndDoesNotDoubleCountPoints()
     {
         var board = new RawBoard(new int[,]
         {
@@ -150,9 +150,29 @@ public class GameStateTests
         });
         var state = new GameState(board);
 
-        state.TryRevealCell(0, 0);
+        Assert.That(state.TryRevealCell(0, 0), Is.True);
         Assert.That(state.CurrentPoints, Is.EqualTo(2));
-        state.TryRevealCell(0, 0); // same cell again
+        Assert.That(state.TryRevealCell(0, 0), Is.False); // same cell again
         Assert.That(state.CurrentPoints, Is.EqualTo(2));
+    }
+
+    [Test]
+    public void TryRevealCell_WhenGameOver_ReturnsFalse()
+    {
+        var board = new RawBoard(new int[,]
+        {
+            { 0, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 }
+        });
+        var state = new GameState(board);
+        state.TryRevealCell(0, 0); // lose
+
+        var revealed = state.TryRevealCell(0, 1);
+
+        Assert.That(revealed, Is.False);
+        Assert.That(state.Outcome, Is.EqualTo(GameOutcome.Lost));
     }
 }

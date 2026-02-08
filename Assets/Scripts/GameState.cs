@@ -151,17 +151,17 @@ public class GameState
     }
 
     /// <summary>
-    /// Reveals the cell at (row, col). If it's a bomb (0), the game is lost.
-    /// Otherwise multiplies CurrentPoints by the cell value; if that reaches PointsToWin, the game is won.
+    /// Tries to reveal the cell at (row, col). Fails (returns false) if the game is over or the cell is already revealed.
+    /// When a cell is revealed: if it's a bomb (0) the game is lost; otherwise points are multiplied and win is checked.
     /// </summary>
-    /// <returns>Current game outcome after this reveal.</returns>
-    public GameOutcome TryRevealCell(int row, int col)
+    /// <returns>True if the cell was revealed; false if nothing changed (already revealed or game over).</returns>
+    public bool TryRevealCell(int row, int col)
     {
         if (Outcome != GameOutcome.InProgress)
-            return Outcome;
+            return false;
 
         if (cellStates[row, col] == CellState.Revealed)
-            return Outcome;
+            return false;
 
         cellStates[row, col] = CellState.Revealed;
 
@@ -169,14 +169,14 @@ public class GameState
         if (value == 0)
         {
             Outcome = GameOutcome.Lost;
-            return Outcome;
+            return true;
         }
 
         CurrentPoints = CurrentPoints == 0 ? value : CurrentPoints * value;
         if (CurrentPoints >= PointsToWin)
             Outcome = GameOutcome.Won;
 
-        return Outcome;
+        return true;
     }
 
     public CellState GetCellState(int row, int col) => cellStates[row, col];
