@@ -6,17 +6,25 @@ public class BoardController : MonoBehaviour
     const int CARD_LOCATION_Y = 450;
     const int CARD_OFFSET = 180;
 
+
+    [Header("Board Elements")]
     public GameObject cardButtonsParent;
 
     public GameObject cardButton;
 
     public GameObject valueTile;
 
+    [Header("Scoreboards")]
+    public Scoreboard levelScoreboard;
+    public Scoreboard sessionScoreboard;
+    public Scoreboard levelDisplay;
+
     private Vector3 cardButtonParentPosition;
 
     private CardButton[] cardButtons;
 
     private GameState gameState;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
