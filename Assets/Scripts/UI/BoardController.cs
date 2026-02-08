@@ -52,6 +52,7 @@ public class BoardController : MonoBehaviour
 
         RecreateCards(gameState);
         CreateValueTiles(gameState);
+        levelScoreboard.SetScoreboardValue(gameState.CurrentPoints);
     }
 
     void RecreateCards(GameState state)
@@ -134,6 +135,7 @@ public class BoardController : MonoBehaviour
                 RefreshCardFromState(r, c);
             }
         }
+        levelScoreboard.SetScoreboardValue(gameState.CurrentPoints);
     }
 
     void CreateValueTiles(GameState state)
