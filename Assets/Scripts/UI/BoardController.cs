@@ -18,6 +18,8 @@ public class BoardController : MonoBehaviour
 
     private GameState gameState;
 
+    private CardButton highlightedCard;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -100,11 +102,29 @@ public class BoardController : MonoBehaviour
 
     void OnCardButtonClick(CardButton card)
     {
-        var wasRevealed = gameState.TryRevealCell(card.Row, card.Column);
-        if (wasRevealed)
-            RefreshCardFromState(card.Row, card.Column);
+        if (gameState.Outcome != GameOutcome.InProgress)
+        {
+            Debug.Log($"Game is not in progress. Game state: {gameState.Outcome}");
+            return;
+        }
+
+        if (highlightedCard != null && highlightedCard == card)
+        {
+            var wasRevealed = gameState.TryRevealCell(card.Row, card.Column);
+            if (wasRevealed)
+                RefreshCardFromState(card.Row, card.Column);
+            else
+                Debug.Log($"Unable to reveal card. Game state: {gameState.Outcome}");
+        }
         else
-            Debug.Log($"Unable to reveal card. Game state: {gameState.Outcome}");
+        {
+            highlightedCard = card;
+            foreach (var cardButton in cardButtons)
+            {
+                cardButton.ClearTargetedState();
+            }
+            highlightedCard.SetCellState(CellState.Targeted);
+        }
     }
 
     void CreateValueTiles(GameState state)

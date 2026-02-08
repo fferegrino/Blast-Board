@@ -75,6 +75,12 @@ public class CardButton : MonoBehaviour, UnityEngine.EventSystems.IPointerDownHa
         }
     }
 
+    public void ClearTargetedState()
+    {
+        if (targetAnimator != null)
+            targetAnimator.SetBool("IsTargeted", false);
+    }
+
     public void SetValue(int value)
     {
         this.value = value;
