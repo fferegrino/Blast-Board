@@ -1175,6 +1175,8 @@ MonoBehaviour:
   levelDisplay: {fileID: 1081571347}
   levelEndScreen: {fileID: 1443821180}
   cardTargetSound: {fileID: 8300000, guid: 6da308746da274dc4ae328e15b36a601, type: 3}
+  cardRevealSound: {fileID: 0}
+  cardExplodeSound: {fileID: 8300000, guid: 581a3ad69af2849429761114d4ade68f, type: 3}
 --- !u!224 &1278546796 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5028975131165183941, guid: 8e295968476dd4818bbb18133708d92a, type: 3}

@@ -11,6 +11,7 @@ public class CardButton : MonoBehaviour, UnityEngine.EventSystems.IPointerDownHa
     private Animator cardRevealAnimator;
 
     public Image numberImage;
+    public int Value => value;
     private int value;
 
     [Header("Mark icons (optional)")]

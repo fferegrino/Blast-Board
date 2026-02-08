@@ -30,6 +30,10 @@ public class BoardController : MonoBehaviour
     [Header("Sound FX")]
     public AudioClip cardTargetSound;
 
+    public AudioClip cardRevealSound;
+
+    public AudioClip cardExplodeSound;
+
     private Vector3 cardButtonParentPosition;
 
     private CardButton[] cardButtons;
@@ -169,15 +173,19 @@ public class BoardController : MonoBehaviour
             if (wasRevealed)
             {
                 RefreshCardFromState(r, c);
+                if (gameState.Outcome == GameOutcome.Lost)
+                {
+                    if (cardExplodeSound != null && SoundFXManager.Instance != null)
+                        SoundFXManager.Instance.PlaySound(cardExplodeSound, transform);
+                    StartCoroutine(LoseGame());
+                    return;
+                }
+                if (cardRevealSound != null && SoundFXManager.Instance != null)
+                    SoundFXManager.Instance.PlaySound(cardRevealSound, transform);
                 if (gameState.Outcome == GameOutcome.Won)
                 {
                     UpdateScoreboards();
                     ShowLevelEndScreen(GameOutcome.Won);
-                    return;
-                }
-                else if (gameState.Outcome == GameOutcome.Lost)
-                {
-                    StartCoroutine(LoseGame());
                     return;
                 }
             }
@@ -194,7 +202,8 @@ public class BoardController : MonoBehaviour
                 if (prevR >= 0 && prevC >= 0)
                     RefreshCardFromState(prevR, prevC);
                 RefreshCardFromState(r, c);
-                SoundFXManager.Instance.PlaySound(cardTargetSound, transform);
+                if (cardTargetSound != null && SoundFXManager.Instance != null)
+                    SoundFXManager.Instance.PlaySound(cardTargetSound, transform);
             }
         }
         UpdateScoreboards();
@@ -221,6 +230,11 @@ public class BoardController : MonoBehaviour
             {
                 yield return new WaitForSeconds(0.3f);
                 card.SetCellState(CellState.Revealed);
+                if (cardRevealSound != null && SoundFXManager.Instance != null)
+                    if (card.Value == 0)
+                        SoundFXManager.Instance.PlaySound(cardExplodeSound, transform);
+                    else
+                        SoundFXManager.Instance.PlaySound(cardRevealSound, transform);
             }
         }
     }
