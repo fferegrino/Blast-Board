@@ -61,7 +61,6 @@ public class CardButton : MonoBehaviour, UnityEngine.EventSystems.IPointerDownHa
 
         if (cardRevealAnimator != null)
         {
-            cardRevealAnimator.SetBool("IsHidden", cellState == CellState.Hidden);
             if (cellState == CellState.Revealed)
             {
                 cardRevealAnimator.SetBool("IsExploded", value == 0);

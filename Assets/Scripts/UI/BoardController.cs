@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class BoardController : MonoBehaviour
 {
@@ -149,17 +150,12 @@ public class BoardController : MonoBehaviour
                 if (gameState.Outcome == GameOutcome.Won)
                 {
                     UpdateScoreboards();
-                    levelEndScreen.gameObject.SetActive(true);
-                    levelEndScreen.SetActionButtonText("Next Level");
-                    levelEndScreen.SetScreenText("You won the level!");
+                    ShowLevelEndScreen(GameOutcome.Won);
                     return;
                 }
                 else if (gameState.Outcome == GameOutcome.Lost)
                 {
-                    UpdateScoreboards();
-                    levelEndScreen.gameObject.SetActive(true);
-                    levelEndScreen.SetActionButtonText("Restart Level");
-                    levelEndScreen.SetScreenText("You lost the level!");
+                    StartCoroutine(LoseGame());
                     return;
                 }
             }
@@ -179,6 +175,37 @@ public class BoardController : MonoBehaviour
             }
         }
         UpdateScoreboards();
+    }
+
+    IEnumerator LoseGame()
+    {
+        UpdateScoreboards();
+        foreach (var zeroLocation in gameState.ZeroLocations)
+        {
+            var card = GetCard(zeroLocation.Item1, zeroLocation.Item2);
+            if (card != null)
+            {
+                yield return new WaitForSeconds(0.3f);
+                card.SetCellState(CellState.Revealed);
+            }
+        }
+        yield return new WaitForSeconds(0.5f);
+        ShowLevelEndScreen(GameOutcome.Lost);
+    }
+
+    void ShowLevelEndScreen(GameOutcome outcome)
+    {
+        if (outcome == GameOutcome.Won)
+        {
+            levelEndScreen.SetActionButtonText("Next Level");
+            levelEndScreen.SetScreenText("You won the level!");
+        }
+        else if (outcome == GameOutcome.Lost)
+        {
+            levelEndScreen.SetActionButtonText("Restart Level");
+            levelEndScreen.SetScreenText("You lost the level!");
+        }
+        levelEndScreen.gameObject.SetActive(true);
     }
 
     void CreateValueTiles(GameState state)
