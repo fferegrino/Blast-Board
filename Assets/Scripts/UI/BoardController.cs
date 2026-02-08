@@ -15,6 +15,8 @@ public class BoardController : MonoBehaviour
 
     public GameObject valueTile;
 
+    public MemoPad memoPad;
+
     [Header("Scoreboards")]
     public Scoreboard levelScoreboard;
     public Scoreboard sessionScoreboard;
@@ -38,6 +40,12 @@ public class BoardController : MonoBehaviour
         ResetBoard(gameSession.CurrentGame);
         UpdateScoreboards();
         levelEndScreen.OnActionButtonClick += OnLevelEndScreenActionButtonClick;
+        memoPad.OnMemoPadClick += OnMemoPadClick;
+    }
+
+    void OnMemoPadClick(CellMarks mark)
+    {
+        Debug.Log($"OnMemoPadClick: {mark}");
     }
 
     void OnLevelEndScreenActionButtonClick()
