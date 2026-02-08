@@ -181,7 +181,45 @@ public class GameState
 
     public CellState GetCellState(int row, int col) => cellStates[row, col];
 
-    public CellMarks GetCellMarks(int row, int col) => cellMarks[row, col];
+    public CellMarks GetCellMark(int row, int col) => cellMarks[row, col];
+
+    /// <summary>
+    /// Returns true if the cell at (row, col) has the given mark(s) set.
+    /// For a combination of flags, returns true only when all specified marks are set.
+    /// For <see cref="CellMarks.None"/>, returns true when the cell has no marks.
+    /// </summary>
+    public bool HasCellMark(int row, int col, CellMarks mark)
+    {
+        var current = cellMarks[row, col];
+        if (mark == CellMarks.None)
+            return current == CellMarks.None;
+        return (current & mark) == mark;
+    }
+
+    /// <summary>
+    /// Sets the mark for the cell at (row, col). Use <see cref="CellMarks.None"/> to clear all marks.
+    /// <paramref name="mark"/> can be a combination of flags (e.g. <c>CellMarks.Mark0 | CellMarks.Mark1</c>).
+    /// </summary>
+    public void SetCellMark(int row, int col, CellMarks mark)
+    {
+        cellMarks[row, col] = mark;
+    }
+
+    /// <summary>
+    /// Adds the given mark(s) to the cell at (row, col). Combines with any existing marks.
+    /// </summary>
+    public void AddCellMark(int row, int col, CellMarks mark)
+    {
+        cellMarks[row, col] |= mark;
+    }
+
+    /// <summary>
+    /// Removes the given mark(s) from the cell at (row, col). Other marks are unchanged.
+    /// </summary>
+    public void RemoveCellMark(int row, int col, CellMarks mark)
+    {
+        cellMarks[row, col] &= ~mark;
+    }
 
     public int this[int row, int col] => board[row, col];
 

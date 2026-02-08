@@ -175,4 +175,153 @@ public class GameStateTests
         Assert.That(revealed, Is.False);
         Assert.That(state.Outcome, Is.EqualTo(GameOutcome.Lost));
     }
+
+    [Test]
+    public void NewGame_HasNoMarks()
+    {
+        var board = new RawBoard(new int[,]
+        {
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 }
+        });
+        var state = new GameState(board);
+
+        Assert.That(state.GetCellMark(0, 0), Is.EqualTo(CellMarks.None));
+        Assert.That(state.GetCellMark(2, 3), Is.EqualTo(CellMarks.None));
+    }
+
+    [Test]
+    public void SetCellMark_StoresMark_GetCellMarkReturnsIt()
+    {
+        var board = new RawBoard(new int[,]
+        {
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 }
+        });
+        var state = new GameState(board);
+
+        state.SetCellMark(1, 2, CellMarks.Mark1);
+
+        Assert.That(state.GetCellMark(1, 2), Is.EqualTo(CellMarks.Mark1));
+    }
+
+    [Test]
+    public void SetCellMark_WithNone_ClearsMark()
+    {
+        var board = new RawBoard(new int[,]
+        {
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 }
+        });
+        var state = new GameState(board);
+        state.SetCellMark(0, 0, CellMarks.Mark2);
+
+        state.SetCellMark(0, 0, CellMarks.None);
+
+        Assert.That(state.GetCellMark(0, 0), Is.EqualTo(CellMarks.None));
+    }
+
+    [Test]
+    public void SetCellMark_DoesNotAffectOtherCells()
+    {
+        var board = new RawBoard(new int[,]
+        {
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 }
+        });
+        var state = new GameState(board);
+
+        state.SetCellMark(2, 2, CellMarks.Mark3);
+
+        Assert.That(state.GetCellMark(2, 1), Is.EqualTo(CellMarks.None));
+        Assert.That(state.GetCellMark(2, 3), Is.EqualTo(CellMarks.None));
+        Assert.That(state.GetCellMark(2, 2), Is.EqualTo(CellMarks.Mark3));
+    }
+
+    [Test]
+    public void SetCellMark_AcceptsCombinedMarks()
+    {
+        var board = new RawBoard(new int[,]
+        {
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 }
+        });
+        var state = new GameState(board);
+
+        state.SetCellMark(0, 0, CellMarks.Mark0 | CellMarks.Mark2);
+
+        Assert.That(state.GetCellMark(0, 0), Is.EqualTo(CellMarks.Mark0 | CellMarks.Mark2));
+    }
+
+    [Test]
+    public void AddCellMark_CombinesWithExistingMarks()
+    {
+        var board = new RawBoard(new int[,]
+        {
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 }
+        });
+        var state = new GameState(board);
+        state.SetCellMark(1, 1, CellMarks.Mark0);
+
+        state.AddCellMark(1, 1, CellMarks.Mark1);
+
+        Assert.That(state.GetCellMark(1, 1), Is.EqualTo(CellMarks.Mark0 | CellMarks.Mark1));
+    }
+
+    [Test]
+    public void RemoveCellMark_RemovesOnlySpecifiedMarks()
+    {
+        var board = new RawBoard(new int[,]
+        {
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 }
+        });
+        var state = new GameState(board);
+        state.SetCellMark(3, 3, CellMarks.Mark0 | CellMarks.Mark1 | CellMarks.Mark2);
+
+        state.RemoveCellMark(3, 3, CellMarks.Mark1);
+
+        Assert.That(state.GetCellMark(3, 3), Is.EqualTo(CellMarks.Mark0 | CellMarks.Mark2));
+    }
+
+    [Test]
+    public void RemoveCellMark_WhenNoneLeft_ResultsInNone()
+    {
+        var board = new RawBoard(new int[,]
+        {
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 }
+        });
+        var state = new GameState(board);
+        state.SetCellMark(4, 4, CellMarks.Mark2);
+
+        state.RemoveCellMark(4, 4, CellMarks.Mark2);
+
+        Assert.That(state.GetCellMark(4, 4), Is.EqualTo(CellMarks.None));
+    }
 }
