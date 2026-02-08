@@ -19,6 +19,9 @@ public class BoardController : MonoBehaviour
     public Scoreboard sessionScoreboard;
     public Scoreboard levelDisplay;
 
+    [Header("Screens")]
+    public LevelEndScreen levelEndScreen;
+
     private Vector3 cardButtonParentPosition;
 
     private CardButton[] cardButtons;
@@ -33,6 +36,21 @@ public class BoardController : MonoBehaviour
         gameSession = GameSession.DemoSession();
         ResetBoard(gameSession.CurrentGame);
         UpdateScoreboards();
+        levelEndScreen.OnActionButtonClick += OnLevelEndScreenActionButtonClick;
+    }
+
+    void OnLevelEndScreenActionButtonClick()
+    {
+        if (gameState.Outcome == GameOutcome.Won)
+        {
+            gameSession.AdvanceToNextLevel();
+            ResetBoard(gameSession.CurrentGame);
+        }
+        else if (gameState.Outcome == GameOutcome.Lost)
+        {
+            gameSession.RetryCurrentLevel();
+            ResetBoard(gameSession.CurrentGame);
+        }
     }
 
     void ResetBoard(GameState state)
@@ -45,6 +63,7 @@ public class BoardController : MonoBehaviour
         RecreateCards(state);
         CreateValueTiles(state);
         UpdateScoreboards();
+        levelEndScreen.gameObject.SetActive(false);
     }
 
     void UpdateScoreboards()
@@ -125,8 +144,16 @@ public class BoardController : MonoBehaviour
                 RefreshCardFromState(r, c);
                 if (gameState.Outcome == GameOutcome.Won)
                 {
-                    gameSession.AdvanceToNextLevel();
-                    ResetBoard(gameSession.CurrentGame);
+                    levelEndScreen.gameObject.SetActive(true);
+                    levelEndScreen.SetActionButtonText("Next Level");
+                    levelEndScreen.SetScreenText("You won the level!");
+                    return;
+                }
+                else if (gameState.Outcome == GameOutcome.Lost)
+                {
+                    levelEndScreen.gameObject.SetActive(true);
+                    levelEndScreen.SetActionButtonText("Restart Level");
+                    levelEndScreen.SetScreenText("You lost the level!");
                     return;
                 }
             }
