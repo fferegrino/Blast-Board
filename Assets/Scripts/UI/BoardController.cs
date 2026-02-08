@@ -33,6 +33,14 @@ public class BoardController : MonoBehaviour
     public AudioClip cardRevealSound;
 
     public AudioClip cardExplodeSound;
+    public AudioClip gameOverSound;
+
+    public AudioClip gameWonSound;
+
+    public AudioClip gameStartSound;
+
+    public AudioClip cardMarkSound;
+    public AudioClip cardUnmarkSound;
 
     private Vector3 cardButtonParentPosition;
 
@@ -52,6 +60,12 @@ public class BoardController : MonoBehaviour
         memoPad.OnMemoPadClick += OnMemoPadClick;
     }
 
+    private void PlaySound(AudioClip audioClip)
+    {
+        if (audioClip != null && SoundFXManager.Instance != null)
+            SoundFXManager.Instance.PlaySound(audioClip, transform);
+    }
+
     void OnMemoPadClick(CellMarks mark)
     {
         if (gameState.Outcome != GameOutcome.InProgress) return;
@@ -59,9 +73,14 @@ public class BoardController : MonoBehaviour
 
         int r = gameState.TargetedRow, c = gameState.TargetedColumn;
         if (gameState.HasCellMark(r, c, mark))
+        {
             gameState.RemoveCellMark(r, c, mark);
-        else
+            PlaySound(cardUnmarkSound);
+        }
+        else{
             gameState.AddCellMark(r, c, mark);
+            PlaySound(cardMarkSound);
+        }
 
         RefreshCardFromState(r, c);
     }
@@ -95,6 +114,7 @@ public class BoardController : MonoBehaviour
         CreateValueTiles(state);
         UpdateScoreboards();
         levelEndScreen.gameObject.SetActive(false);
+        PlaySound(gameStartSound);
     }
 
     void UpdateScoreboards()
@@ -186,6 +206,7 @@ public class BoardController : MonoBehaviour
                 {
                     UpdateScoreboards();
                     ShowLevelEndScreen(GameOutcome.Won);
+                    PlaySound(gameWonSound);
                     return;
                 }
             }
@@ -215,6 +236,7 @@ public class BoardController : MonoBehaviour
         yield return StartCoroutine(RevealCardsVisuallyForEffect(gameState.ZeroLocations));
         yield return new WaitForSeconds(0.5f);
         ShowLevelEndScreen(GameOutcome.Lost);
+        PlaySound(gameOverSound);
     }
 
     /// <summary>
