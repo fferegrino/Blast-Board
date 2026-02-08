@@ -14,12 +14,16 @@ public class BoardController : MonoBehaviour
 
     private Vector3 cardButtonParentPosition;
 
+    private CardButton[] cardButtons;
+
+    private GameState gameState;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         cardButtonParentPosition = cardButtonsParent.transform.position;
-        ResetBoard(new GameState(
+        gameState = new GameState(
             new RawBoard(new int[,]
             {
                 { 1, 0, 0, 0, 1 },
@@ -28,7 +32,8 @@ public class BoardController : MonoBehaviour
                 { 0, 0, 3, 0, 3 },
                 { 0, 0, 0, 0, 3 }
             }
-        )));
+        ));
+        ResetBoard(gameState);
     }
 
     void ResetBoard(GameState gameState)
@@ -44,6 +49,7 @@ public class BoardController : MonoBehaviour
 
     void RecreateCards(GameState gameState)
     {
+        cardButtons = new CardButton[25];
         for (int row = 0; row < 5; row++)
         {
             for (int col = 0; col < 5; col++)
@@ -55,9 +61,27 @@ public class BoardController : MonoBehaviour
                         0
                     ), 
                     Quaternion.identity, cardButtonsParent.transform);
+                var backingClass = card.GetComponent<CardButton>();
+
                 card.name = $"CardButton_{row}_{col}";
-                card.GetComponent<CardButton_Interactions>().SetValue(gameState[row, col]);
+                backingClass.SetPosition(row, col);
+                backingClass.SetValue(gameState[row, col]);
+                backingClass.OnClick += OnCardButtonClick;
+                cardButtons[row * 5 + col] = backingClass;
             }
+        }
+    }
+
+    void OnCardButtonClick(CardButton cardButton)
+    {
+        var wasAbleToReveal = gameState.TryRevealCell(cardButton.Row, cardButton.Column);
+        if (wasAbleToReveal)
+        {
+            cardButton.SetCellState(CellState.Revealed);
+        }
+        else
+        {
+            Debug.Log($"Unable to reveal card. Game state: {gameState.Outcome}");
         }
     }
 
