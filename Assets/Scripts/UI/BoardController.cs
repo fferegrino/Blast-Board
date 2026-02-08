@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class BoardController : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class BoardController : MonoBehaviour
 
     [Header("Screens")]
     public LevelEndScreen levelEndScreen;
+    public SettingsUI settingsUI;
 
     [Header("Sound FX")]
     public AudioClip cardTargetSound;
@@ -41,6 +43,9 @@ public class BoardController : MonoBehaviour
 
     public AudioClip cardMarkSound;
     public AudioClip cardUnmarkSound;
+
+    [Header("UI")]
+    public Button settingsButton;
 
     private Vector3 cardButtonParentPosition;
 
@@ -58,6 +63,12 @@ public class BoardController : MonoBehaviour
         UpdateScoreboards();
         levelEndScreen.OnActionButtonClick += OnLevelEndScreenActionButtonClick;
         memoPad.OnMemoPadClick += OnMemoPadClick;
+        settingsButton.onClick.AddListener(OnSettingsButtonClick);
+    }
+
+    void OnSettingsButtonClick()
+    {
+        settingsUI.gameObject.SetActive(true);
     }
 
     private void PlaySound(AudioClip audioClip)
