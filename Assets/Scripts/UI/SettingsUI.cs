@@ -4,16 +4,22 @@ using TMPro;
 using System.Linq;
 
 /// <summary>
-/// Connects a mute Toggle and volume Slider to <see cref="AudioSettings"/>.
-/// Assign Mute Toggle and Volume Slider in the inspector, or add children named "soundFxMuteToggle" and "soundFxVolumeSlider".
+/// Connects mute toggles and volume sliders to <see cref="AudioSettings"/> (SFX and music).
+/// Assign in the inspector or use child names: soundFxMuteToggle, soundFxVolumeSlider, musicMuteToggle, musicVolumeSlider.
 /// </summary>
 public class SettingsUI : MonoBehaviour
 {
-    [Header("Optional – assign in inspector or use child names")]
+    [Header("Sound FX – optional, or use child names")]
     public Toggle soundFxMuteToggle;
     public Slider soundFxVolumeSlider;
-    [Tooltip("Optional label to show volume as text (e.g. \"50%\").")]
+    [Tooltip("Optional label to show SFX volume (e.g. \"50%\").")]
     public TextMeshProUGUI soundFxVolumeLabel;
+
+    [Header("Music – optional, or use child names")]
+    public Toggle musicMuteToggle;
+    public Slider musicVolumeSlider;
+    [Tooltip("Optional label to show music volume (e.g. \"70%\").")]
+    public TextMeshProUGUI musicVolumeLabel;
 
     public Button closeButton;
 
@@ -22,7 +28,8 @@ public class SettingsUI : MonoBehaviour
         ResolveReferences();
         LoadFromSettings();
         Subscribe();
-        closeButton.onClick.AddListener(OnCloseButtonClick);
+        if (closeButton != null)
+            closeButton.onClick.AddListener(OnCloseButtonClick);
     }
 
     void OnDestroy()
@@ -43,6 +50,12 @@ public class SettingsUI : MonoBehaviour
             soundFxVolumeSlider = GetComponentsInChildren<Slider>(true).FirstOrDefault(s => s.name == "soundFxVolumeSlider");
         if (soundFxVolumeLabel == null)
             soundFxVolumeLabel = GetComponentsInChildren<TextMeshProUGUI>(true).FirstOrDefault(t => t.name == "soundFxVolumeLabel");
+        if (musicMuteToggle == null)
+            musicMuteToggle = GetComponentsInChildren<Toggle>(true).FirstOrDefault(t => t.name == "musicMuteToggle");
+        if (musicVolumeSlider == null)
+            musicVolumeSlider = GetComponentsInChildren<Slider>(true).FirstOrDefault(s => s.name == "musicVolumeSlider");
+        if (musicVolumeLabel == null)
+            musicVolumeLabel = GetComponentsInChildren<TextMeshProUGUI>(true).FirstOrDefault(t => t.name == "musicVolumeLabel");
     }
 
     void LoadFromSettings()
@@ -51,39 +64,73 @@ public class SettingsUI : MonoBehaviour
             soundFxMuteToggle.isOn = AudioSettings.IsMuted;
         if (soundFxVolumeSlider != null)
             soundFxVolumeSlider.value = AudioSettings.Volume;
-        UpdatesoundFxVolumeLabel();
+        if (musicMuteToggle != null)
+            musicMuteToggle.isOn = AudioSettings.MusicMuted;
+        if (musicVolumeSlider != null)
+            musicVolumeSlider.value = AudioSettings.MusicVolume;
+        UpdateSoundFxVolumeLabel();
+        UpdateMusicVolumeLabel();
     }
 
     void Subscribe()
     {
         if (soundFxMuteToggle != null)
-            soundFxMuteToggle.onValueChanged.AddListener(OnMuteChanged);
+            soundFxMuteToggle.onValueChanged.AddListener(OnSoundFxMuteChanged);
         if (soundFxVolumeSlider != null)
-            soundFxVolumeSlider.onValueChanged.AddListener(OnVolumeChanged);
+            soundFxVolumeSlider.onValueChanged.AddListener(OnSoundFxVolumeChanged);
+        if (musicMuteToggle != null)
+            musicMuteToggle.onValueChanged.AddListener(OnMusicMuteChanged);
+        if (musicVolumeSlider != null)
+            musicVolumeSlider.onValueChanged.AddListener(OnMusicVolumeChanged);
     }
 
     void Unsubscribe()
     {
         if (soundFxMuteToggle != null)
-            soundFxMuteToggle.onValueChanged.RemoveListener(OnMuteChanged);
+            soundFxMuteToggle.onValueChanged.RemoveListener(OnSoundFxMuteChanged);
         if (soundFxVolumeSlider != null)
-            soundFxVolumeSlider.onValueChanged.RemoveListener(OnVolumeChanged);
+            soundFxVolumeSlider.onValueChanged.RemoveListener(OnSoundFxVolumeChanged);
+        if (musicMuteToggle != null)
+            musicMuteToggle.onValueChanged.RemoveListener(OnMusicMuteChanged);
+        if (musicVolumeSlider != null)
+            musicVolumeSlider.onValueChanged.RemoveListener(OnMusicVolumeChanged);
     }
 
-    void OnMuteChanged(bool isOn)
+    void OnSoundFxMuteChanged(bool isOn)
     {
         AudioSettings.IsMuted = isOn;
     }
 
-    void OnVolumeChanged(float value)
+    void OnSoundFxVolumeChanged(float value)
     {
         AudioSettings.Volume = value;
-        UpdatesoundFxVolumeLabel();
+        UpdateSoundFxVolumeLabel();
     }
 
-    void UpdatesoundFxVolumeLabel()
+    void OnMusicMuteChanged(bool isOn)
+    {
+        AudioSettings.MusicMuted = isOn;
+        if (BackgroundMusicManager.Instance != null)
+            BackgroundMusicManager.Instance.RefreshFromSettings();
+    }
+
+    void OnMusicVolumeChanged(float value)
+    {
+        AudioSettings.MusicVolume = value;
+        UpdateMusicVolumeLabel();
+        if (BackgroundMusicManager.Instance != null)
+            BackgroundMusicManager.Instance.RefreshFromSettings();
+    }
+
+    void UpdateSoundFxVolumeLabel()
     {
         if (soundFxVolumeLabel != null)
             soundFxVolumeLabel.text = Mathf.RoundToInt(AudioSettings.Volume * 100f) + "%";
+    }
+
+    void UpdateMusicVolumeLabel()
+    {
+        if (musicVolumeLabel != null)
+            musicVolumeLabel.text = Mathf.RoundToInt(AudioSettings.MusicVolume * 100f) + "%";
     }
 }
