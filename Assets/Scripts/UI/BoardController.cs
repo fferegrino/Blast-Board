@@ -1,5 +1,7 @@
 using UnityEngine;
+using System;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BoardController : MonoBehaviour
 {
@@ -197,17 +199,26 @@ public class BoardController : MonoBehaviour
     IEnumerator LoseGame()
     {
         UpdateScoreboards();
-        foreach (var zeroLocation in gameState.ZeroLocations)
+        yield return StartCoroutine(RevealCardsVisuallyForEffect(gameState.ZeroLocations));
+        yield return new WaitForSeconds(0.5f);
+        ShowLevelEndScreen(GameOutcome.Lost);
+    }
+
+    /// <summary>
+    /// Visual effect only: animates cards to look revealed without changing GameState.
+    /// Use for lose animation; positions (e.g. gameState.ZeroLocations) come from state, but we never write back.
+    /// </summary>
+    IEnumerator RevealCardsVisuallyForEffect(IReadOnlyList<Tuple<int, int>> positions)
+    {
+        foreach (var pos in positions)
         {
-            var card = GetCard(zeroLocation.Item1, zeroLocation.Item2);
+            var card = GetCard(pos.Item1, pos.Item2);
             if (card != null)
             {
                 yield return new WaitForSeconds(0.3f);
                 card.SetCellState(CellState.Revealed);
             }
         }
-        yield return new WaitForSeconds(0.5f);
-        ShowLevelEndScreen(GameOutcome.Lost);
     }
 
     void ShowLevelEndScreen(GameOutcome outcome)
