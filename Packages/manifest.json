@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.bitbebop.ios-app-icon-appearance": "https://github.com/artstorm/ios-app-icon-appearance.git?path=/Packages/com.bitbebop.ios-app-icon-appearance",
     "com.unity.2d.animation": "13.0.2",
     "com.unity.2d.aseprite": "3.0.1",
     "com.unity.2d.psdimporter": "12.0.1",

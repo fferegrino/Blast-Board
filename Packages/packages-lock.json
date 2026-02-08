@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.bitbebop.ios-app-icon-appearance": {
+      "version": "https://github.com/artstorm/ios-app-icon-appearance.git?path=/Packages/com.bitbebop.ios-app-icon-appearance",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "944d3bf2cf65171d2d1e77f8a4327a5685bdcab6"
+    },
     "com.unity.2d.animation": {
       "version": "13.0.2",
       "depth": 0,
