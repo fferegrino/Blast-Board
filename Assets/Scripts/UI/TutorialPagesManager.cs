@@ -17,7 +17,7 @@ public class TutorialPagesManager : MonoBehaviour
     private TextMeshProUGUI backButtonText; 
     private TextMeshProUGUI nextButtonText; 
 
-    void Awake()
+    void Start()
     {
         var allChildren = GetComponentsInChildren<Transform>(true);
         var pages = allChildren.Where(
@@ -66,21 +66,27 @@ public class TutorialPagesManager : MonoBehaviour
             tutorialPages[i].SetActive(i == pageNumber);
         }
 
-        if (pageNumber == 0)
+        if (backButtonText != null)
         {
-            backButtonText.text = "Exit";
+            if (pageNumber == 0)
+            {
+                backButtonText.text = "Exit";
+            }
+            else
+            {
+                backButtonText.text = "Back";
+            }
         }
-        else
+        if (nextButtonText != null)
         {
-            backButtonText.text = "Back";
-        }
-        if (pageNumber == tutorialPages.Length - 1)
-        {
-            nextButtonText.text = "Exit";
-        }
-        else
-        {
-            nextButtonText.text = "Next";
+            if (pageNumber == tutorialPages.Length - 1)
+            {
+                nextButtonText.text = "Exit";
+            }
+            else
+            {
+                nextButtonText.text = "Next";
+            }
         }
     }
 }

@@ -59,12 +59,16 @@ public class BoardController : MonoBehaviour
 
     private GameSession gameSession;
 
+    /// <summary>Persisted across scene loads (e.g. when opening/closing the tutorial) so game state is restored.</summary>
+    private static GameSession s_persistedSession;
+
     GameState gameState => gameSession?.CurrentGame;
 
     void Start()
     {
         cardButtonParentPosition = cardButtonsParent.transform.position;
-        gameSession = GameSession.DemoSession();
+        gameSession = s_persistedSession != null ? s_persistedSession : GameSession.DemoSession();
+        s_persistedSession = null;
         ResetBoard(gameSession.CurrentGame);
         UpdateScoreboards();
         levelEndScreen.OnActionButtonClick += OnLevelEndScreenActionButtonClick;
@@ -80,7 +84,7 @@ public class BoardController : MonoBehaviour
 
     void OnTutorialButtonClick()
     {
-        // TODO: Show the tutorial scene
+        s_persistedSession = gameSession;
         SceneManager.LoadScene("TutorialScene");
     }
 
