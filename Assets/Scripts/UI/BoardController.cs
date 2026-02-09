@@ -50,6 +50,7 @@ public class BoardController : MonoBehaviour
 
     [Header("UI")]
     public Button settingsButton;
+    public Button tutorialButton;
 
     private Vector3 cardButtonParentPosition;
 
@@ -68,11 +69,17 @@ public class BoardController : MonoBehaviour
         levelEndScreen.OnActionButtonClick += OnLevelEndScreenActionButtonClick;
         memoPad.OnMemoPadClick += OnMemoPadClick;
         settingsButton.onClick.AddListener(OnSettingsButtonClick);
+        tutorialButton.onClick.AddListener(OnTutorialButtonClick);
     }
 
     void OnSettingsButtonClick()
     {
         settingsUI.gameObject.SetActive(true);
+    }
+
+    void OnTutorialButtonClick()
+    {
+        // TODO: Show the tutorial scene
     }
 
     // void PlayBackgroundMusic()
