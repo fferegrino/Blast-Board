@@ -41,8 +41,7 @@ public class TutorialPagesManager : MonoBehaviour
     {
         if (currentPage == 0)
         {
-            int y = SceneManager.GetActiveScene().buildIndex;
-            SceneManager.UnloadSceneAsync(y);
+            SceneManager.LoadScene("GameScene");
             return;
         }
         currentPage--;
@@ -53,9 +52,7 @@ public class TutorialPagesManager : MonoBehaviour
     {
         if (currentPage == tutorialPages.Length - 1)
         {
-            // TODO: Go back to the previous scene
-            int y = SceneManager.GetActiveScene().buildIndex;
-            SceneManager.UnloadSceneAsync(y);
+            SceneManager.LoadScene("GameScene");
             return;
         }
         currentPage++;
