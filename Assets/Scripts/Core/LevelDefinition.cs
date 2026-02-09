@@ -75,8 +75,10 @@ public class LevelDefinition
     public int X3 { get; }
     public int X0 { get; }
 
-    public int X1 {
-        get {
+    public int X1
+    {
+        get
+        {
             return 25 - X2 - X3 - X0;
         }
     }
@@ -85,16 +87,20 @@ public class LevelDefinition
     {
         var cells = new List<int>();
 
-        for (int i = 0; i < X1; i++) {
+        for (int i = 0; i < X1; i++)
+        {
             cells.Add(1);
         }
-        for (int i = 0; i < X2; i++) {
+        for (int i = 0; i < X2; i++)
+        {
             cells.Add(2);
         }
-        for (int i = 0; i < X3; i++) {
+        for (int i = 0; i < X3; i++)
+        {
             cells.Add(3);
         }
-        for (int i = 0; i < X0; i++) {
+        for (int i = 0; i < X0; i++)
+        {
             cells.Add(0);
         }
 

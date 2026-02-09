@@ -1,13 +1,13 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
-
-using System;
 public class RawBoard
 {
-    private static readonly Random _random = new ();
+    private static readonly Random _random = new();
     private readonly int[,] board;
 
-    public RawBoard(int[,] board) {
+    public RawBoard(int[,] board)
+    {
         this.board = board;
     }
 

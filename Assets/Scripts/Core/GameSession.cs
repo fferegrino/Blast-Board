@@ -53,7 +53,9 @@ public class GameSession
     public bool AdvanceToNextLevel()
     {
         if (CurrentGame.Outcome != GameOutcome.Won)
+        {
             return false;
+        }
 
         SessionPoints += CurrentGame.CurrentPoints;
         Level++;
@@ -91,7 +93,9 @@ public class GameSession
     private static List<LevelDefinition> GetLevelDefinitions(int level)
     {
         if (LevelDefinition.LEVEL_DEFINITIONS.TryGetValue(level, out var list))
+        {
             return list;
+        }
 
         int maxLevel = LevelDefinition.LEVEL_DEFINITIONS.Keys.Max();
         return LevelDefinition.LEVEL_DEFINITIONS[Math.Min(level, maxLevel)];

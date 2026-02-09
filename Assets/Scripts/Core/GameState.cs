@@ -18,7 +18,7 @@ public enum GameOutcome
 [Flags]
 public enum CellMarks
 {
-    None  = 0b_0000_0000,  // 0
+    None = 0b_0000_0000,  // 0
     Mark0 = 0b_0000_0001,  // 1
     Mark1 = 0b_0000_0010,  // 2
     Mark2 = 0b_0000_0100,  // 4
@@ -91,9 +91,13 @@ public class GameState
             {
                 int value = board[i, j];
                 if (value != 0)
+                {
                     product *= value;
+                }
                 else
+                {
                     zeroLocations.Add(Tuple.Create(i, j));
+                }
             }
         }
         return product;
@@ -163,10 +167,14 @@ public class GameState
     public bool TryRevealCell(int row, int col)
     {
         if (Outcome != GameOutcome.InProgress)
+        {
             return false;
+        }
 
         if (cellStates[row, col] == CellState.Revealed)
+        {
             return false;
+        }
 
         cellStates[row, col] = CellState.Revealed;
         cellMarks[row, col] = CellMarks.None;
@@ -180,10 +188,14 @@ public class GameState
 
         CurrentPoints = CurrentPoints == 0 ? value : CurrentPoints * value;
         if (CurrentPoints >= PointsToWin)
+        {
             Outcome = GameOutcome.Won;
+        }
 
         if (row == TargetedRow && col == TargetedColumn)
+        {
             ClearTargetedCell();
+        }
 
         return true;
     }
@@ -195,9 +207,15 @@ public class GameState
     public bool SetTargetedCell(int row, int col)
     {
         if (Outcome != GameOutcome.InProgress)
+        {
             return false;
+        }
+
         if (cellStates[row, col] != CellState.Hidden)
+        {
             return false;
+        }
+
         TargetedRow = row;
         TargetedColumn = col;
         return true;
@@ -214,7 +232,10 @@ public class GameState
     public CellState GetCellState(int row, int col)
     {
         if (row == TargetedRow && col == TargetedColumn && cellStates[row, col] == CellState.Hidden)
+        {
             return CellState.Targeted;
+        }
+
         return cellStates[row, col];
     }
 
@@ -229,7 +250,10 @@ public class GameState
     {
         var current = cellMarks[row, col];
         if (mark == CellMarks.None)
+        {
             return current == CellMarks.None;
+        }
+
         return (current & mark) == mark;
     }
 

@@ -19,8 +19,12 @@ public class RawBoardTests
         var board = new RawBoard(grid);
 
         for (int r = 0; r < 5; r++)
+        {
             for (int c = 0; c < 5; c++)
+            {
                 Assert.That(board[r, c], Is.EqualTo(grid[r, c]));
+            }
+        }
     }
 
     [Test]
@@ -46,8 +50,13 @@ public class RawBoardTests
         var board = new RawBoard(level);
         var actualCells = new System.Collections.Generic.List<int>();
         for (int r = 0; r < 5; r++)
+        {
             for (int c = 0; c < 5; c++)
+            {
                 actualCells.Add(board[r, c]);
+            }
+        }
+
         actualCells.Sort();
 
         Assert.That(actualCells, Has.Count.EqualTo(25));
