@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class TutorialPagesManager : MonoBehaviour
 {
@@ -19,10 +20,6 @@ public class TutorialPagesManager : MonoBehaviour
     void Awake()
     {
         var allChildren = GetComponentsInChildren<Transform>(true);
-        foreach (var child in allChildren)
-        {
-            Debug.Log($"Child: {child.name}");
-        }
         var pages = allChildren.Where(
             child => child.name.StartsWith("Page") && child.parent == this.transform).Select(child => child.gameObject);
         // Sort pages by number
@@ -30,20 +27,22 @@ public class TutorialPagesManager : MonoBehaviour
         tutorialPages = pages.ToArray();
 
         currentPage = 0;
-        ShowPage(currentPage);
 
         backButton.onClick.AddListener(OnBackButtonClick);
         nextButton.onClick.AddListener(OnNextButtonClick);
 
-        backButtonText = backButton.GetComponentInChildren<TextMeshProUGUI>();
-        nextButtonText = nextButton.GetComponentInChildren<TextMeshProUGUI>();
+        backButtonText = backButton.GetComponent<TextMeshProUGUI>();
+        nextButtonText = nextButton.GetComponent<TextMeshProUGUI>();
+        ShowPage(currentPage);
+
     }
 
     void OnBackButtonClick()
     {
         if (currentPage == 0)
         {
-            // TODO: Go back to the previous scene
+            int y = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.UnloadSceneAsync(y);
             return;
         }
         currentPage--;
@@ -55,6 +54,8 @@ public class TutorialPagesManager : MonoBehaviour
         if (currentPage == tutorialPages.Length - 1)
         {
             // TODO: Go back to the previous scene
+            int y = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.UnloadSceneAsync(y);
             return;
         }
         currentPage++;
@@ -63,7 +64,6 @@ public class TutorialPagesManager : MonoBehaviour
 
     public void ShowPage(int pageNumber)
     {
-        Debug.Log($"Showing page {pageNumber}");
         for (int i = 0; i < tutorialPages.Length; i++)
         {
             tutorialPages[i].SetActive(i == pageNumber);

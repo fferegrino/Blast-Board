@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BoardController : MonoBehaviour
 {
@@ -80,6 +81,7 @@ public class BoardController : MonoBehaviour
     void OnTutorialButtonClick()
     {
         // TODO: Show the tutorial scene
+        SceneManager.LoadScene("TutorialScene");
     }
 
     // void PlayBackgroundMusic()
