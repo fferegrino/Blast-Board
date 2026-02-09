@@ -7,6 +7,11 @@ using System;
 public class LevelEndScreen : MonoBehaviour
 {
     public event Action OnActionButtonClick;
+
+    [Header("Scoreboards")]
+    public Scoreboard levelScoreboard;
+    public Scoreboard sessionScoreboard;
+    public Scoreboard levelDisplay;
     private Button actionButton;
     private TextMeshProUGUI actionButtonText;
 
@@ -18,11 +23,19 @@ public class LevelEndScreen : MonoBehaviour
         actionButton = allChildren.First(child => child.name == "ActionButton").GetComponent<Button>();
         actionButtonText = allChildren.First(child => child.name == "Text").GetComponent<TextMeshProUGUI>();
         screenText = allChildren.First(child => child.name == "ScreenText").GetComponent<TextMeshProUGUI>();
+        sessionScoreboard.SetScoreboardText("Points in this session");
     }
 
     void Start()
     {
         actionButton.onClick.AddListener(InnerOnActionButtonClick);
+    }
+
+    public void SetScoreboards(int levelScore, int sessionScore, int level)
+    {
+        levelScoreboard.SetScoreboardValue(levelScore);
+        sessionScoreboard.SetScoreboardValue(sessionScore);
+        levelDisplay.SetScoreboardValue(level);
     }
 
     public void SetActionButtonText(string text)

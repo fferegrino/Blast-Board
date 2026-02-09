@@ -142,6 +142,7 @@ public class BoardController : MonoBehaviour
     void UpdateScoreboards()
     {
         if (gameSession == null) return;
+        sessionScoreboard.SetScoreboardText("Points in this session");
         levelScoreboard.SetScoreboardValue(gameState.CurrentPoints);
         sessionScoreboard.SetScoreboardValue(gameSession.SessionPoints);
         levelDisplay.SetScoreboardValue(gameSession.Level);
@@ -286,14 +287,15 @@ public class BoardController : MonoBehaviour
 
     void ShowLevelEndScreen(GameOutcome outcome)
     {
+        levelEndScreen.SetScoreboards(gameState.CurrentPoints, gameSession.SessionPoints, gameSession.Level);
         if (outcome == GameOutcome.Won)
         {
-            levelEndScreen.SetActionButtonText("Next Level");
+            levelEndScreen.SetActionButtonText("Next");
             levelEndScreen.SetScreenText("You won the level!");
         }
         else if (outcome == GameOutcome.Lost)
         {
-            levelEndScreen.SetActionButtonText("Restart Level");
+            levelEndScreen.SetActionButtonText("Retry");
             levelEndScreen.SetScreenText("You lost the level!");
         }
         levelEndScreen.gameObject.SetActive(true);
