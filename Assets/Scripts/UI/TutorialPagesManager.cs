@@ -14,8 +14,8 @@ public class TutorialPagesManager : MonoBehaviour
     public Button backButton;
     public Button nextButton;
 
-    private TextMeshProUGUI backButtonText; 
-    private TextMeshProUGUI nextButtonText; 
+    private TextMeshProUGUI backButtonText;
+    private TextMeshProUGUI nextButtonText;
 
     void Start()
     {
@@ -70,22 +70,22 @@ public class TutorialPagesManager : MonoBehaviour
         {
             if (pageNumber == 0)
             {
-                backButtonText.text = "Exit";
+                // backButtonText.text = "Exit";
             }
             else
             {
-                backButtonText.text = "Back";
+                // backButtonText.text = "Back";
             }
         }
         if (nextButtonText != null)
         {
             if (pageNumber == tutorialPages.Length - 1)
             {
-                nextButtonText.text = "Exit";
+                // nextButtonText.text = "Exit";
             }
             else
             {
-                nextButtonText.text = "Next";
+                // nextButtonText.text = "Next";
             }
         }
     }
