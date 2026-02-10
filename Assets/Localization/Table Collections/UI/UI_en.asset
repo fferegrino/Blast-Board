@@ -26,6 +26,63 @@ MonoBehaviour:
     m_Localized: Back
     m_Metadata:
       m_Items: []
+  - m_Id: 5107520364544
+    m_Localized: 'Board Blast is a puzzle mini-game that mixes logic, risk, and a
+      little luck.
+
+      Your goal is to uncover high-value tiles without finding
+      a bomb.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5323275362304
+    m_Localized: "You play on a 5\xD75 grid of hidden tiles."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5770174259200
+    m_Localized: 'Each tile has one or the following values:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5841334820864
+    m_Localized: If you find a bomb, you will lose the game.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5932544155648
+    m_Localized: You win when you reveal all the valuable tiles in the board. That
+      is all those with a value of 2 and 3.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6048344694784
+    m_Localized: To reveal a tile, you need to select it first by tapping on it.
+      Then tap again to reveal it!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6211796721664
+    m_Localized: 'There are clues in the board.
+
+      Each row and column has two
+      numbers displayed at the edge:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6457578741760
+    m_Localized: 'All tiles in that row/column add up to 5 points
+
+
+      There is
+      1 bomb somewhere in that row/column'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6582497697792
+    m_Localized: 'You can mark cards using the memo pad.
+
+      First target a tile
+      by tapping on it...'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6717084524544
+    m_Localized: Then tap a value on the memo pad to mark the tile with the value
+      you want!
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

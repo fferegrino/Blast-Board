@@ -19,13 +19,59 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 45481975808
-    m_Localized: 'Siguiente
-
-'
+    m_Localized: Siguiente
     m_Metadata:
       m_Items: []
   - m_Id: 2616103788544
     m_Localized: "Atr\xE1s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5107520364544
+    m_Localized: "Board Blast es un minijuego de rompecabezas que combina l\xF3gica,
+      riesgo y un poco de suerte.\nTu objetivo es descubrir las casillas de alto
+      valor sin encontrar una bomba."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5323275362304
+    m_Localized: "Juegas en una cuadr\xEDcula de 5\xD75 casillas ocultas."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5770174259200
+    m_Localized: 'Cada casilla tiene uno de los siguientes valores:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5841334820864
+    m_Localized: "Si encuentras una bomba, perder\xE1s la partida."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5932544155648
+    m_Localized: Ganas cuando revelas todas las casillas valiosas del tablero, es
+      decir, todas aquellas con un valor de 2 y 3.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6048344694784
+    m_Localized: "Para revelar una casilla, primero debes seleccionarla toc\xE1ndola.\n\xA1Luego
+      t\xF3cala de nuevo para revelarla!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6211796721664
+    m_Localized: "Hay pistas en el tablero.\nCada fila y cada columna muestran dos
+      n\xFAmeros en el borde:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6582497697792
+    m_Localized: "Puedes marcar casillas usando el bloc de notas.\nPrimero selecciona
+      una casilla toc\xE1ndola."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6457578741760
+    m_Localized: "Todas las casillas de esa fila/columna suman 5 puntos\nHay 1 bomba
+      en alg\xFAn lugar de esa fila/columna"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6717084524544
+    m_Localized: Luego toca un valor en el bloc de notas para marcar la casilla con
+      el valor que desees.
     m_Metadata:
       m_Items: []
   references:

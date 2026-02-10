@@ -207,6 +207,7 @@ GameObject:
   - component: {fileID: 215531868}
   - component: {fileID: 215531870}
   - component: {fileID: 215531869}
+  - component: {fileID: 215531871}
   m_Layer: 0
   m_Name: Page2_TextExplanation_2
   m_TagString: Untagged
@@ -336,6 +337,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 215531867}
   m_CullTransparentMesh: 1
+--- !u!114 &215531871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215531867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:78e460ec363114ce6bf247ae6d2e2ef0
+    m_TableEntryReference:
+      m_KeyId: 5770174259200
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &230012037
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,6 +513,7 @@ GameObject:
   - component: {fileID: 261061205}
   - component: {fileID: 261061207}
   - component: {fileID: 261061206}
+  - component: {fileID: 261061208}
   m_Layer: 0
   m_Name: Page3_TextExplanation_1
   m_TagString: Untagged
@@ -611,6 +641,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 261061204}
   m_CullTransparentMesh: 1
+--- !u!114 &261061208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261061204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:78e460ec363114ce6bf247ae6d2e2ef0
+    m_TableEntryReference:
+      m_KeyId: 5932544155648
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &369954779
 GameObject:
   m_ObjectHideFlags: 0
@@ -622,6 +680,7 @@ GameObject:
   - component: {fileID: 369954780}
   - component: {fileID: 369954782}
   - component: {fileID: 369954781}
+  - component: {fileID: 369954783}
   m_Layer: 0
   m_Name: Page3_TextExplanation_1
   m_TagString: Untagged
@@ -751,6 +810,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 369954779}
   m_CullTransparentMesh: 1
+--- !u!114 &369954783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 369954779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:78e460ec363114ce6bf247ae6d2e2ef0
+    m_TableEntryReference:
+      m_KeyId: 6582497697792
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &376236977
 GameObject:
   m_ObjectHideFlags: 0
@@ -883,6 +970,7 @@ GameObject:
   - component: {fileID: 564866678}
   - component: {fileID: 564866680}
   - component: {fileID: 564866679}
+  - component: {fileID: 564866681}
   m_Layer: 0
   m_Name: Page3_TextExplanation_1
   m_TagString: Untagged
@@ -1012,6 +1100,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 564866677}
   m_CullTransparentMesh: 1
+--- !u!114 &564866681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564866677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:78e460ec363114ce6bf247ae6d2e2ef0
+    m_TableEntryReference:
+      m_KeyId: 6211796721664
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &602137064
 GameObject:
   m_ObjectHideFlags: 0
@@ -1100,6 +1216,7 @@ GameObject:
   - component: {fileID: 695101429}
   - component: {fileID: 695101431}
   - component: {fileID: 695101430}
+  - component: {fileID: 695101432}
   m_Layer: 0
   m_Name: Page4
   m_TagString: Untagged
@@ -1165,6 +1282,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 695101428}
   m_CullTransparentMesh: 1
+--- !u!114 &695101432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 695101428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:78e460ec363114ce6bf247ae6d2e2ef0
+    m_TableEntryReference:
+      m_KeyId: 6048344694784
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &732179775
 GameObject:
   m_ObjectHideFlags: 0
@@ -1748,6 +1893,7 @@ GameObject:
   - component: {fileID: 906962500}
   - component: {fileID: 906962502}
   - component: {fileID: 906962501}
+  - component: {fileID: 906962503}
   m_Layer: 0
   m_Name: Page3_TextExplanation_1 (1)
   m_TagString: Untagged
@@ -1874,6 +2020,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 906962499}
   m_CullTransparentMesh: 1
+--- !u!114 &906962503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906962499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:78e460ec363114ce6bf247ae6d2e2ef0
+    m_TableEntryReference:
+      m_KeyId: 6717084524544
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1169958857
 GameObject:
   m_ObjectHideFlags: 0
@@ -2347,6 +2521,7 @@ GameObject:
   - component: {fileID: 1451854059}
   - component: {fileID: 1451854061}
   - component: {fileID: 1451854060}
+  - component: {fileID: 1451854062}
   m_Layer: 0
   m_Name: Page1_TextExplanation_1
   m_TagString: Untagged
@@ -2476,6 +2651,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1451854058}
   m_CullTransparentMesh: 1
+--- !u!114 &1451854062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451854058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:78e460ec363114ce6bf247ae6d2e2ef0
+    m_TableEntryReference:
+      m_KeyId: 5107520364544
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1493698141
 GameObject:
   m_ObjectHideFlags: 0
@@ -2487,6 +2690,7 @@ GameObject:
   - component: {fileID: 1493698142}
   - component: {fileID: 1493698144}
   - component: {fileID: 1493698143}
+  - component: {fileID: 1493698145}
   m_Layer: 0
   m_Name: Page3_TextExplanation_1 (1)
   m_TagString: Untagged
@@ -2617,6 +2821,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1493698141}
   m_CullTransparentMesh: 1
+--- !u!114 &1493698145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493698141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:78e460ec363114ce6bf247ae6d2e2ef0
+    m_TableEntryReference:
+      m_KeyId: 6457578741760
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1526250147
 GameObject:
   m_ObjectHideFlags: 0
@@ -2844,6 +3076,7 @@ GameObject:
   - component: {fileID: 1764956734}
   - component: {fileID: 1764956736}
   - component: {fileID: 1764956735}
+  - component: {fileID: 1764956737}
   m_Layer: 0
   m_Name: Page2_TextExplanation_3
   m_TagString: Untagged
@@ -2970,6 +3203,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1764956733}
   m_CullTransparentMesh: 1
+--- !u!114 &1764956737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764956733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:78e460ec363114ce6bf247ae6d2e2ef0
+    m_TableEntryReference:
+      m_KeyId: 5841334820864
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1958201421
 GameObject:
   m_ObjectHideFlags: 0

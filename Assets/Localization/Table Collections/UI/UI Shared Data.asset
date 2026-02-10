@@ -23,6 +23,46 @@ MonoBehaviour:
     m_Key: "Back\t"
     m_Metadata:
       m_Items: []
+  - m_Id: 5107520364544
+    m_Key: Game Intro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5323275362304
+    m_Key: Short Instruction
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5770174259200
+    m_Key: Each Cell
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5841334820864
+    m_Key: If You Find
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5932544155648
+    m_Key: You Win
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6048344694784
+    m_Key: To Reveal A Tile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6211796721664
+    m_Key: There Are Clues
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6457578741760
+    m_Key: All Tiles In That
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6582497697792
+    m_Key: You Can Mark
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6717084524544
+    m_Key: Then Tap A Value
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
