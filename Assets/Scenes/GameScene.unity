@@ -3458,6 +3458,7 @@ MonoBehaviour:
   levelScoreboard: {fileID: 2060833612}
   sessionScoreboard: {fileID: 1189198051}
   levelDisplay: {fileID: 1579163638}
+  actionButtonText: {fileID: 89576629}
 --- !u!1 &1451341486
 GameObject:
   m_ObjectHideFlags: 0
