@@ -231,7 +231,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0019073, y: -393}
+  m_AnchoredPosition: {x: 0.000015175, y: -517}
   m_SizeDelta: {x: 1206, y: 340.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &215531869
@@ -259,8 +259,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8ae72479d5a3f4ece9fbc25dcc60805d, type: 2}
-  m_sharedMaterial: {fileID: 5377362474833725445, guid: 8ae72479d5a3f4ece9fbc25dcc60805d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: eaf4d13366e964722a99b841f5d42247, type: 2}
+  m_sharedMaterial: {fileID: 98578402444091432, guid: eaf4d13366e964722a99b841f5d42247, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -537,7 +537,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0019073, y: 1023}
+  m_AnchoredPosition: {x: 0.00001521, y: 743}
   m_SizeDelta: {x: 1206, y: 340.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &261061206
@@ -563,8 +563,8 @@ MonoBehaviour:
   m_text: You win when you reveal all the valuable tiles in the board. That is all
     those with a value of 2 and 3.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 27eb4ffb8e76845a586cff5246c1d7f0, type: 2}
-  m_sharedMaterial: {fileID: -8384448260641808140, guid: 27eb4ffb8e76845a586cff5246c1d7f0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: eaf4d13366e964722a99b841f5d42247, type: 2}
+  m_sharedMaterial: {fileID: 98578402444091432, guid: eaf4d13366e964722a99b841f5d42247, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -596,7 +596,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 1
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
@@ -704,7 +704,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0019073, y: 886}
+  m_AnchoredPosition: {x: 0.0019073, y: 794}
   m_SizeDelta: {x: 1206, y: 340.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &369954781
@@ -732,8 +732,8 @@ MonoBehaviour:
     First target a tile by tapping
     on it'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 27eb4ffb8e76845a586cff5246c1d7f0, type: 2}
-  m_sharedMaterial: {fileID: -8384448260641808140, guid: 27eb4ffb8e76845a586cff5246c1d7f0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: eaf4d13366e964722a99b841f5d42247, type: 2}
+  m_sharedMaterial: {fileID: 98578402444091432, guid: eaf4d13366e964722a99b841f5d42247, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -874,7 +874,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -277, y: -1142}
+  m_AnchoredPosition: {x: -250, y: -1150}
   m_SizeDelta: {x: 500, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &376236979
@@ -994,7 +994,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0019073, y: 816}
+  m_AnchoredPosition: {x: 0.0019073, y: 746}
   m_SizeDelta: {x: 1206, y: 340.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &564866679
@@ -1022,8 +1022,8 @@ MonoBehaviour:
     Each row and column has two numbers
     displayed at the edge:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 27eb4ffb8e76845a586cff5246c1d7f0, type: 2}
-  m_sharedMaterial: {fileID: -8384448260641808140, guid: 27eb4ffb8e76845a586cff5246c1d7f0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: eaf4d13366e964722a99b841f5d42247, type: 2}
+  m_sharedMaterial: {fileID: 98578402444091432, guid: eaf4d13366e964722a99b841f5d42247, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1450,7 +1450,7 @@ MonoBehaviour:
   m_text: Next
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ea551f89ad189439494c5cc1841814ba, type: 2}
-  m_sharedMaterial: {fileID: -3680572209003019097, guid: ea551f89ad189439494c5cc1841814ba, type: 2}
+  m_sharedMaterial: {fileID: -6903621869425953048, guid: ea551f89ad189439494c5cc1841814ba, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1628,7 +1628,7 @@ MonoBehaviour:
   m_text: Back
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ea551f89ad189439494c5cc1841814ba, type: 2}
-  m_sharedMaterial: {fileID: -3680572209003019097, guid: ea551f89ad189439494c5cc1841814ba, type: 2}
+  m_sharedMaterial: {fileID: -6903621869425953048, guid: ea551f89ad189439494c5cc1841814ba, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1756,6 +1756,7 @@ GameObject:
   - component: {fileID: 865182132}
   - component: {fileID: 865182134}
   - component: {fileID: 865182133}
+  - component: {fileID: 865182135}
   m_Layer: 0
   m_Name: Page1_TextExplanation_1 (1)
   m_TagString: Untagged
@@ -1779,7 +1780,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0019073, y: 329}
+  m_AnchoredPosition: {x: 0.0019073, y: 223}
   m_SizeDelta: {x: 1206, y: 340.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &865182133
@@ -1804,8 +1805,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "You play on a 5\xD75 grid of hidden tiles."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8ae72479d5a3f4ece9fbc25dcc60805d, type: 2}
-  m_sharedMaterial: {fileID: 5377362474833725445, guid: 8ae72479d5a3f4ece9fbc25dcc60805d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: eaf4d13366e964722a99b841f5d42247, type: 2}
+  m_sharedMaterial: {fileID: 98578402444091432, guid: eaf4d13366e964722a99b841f5d42247, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1882,6 +1883,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 865182131}
   m_CullTransparentMesh: 1
+--- !u!114 &865182135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865182131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:78e460ec363114ce6bf247ae6d2e2ef0
+    m_TableEntryReference:
+      m_KeyId: 5323275362304
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 865182133}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &906962499
 GameObject:
   m_ObjectHideFlags: 0
@@ -1917,7 +1958,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0019073, y: -74}
+  m_AnchoredPosition: {x: 0.00001521, y: -228}
   m_SizeDelta: {x: 1206, y: 340.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &906962501
@@ -1942,8 +1983,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Then tap a value on the memo pad to mark the tile with the value you want!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 27eb4ffb8e76845a586cff5246c1d7f0, type: 2}
-  m_sharedMaterial: {fileID: -8384448260641808140, guid: 27eb4ffb8e76845a586cff5246c1d7f0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: eaf4d13366e964722a99b841f5d42247, type: 2}
+  m_sharedMaterial: {fileID: 98578402444091432, guid: eaf4d13366e964722a99b841f5d42247, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2160,7 +2201,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 311, y: -1137}
+  m_AnchoredPosition: {x: 291, y: -1150}
   m_SizeDelta: {x: 500, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1265093753
@@ -2271,16 +2312,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1382172926}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -25001.998}
-  m_LocalScale: {x: 277.8, y: 277.8, z: 277.8}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 277.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2040875564}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2.263916, y: -2.7104492}
-  m_SizeDelta: {x: -1279.4, y: -2768}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1382172928
 MonoBehaviour:
@@ -2356,7 +2397,6 @@ Transform:
   - {fileID: 695101429}
   - {fileID: 162241684}
   - {fileID: 602137065}
-  - {fileID: 2108952792}
   m_Father: {fileID: 2040875564}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1406848794
@@ -2384,6 +2424,7 @@ GameObject:
   - component: {fileID: 1447498921}
   - component: {fileID: 1447498923}
   - component: {fileID: 1447498922}
+  - component: {fileID: 1447498924}
   m_Layer: 0
   m_Name: Page2_TextExplanation_1
   m_TagString: Untagged
@@ -2407,7 +2448,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0019073, y: 1023}
+  m_AnchoredPosition: {x: 0.0019683, y: 955}
   m_SizeDelta: {x: 1206, y: 340.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1447498922
@@ -2432,8 +2473,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "You play on a 5\xD75 grid of hidden tiles."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8ae72479d5a3f4ece9fbc25dcc60805d, type: 2}
-  m_sharedMaterial: {fileID: 5377362474833725445, guid: 8ae72479d5a3f4ece9fbc25dcc60805d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: eaf4d13366e964722a99b841f5d42247, type: 2}
+  m_sharedMaterial: {fileID: 98578402444091432, guid: eaf4d13366e964722a99b841f5d42247, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2465,7 +2506,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 1
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
@@ -2510,6 +2551,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1447498920}
   m_CullTransparentMesh: 1
+--- !u!114 &1447498924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447498920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:78e460ec363114ce6bf247ae6d2e2ef0
+    m_TableEntryReference:
+      m_KeyId: 5323275362304
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1447498922}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1451854058
 GameObject:
   m_ObjectHideFlags: 0
@@ -2545,7 +2626,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0019073, y: 726}
+  m_AnchoredPosition: {x: 0.0019073, y: 620}
   m_SizeDelta: {x: 1206, y: 340.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1451854060
@@ -2573,8 +2654,8 @@ MonoBehaviour:
 
     Your goal is to uncover high-value tiles without finding a bomb.'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 27eb4ffb8e76845a586cff5246c1d7f0, type: 2}
-  m_sharedMaterial: {fileID: -8384448260641808140, guid: 27eb4ffb8e76845a586cff5246c1d7f0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: eaf4d13366e964722a99b841f5d42247, type: 2}
+  m_sharedMaterial: {fileID: 98578402444091432, guid: eaf4d13366e964722a99b841f5d42247, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2675,7 +2756,19 @@ MonoBehaviour:
   m_FormatArguments: []
   m_UpdateString:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1451854060}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   references:
     version: 2
     RefIds: []
@@ -2714,7 +2807,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0019073, y: -341}
+  m_AnchoredPosition: {x: 0.0019073, y: -367}
   m_SizeDelta: {x: 1206, y: 340.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1493698143
@@ -2743,8 +2836,8 @@ MonoBehaviour:
     There is 1 bomb
     somewhere in that row/column'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 27eb4ffb8e76845a586cff5246c1d7f0, type: 2}
-  m_sharedMaterial: {fileID: -8384448260641808140, guid: 27eb4ffb8e76845a586cff5246c1d7f0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: eaf4d13366e964722a99b841f5d42247, type: 2}
+  m_sharedMaterial: {fileID: 98578402444091432, guid: eaf4d13366e964722a99b841f5d42247, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2883,7 +2976,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0019073, y: 1023}
+  m_AnchoredPosition: {x: 0.00001521, y: 755}
   m_SizeDelta: {x: 1206, y: 340.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1526250149
@@ -2909,8 +3002,8 @@ MonoBehaviour:
   m_text: To reveal a tile, you need to select it first by tapping on it. Then tap
     again to reveal it!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 27eb4ffb8e76845a586cff5246c1d7f0, type: 2}
-  m_sharedMaterial: {fileID: -8384448260641808140, guid: 27eb4ffb8e76845a586cff5246c1d7f0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: eaf4d13366e964722a99b841f5d42247, type: 2}
+  m_sharedMaterial: {fileID: 98578402444091432, guid: eaf4d13366e964722a99b841f5d42247, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2942,7 +3035,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 1
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
@@ -3100,8 +3193,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0019073, y: -849}
-  m_SizeDelta: {x: 1206, y: 340.9}
+  m_AnchoredPosition: {x: 0.0019073, y: -907.0938}
+  m_SizeDelta: {x: 1206, y: 224.7124}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1764956735
 MonoBehaviour:
@@ -3125,8 +3218,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: If you find a bomb, you will lose the game.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8ae72479d5a3f4ece9fbc25dcc60805d, type: 2}
-  m_sharedMaterial: {fileID: 5377362474833725445, guid: 8ae72479d5a3f4ece9fbc25dcc60805d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: eaf4d13366e964722a99b841f5d42247, type: 2}
+  m_sharedMaterial: {fileID: 98578402444091432, guid: eaf4d13366e964722a99b841f5d42247, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3376,8 +3469,8 @@ Canvas:
   m_GameObject: {fileID: 2040875560}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
-  m_Camera: {fileID: 230012039}
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -3404,6 +3497,7 @@ RectTransform:
   m_Children:
   - {fileID: 1382172927}
   - {fileID: 1406848793}
+  - {fileID: 2108952792}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3435,14 +3529,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2108952791}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 376236978}
   - {fileID: 1265093752}
-  m_Father: {fileID: 1406848793}
+  m_Father: {fileID: 2040875564}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

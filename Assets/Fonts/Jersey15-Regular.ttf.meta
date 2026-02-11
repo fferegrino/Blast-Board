@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 47d0d5473717e49188a6796968a02f09
+guid: 649a5bf26af794aa99f89ea762becdf3
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Josefin Sans
+  - Jersey 15
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
