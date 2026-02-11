@@ -67,7 +67,8 @@ public class BoardController : MonoBehaviour
     void Start()
     {
         cardButtonParentPosition = cardButtonsParent.transform.position;
-        gameSession = s_persistedSession != null ? s_persistedSession : GameSession.DemoSession();
+        // Use GameSession.DemoSession() for testing
+        gameSession = s_persistedSession != null ? s_persistedSession : new GameSession();
         s_persistedSession = null;
         ResetBoard(gameSession.CurrentGame);
         UpdateScoreboards();
