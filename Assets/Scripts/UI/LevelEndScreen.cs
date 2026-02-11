@@ -12,22 +12,15 @@ public class LevelEndScreen : MonoBehaviour
     public Scoreboard levelScoreboard;
     public Scoreboard sessionScoreboard;
     public Scoreboard levelDisplay;
-    private Button actionButton;
+    public Button actionButton;
     public TextMeshProUGUI actionButtonText;
 
-    private TextMeshProUGUI screenText;
-
-    void Awake()
-    {
-        var allChildren = GetComponentsInChildren<Transform>(true);
-        actionButton = allChildren.First(child => child.name == "ActionButton").GetComponent<Button>();
-        screenText = allChildren.First(child => child.name == "ScreenText").GetComponent<TextMeshProUGUI>();
-        sessionScoreboard.SetScoreboardText("Points in this session");
-    }
+    public TextMeshProUGUI screenText;
 
     void Start()
     {
         actionButton.onClick.AddListener(InnerOnActionButtonClick);
+        sessionScoreboard.SetScoreboardText("Session Points");
     }
 
     public void SetScoreboards(int levelScore, int sessionScore, int level)
