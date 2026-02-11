@@ -11,6 +11,8 @@ public class BoardController : MonoBehaviour
     const int CARD_LOCATION_Y = 450;
     const int CARD_OFFSET = 180;
 
+    const float LOSE_GAME_DELAY = 1f;
+
 
     [Header("Board Elements")]
     public GameObject cardButtonsParent;
@@ -283,12 +285,13 @@ public class BoardController : MonoBehaviour
     /// </summary>
     IEnumerator RevealCardsVisuallyForEffect(IReadOnlyList<Tuple<int, int>> positions)
     {
+        var delay = LOSE_GAME_DELAY / positions.Count;
         foreach (var pos in positions)
         {
             var card = GetCard(pos.Item1, pos.Item2);
             if (card != null)
             {
-                yield return new WaitForSeconds(0.3f);
+                yield return new WaitForSeconds(delay);
                 card.SetCellState(CellState.Revealed);
                 if (cardRevealSound != null && SoundFXManager.Instance != null)
                     if (card.Value == 0)
@@ -296,6 +299,7 @@ public class BoardController : MonoBehaviour
                     else
                         SoundFXManager.Instance.PlaySound(cardRevealSound, transform);
             }
+            yield return new WaitForSeconds(delay);
         }
     }
 
