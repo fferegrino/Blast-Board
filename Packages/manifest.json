@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "com.apple.unityplugin.core": "file:/Users/antonioferegrino/hub/unityplugins/Build/com.apple.unityplugin.core-3.2.0.tgz",
+    "com.apple.unityplugin.gamekit": "file:/Users/antonioferegrino/hub/unityplugins/Build/com.apple.unityplugin.gamekit-4.0.1.tgz",
     "com.bitbebop.ios-app-icon-appearance": "https://github.com/artstorm/ios-app-icon-appearance.git?path=/Packages/com.bitbebop.ios-app-icon-appearance",
     "com.unity.2d.animation": "13.0.2",
     "com.unity.2d.aseprite": "3.0.1",
