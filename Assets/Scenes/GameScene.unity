@@ -1698,6 +1698,7 @@ GameObject:
   - component: {fileID: 569397810}
   - component: {fileID: 569397812}
   - component: {fileID: 569397811}
+  - component: {fileID: 569397813}
   m_Layer: 0
   m_Name: BoardBackground
   m_TagString: Untagged
@@ -1762,6 +1763,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 569397809}
   m_CullTransparentMesh: 1
+--- !u!114 &569397813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569397809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Shadow
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 0, y: -10}
+  m_UseGraphicAlpha: 1
 --- !u!1 &573653911
 GameObject:
   m_ObjectHideFlags: 0
@@ -2362,8 +2378,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -7443756053782179069, guid: e1c09c32bda7949d3ab7f9b13c08b740, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: -6815398888314707785, guid: a5b375d340fc64d10bd15fdc9d3c7f9a, type: 3}
+  m_Type: 2
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2714,7 +2730,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 181468028045790848, guid: e804c20a903b84e6485cb02c1ad45388, type: 3}
   m_PrefabInstance: {fileID: 6491551437346660593}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1420318251}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c6eb9f4d54854781abb662bac521460, type: 3}
@@ -2993,6 +3009,7 @@ GameObject:
   - component: {fileID: 1228919954}
   - component: {fileID: 1228919953}
   - component: {fileID: 1228919952}
+  - component: {fileID: 1228919955}
   m_Layer: 0
   m_Name: TutorialButton
   m_TagString: Untagged
@@ -3102,6 +3119,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1228919950}
   m_CullTransparentMesh: 1
+--- !u!114 &1228919955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228919950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Shadow
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 0, y: -10}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1236270262
 GameObject:
   m_ObjectHideFlags: 0
@@ -3114,6 +3146,7 @@ GameObject:
   - component: {fileID: 1236270266}
   - component: {fileID: 1236270265}
   - component: {fileID: 1236270264}
+  - component: {fileID: 1236270267}
   m_Layer: 0
   m_Name: SettingsButton
   m_TagString: Untagged
@@ -3223,6 +3256,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1236270262}
   m_CullTransparentMesh: 1
+--- !u!114 &1236270267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236270262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Shadow
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 0, y: -10}
+  m_UseGraphicAlpha: 1
 --- !u!224 &1278546796 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5028975131165183941, guid: 8e295968476dd4818bbb18133708d92a, type: 3}
@@ -3378,6 +3426,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1352732773}
   m_CullTransparentMesh: 1
+--- !u!1 &1420318251 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8827915846764486400, guid: e804c20a903b84e6485cb02c1ad45388, type: 3}
+  m_PrefabInstance: {fileID: 6491551437346660593}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1420318254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1420318251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Shadow
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 0, y: -10}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1443821176
 GameObject:
   m_ObjectHideFlags: 0
@@ -4701,6 +4769,7 @@ GameObject:
   - component: {fileID: 1803556524}
   - component: {fileID: 1803556523}
   - component: {fileID: 1803556525}
+  - component: {fileID: 1803556526}
   m_Layer: 0
   m_Name: MemoPad
   m_TagString: Untagged
@@ -4785,6 +4854,21 @@ MonoBehaviour:
   mark1Button: {fileID: 681337953}
   mark2Button: {fileID: 1495817807}
   mark3Button: {fileID: 934194750}
+--- !u!114 &1803556526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803556521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Shadow
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 0, y: -10}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1810741654 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1278388148274821629, guid: aab8ca70150e54319b6d47163cd20a71, type: 3}
@@ -4830,6 +4914,21 @@ MonoBehaviour:
   references:
     version: 2
     RefIds: []
+--- !u!114 &1810741658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810741654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Shadow
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 0, y: -10}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1847915451
 GameObject:
   m_ObjectHideFlags: 0
@@ -5194,6 +5293,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1278388148274821629, guid: aab8ca70150e54319b6d47163cd20a71, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1924180908}
+    - targetCorrespondingSourceObject: {fileID: 1278388148274821629, guid: aab8ca70150e54319b6d47163cd20a71, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1924180909}
   m_SourcePrefab: {fileID: 100100000, guid: aab8ca70150e54319b6d47163cd20a71, type: 3}
 --- !u!224 &1924180904 stripped
 RectTransform:
@@ -5251,6 +5353,21 @@ MonoBehaviour:
   references:
     version: 2
     RefIds: []
+--- !u!114 &1924180909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172240664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Shadow
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 0, y: -10}
+  m_UseGraphicAlpha: 1
 --- !u!1 &2008421779
 GameObject:
   m_ObjectHideFlags: 0
@@ -5612,6 +5729,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1278388148274821629, guid: aab8ca70150e54319b6d47163cd20a71, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1810741657}
+    - targetCorrespondingSourceObject: {fileID: 1278388148274821629, guid: aab8ca70150e54319b6d47163cd20a71, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1810741658}
   m_SourcePrefab: {fileID: 100100000, guid: aab8ca70150e54319b6d47163cd20a71, type: 3}
 --- !u!1001 &4589311965069189216
 PrefabInstance:
@@ -5919,6 +6039,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8827915846764486400, guid: e804c20a903b84e6485cb02c1ad45388, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1420318254}
     - targetCorrespondingSourceObject: {fileID: 8196561720914238459, guid: e804c20a903b84e6485cb02c1ad45388, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6491551437346660596}
