@@ -63,6 +63,18 @@ MonoBehaviour:
     m_Key: Then Tap A Value
     m_Metadata:
       m_Items: []
+  - m_Id: 726160429277184
+    m_Key: Level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 726199079788544
+    m_Key: Session Points
+    m_Metadata:
+      m_Items: []
+  - m_Id: 726286828822528
+    m_Key: Level Points
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

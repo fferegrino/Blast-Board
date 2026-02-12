@@ -13,6 +13,21 @@ MonoBehaviour:
   m_Name: AppleCoreBuildStep
   m_EditorClassIdentifier: Apple.Core.Editor::Apple.Core.AppleCoreBuildStep
   IsEnabled: 1
+--- !u!114 &-5396823066132078356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24e6011bb95664520aa4858e4c359e06, type: 3}
+  m_Name: AppleGameKitBuildStep
+  m_EditorClassIdentifier: Apple.GameKit.Editor::Apple.GameKit.Editor.AppleGameKitBuildStep
+  IsEnabled: 1
+  FriendListUsageDescription: 
+  SavedGameContainerIdentifier: 
 --- !u!114 &-4399356061519689054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,10 +76,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Apple.Core.Editor::Apple.Core.AppleBuildProfile
   AutomateInfoPlist: 1
   DefaultInfoPlist: {fileID: 0}
-  MinimumOSVersion_iOS: 
-  MinimumOSVersion_tvOS: 
-  MinimumOSVersion_macOS: 
-  MinimumOSVersion_visionOS: 
+  MinimumOSVersion_iOS: 15.0
+  MinimumOSVersion_tvOS: 15.0
+  MinimumOSVersion_macOS: 10.15.0
+  MinimumOSVersion_visionOS: 1.0
   AppUsesNonExemptEncryption: 0
   AutomateEntitlements: 1
   DefaultEntitlements: {fileID: 0}

@@ -83,6 +83,18 @@ MonoBehaviour:
       you want!
     m_Metadata:
       m_Items: []
+  - m_Id: 726160429277184
+    m_Localized: Level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 726199079788544
+    m_Localized: Points this session
+    m_Metadata:
+      m_Items: []
+  - m_Id: 726286828822528
+    m_Localized: Points this level
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

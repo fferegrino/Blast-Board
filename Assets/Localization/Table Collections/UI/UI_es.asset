@@ -74,6 +74,18 @@ MonoBehaviour:
       el valor que desees.
     m_Metadata:
       m_Items: []
+  - m_Id: 726160429277184
+    m_Localized: Nivel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 726199079788544
+    m_Localized: "Puntos en la sesi\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 726286828822528
+    m_Localized: Puntos en el nivel
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
