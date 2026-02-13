@@ -539,8 +539,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 140.51
-  m_fontSizeBase: 140.51
+  m_fontSize: 130
+  m_fontSizeBase: 130
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -925,8 +925,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 300
-  m_fontSizeBase: 300
+  m_fontSize: 260
+  m_fontSizeBase: 260
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3678,7 +3678,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1443821177
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3756,9 +3756,48 @@ MonoBehaviour:
   levelScoreboard: {fileID: 2060833612}
   sessionScoreboard: {fileID: 1189198051}
   levelDisplay: {fileID: 1579163638}
+  retryActionText:
+    m_TableReference:
+      m_TableCollectionName: GUID:78e460ec363114ce6bf247ae6d2e2ef0
+    m_TableEntryReference:
+      m_KeyId: 1069017572827136
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  nextActionText:
+    m_TableReference:
+      m_TableCollectionName: GUID:78e460ec363114ce6bf247ae6d2e2ef0
+    m_TableEntryReference:
+      m_KeyId: 1069074342731776
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  wonScreenText:
+    m_TableReference:
+      m_TableCollectionName: GUID:78e460ec363114ce6bf247ae6d2e2ef0
+    m_TableEntryReference:
+      m_KeyId: 1068787137765376
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  lostScreenText:
+    m_TableReference:
+      m_TableCollectionName: GUID:78e460ec363114ce6bf247ae6d2e2ef0
+    m_TableEntryReference:
+      m_KeyId: 1068926455767040
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   actionButton: {fileID: 1473326423}
   actionButtonText: {fileID: 89576629}
   screenText: {fileID: 236763534}
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1451341486
 GameObject:
   m_ObjectHideFlags: 0
@@ -3886,7 +3925,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.17376786}
   m_AnchorMax: {x: 1, y: 0.27265486}
   m_AnchoredPosition: {x: 0, y: -9}
-  m_SizeDelta: {x: -715.7357, y: -65.8649}
+  m_SizeDelta: {x: -605.0731, y: -65.8649}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1473326423
 MonoBehaviour:

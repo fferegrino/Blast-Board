@@ -102,6 +102,22 @@ MonoBehaviour:
     m_Localized: Silenciar sonidos
     m_Metadata:
       m_Items: []
+  - m_Id: 1068787137765376
+    m_Localized: "\xA1Ganaste!\n\xBFSiguiente nivel?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1068926455767040
+    m_Localized: "Perdiste.\n\xBFReintentar?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1069017572827136
+    m_Localized: Reintentar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1069074342731776
+    m_Localized: Siguiente
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

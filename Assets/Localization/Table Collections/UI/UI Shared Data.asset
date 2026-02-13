@@ -91,6 +91,22 @@ MonoBehaviour:
     m_Key: Mute Sounds
     m_Metadata:
       m_Items: []
+  - m_Id: 1068787137765376
+    m_Key: You Won
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1068926455767040
+    m_Key: You Lost
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1069017572827136
+    m_Key: Retry
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1069074342731776
+    m_Key: Next Level
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

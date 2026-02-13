@@ -308,13 +308,11 @@ public class BoardController : MonoBehaviour
         levelEndScreen.SetScoreboards(gameState.CurrentPoints, gameSession.SessionPoints, gameSession.Level);
         if (outcome == GameOutcome.Won)
         {
-            levelEndScreen.SetActionButtonText("Next");
-            levelEndScreen.SetScreenText("You won the level!");
+            levelEndScreen.SetWon();
         }
         else if (outcome == GameOutcome.Lost)
         {
-            levelEndScreen.SetActionButtonText("Retry");
-            levelEndScreen.SetScreenText("You lost the level!");
+            levelEndScreen.SetLost();
         }
         levelEndScreen.gameObject.SetActive(true);
     }
