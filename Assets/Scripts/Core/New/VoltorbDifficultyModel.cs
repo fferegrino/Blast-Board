@@ -15,9 +15,16 @@ public static class VoltorbDifficultyModel
         int totalTiles = boardSize * boardSize;
 
         int voltorbs = Math.Clamp(4 + (int)(0.3f * d), 3, totalTiles - 4);
-        int highTiles = Math.Clamp(6 + (int)(0.4f * d), 4, totalTiles - voltorbs);
 
-        float threeRatio = Math.Clamp(0.25f + 0.025f * d, 0f, 1f); // 25% -> 75%
+        // Controls how many high tiles are in the board,
+        int highTiles = Math.Clamp(3 + (int)(0.6f * d), 3, totalTiles - voltorbs);
+        // int highTiles = Math.Clamp(6 + (int)(0.4f * d), 4, totalTiles - voltorbs);
+
+        // Controls the ratio of threes to the total number of high tiles
+        // Start with almost all 2s, only later introduce 3s meaningfully
+        float threeRatio = Math.Clamp(0.1f + 0.02f * d, 0f, 1f);  // d=1 -> 12%, d=20 -> 50% 3s
+        // float threeRatio = Math.Clamp(0.25f + 0.025f * d, 0f, 1f); // 25% -> 75%
+
         int threes = Math.Clamp((int)Math.Round (highTiles * threeRatio), 0, highTiles);
         int twos = highTiles - threes;
 
