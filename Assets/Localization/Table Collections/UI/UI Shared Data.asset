@@ -75,6 +75,22 @@ MonoBehaviour:
     m_Key: Level Points
     m_Metadata:
       m_Items: []
+  - m_Id: 950877631275008
+    m_Key: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 950950079488000
+    m_Key: Close
+    m_Metadata:
+      m_Items: []
+  - m_Id: 951006249607168
+    m_Key: "Mute Music\t"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 951071533948928
+    m_Key: Mute Sounds
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

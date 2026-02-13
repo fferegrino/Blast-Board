@@ -95,6 +95,22 @@ MonoBehaviour:
     m_Localized: Points this level
     m_Metadata:
       m_Items: []
+  - m_Id: 950877631275008
+    m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 950950079488000
+    m_Localized: Close
+    m_Metadata:
+      m_Items: []
+  - m_Id: 951006249607168
+    m_Localized: Mute music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 951071533948928
+    m_Localized: Mute sounds
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

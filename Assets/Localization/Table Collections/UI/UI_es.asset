@@ -86,6 +86,22 @@ MonoBehaviour:
     m_Localized: Puntos en el nivel
     m_Metadata:
       m_Items: []
+  - m_Id: 950877631275008
+    m_Localized: "Configuraci\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 950950079488000
+    m_Localized: Cerrar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 951006249607168
+    m_Localized: "Silenciar m\xFAsica"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 951071533948928
+    m_Localized: Silenciar sonidos
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
