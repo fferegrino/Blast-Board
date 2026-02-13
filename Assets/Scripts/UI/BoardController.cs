@@ -158,7 +158,6 @@ public class BoardController : MonoBehaviour
     void UpdateScoreboards()
     {
         if (gameSession == null) return;
-        sessionScoreboard.SetScoreboardText("Points in this session");
         levelScoreboard.SetScoreboardValue(gameState.CurrentPoints);
         sessionScoreboard.SetScoreboardValue(gameSession.SessionPoints);
         levelDisplay.SetScoreboardValue(gameSession.Level);
