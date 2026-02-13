@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using System.Text;
 public class BoardController : MonoBehaviour
 {
     const int CARD_LOCATION_X = -450;
@@ -65,6 +65,7 @@ public class BoardController : MonoBehaviour
     private static GameSession s_persistedSession;
 
     GameState gameState => gameSession?.CurrentGame;
+
 
     void Start()
     {
@@ -160,11 +161,23 @@ public class BoardController : MonoBehaviour
         if (gameSession == null) return;
         levelScoreboard.SetScoreboardValue(gameState.CurrentPoints);
         sessionScoreboard.SetScoreboardValue(gameSession.SessionPoints);
-        levelDisplay.SetScoreboardValue(gameSession.Level);
+        levelDisplay.SetScoreboardValue(gameSession.CurrentLevel);
     }
 
     void RecreateCards(GameState state)
     {
+        StringBuilder sb = new StringBuilder();
+        sb.AppendLine($"Board (total points: {state.PointsToWin}) :");
+        for (int row = 0; row < GameState.BoardSize; row++)
+        {
+            for (int col = 0; col < GameState.BoardSize; col++)
+            {
+                sb.Append($"{state[row, col]} ");
+            }
+            sb.AppendLine();
+        }
+        Debug.Log(sb.ToString());
+
         int size = GameState.BoardSize;
         cardButtons = new CardButton[size * size];
         for (int row = 0; row < size; row++)
@@ -304,7 +317,7 @@ public class BoardController : MonoBehaviour
 
     void ShowLevelEndScreen(GameOutcome outcome)
     {
-        levelEndScreen.SetScoreboards(gameState.CurrentPoints, gameSession.SessionPoints, gameSession.Level);
+        levelEndScreen.SetScoreboards(gameState.CurrentPoints, gameSession.SessionPoints, gameSession.CurrentLevel);
         if (outcome == GameOutcome.Won)
         {
             levelEndScreen.SetWon();

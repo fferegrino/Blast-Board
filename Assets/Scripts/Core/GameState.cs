@@ -34,6 +34,9 @@ public class GameState
     private readonly CellMarks[,] cellMarks;
     private readonly List<Tuple<int, int>> zeroLocations;
 
+    private int tilesRevealed = 0;
+    public int TilesRevealed => tilesRevealed;
+
     public int[] ColumnSumValues { get; }
     public int[] RowSumValues { get; }
     public int[] ColumnMultValues { get; }
@@ -70,6 +73,7 @@ public class GameState
         PointsToWin = ComputePointsToWin();
         CurrentPoints = 0;
         Outcome = GameOutcome.InProgress;
+        tilesRevealed = 0;
 
         ComputeRowHints(out int[] rowSums, out int[] rowMults, out int[] rowBombs);
         ComputeColumnHints(out int[] colSums, out int[] colMults, out int[] colBombs);
@@ -185,6 +189,8 @@ public class GameState
             Outcome = GameOutcome.Lost;
             return true;
         }
+
+        tilesRevealed++;
 
         CurrentPoints = CurrentPoints == 0 ? value : CurrentPoints * value;
         if (CurrentPoints >= PointsToWin)

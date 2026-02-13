@@ -11,6 +11,18 @@ public class RawBoard
         this.board = board;
     }
 
+    public RawBoard(VoltorbBoard board)
+    {
+        this.board = new int[board.Size, board.Size];
+        for (int r = 0; r < board.Size; r++)
+        {
+            for (int c = 0; c < board.Size; c++)
+            {
+                this.board[r, c] = (int)board.Get(r, c).Type;
+            }
+        }
+    }
+
     public RawBoard(LevelDefinition levelDefinition)
     {
         var cells = levelDefinition.GetCells();

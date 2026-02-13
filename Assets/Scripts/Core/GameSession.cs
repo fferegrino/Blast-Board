@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+// using UnityEngine;
 
 /// <summary>
 /// Tracks level progression and session points across multiple rounds.
@@ -8,10 +9,15 @@ using System.Linq;
 /// </summary>
 public class GameSession
 {
-    private static readonly Random Rng = new Random();
+
+    const float SkillRatingPerLevel = 20f;
+    private static readonly System.Random Rng = new System.Random();
 
     /// <summary>Current level (1-based).</summary>
     public int Level { get; private set; }
+
+    public int CurrentLevel => VoltorbDifficultyModel.DifficultyFromSR(SkillRating);
+
 
     /// <summary>Total points accumulated this session (sum of CurrentPoints at each level win).</summary>
     public int SessionPoints { get; private set; }
@@ -19,11 +25,51 @@ public class GameSession
     /// <summary>The current level's board and round state.</summary>
     public GameState CurrentGame { get; private set; }
 
+
+    public int BoardSize = 5;
+    public float SkillRating = 200f; // 0-400
+
+    public float LevelProgress
+    {
+        get
+        {
+            float levelStartSR = (CurrentLevel - 1) * SkillRatingPerLevel;
+            float levelEndSR = CurrentLevel * SkillRatingPerLevel;
+
+            float levelProgress = InverseLerp(levelStartSR, levelEndSR, SkillRating);
+            return levelProgress;
+        }
+    }
+
+
+    public static float InverseLerp(float a, float b, float value)
+    {
+        if (a != b)
+        {
+            return (value - a) / (b - a);
+        }
+        else
+        {
+            return 0f;
+        }
+    }
+    private VoltorbBoardGenerator generator = new VoltorbBoardGenerator();
+
+    private GameState NewGame()
+    {
+        int d = VoltorbDifficultyModel.DifficultyFromSR(SkillRating);
+        var diff = VoltorbDifficultyModel.GetDifficultyParams(d, BoardSize);
+
+        // Debug.Log($"NewGame: SkillRating = {SkillRating} - Difficulty = {d} - LevelProgress = {LevelProgress}");
+        VoltorbBoard currentBoard = generator.GenerateBoard(BoardSize, diff);
+        return new GameState(new RawBoard(currentBoard));
+    }
+
     public GameSession()
     {
         Level = 1;
         SessionPoints = 0;
-        CurrentGame = CreateGameForLevel(1);
+        CurrentGame = NewGame();
     }
 
     public static GameSession DemoSession()
@@ -46,6 +92,32 @@ public class GameSession
         return session;
     }
 
+
+    public void OnRoundWon(float multiplier, int safeTilesFlipped)
+    {
+        // Reward wins; scale a bit by multiplier
+        SkillRating += 5f + Math.Max(0f, multiplier - 1f) * 2f;
+        SkillRating = Math.Clamp(SkillRating, 0f, 400f);
+        // StartNewRound();
+    }
+
+    public void OnHitVoltorb(int safeTilesFlipped)
+    {
+        // Penalize more if you died early
+        float factor = 1f - (safeTilesFlipped / (float)(BoardSize * BoardSize));
+        SkillRating -= 7f * factor;
+        SkillRating = Math.Clamp(SkillRating, 0f, 400f);
+        // StartNewRound();
+    }
+
+    public void OnQuit(int safeTilesFlipped)
+    {
+        // Mildly positive or neutral
+        SkillRating += 1f;
+        SkillRating = Math.Clamp(SkillRating, 0f, 400f);
+        // StartNewRound();
+    }
+
     /// <summary>
     /// Call when the current round is won. Adds this round's points to SessionPoints, increments Level,
     /// and starts a new round for the next level. Returns true if advanced.
@@ -58,8 +130,9 @@ public class GameSession
         }
 
         SessionPoints += CurrentGame.CurrentPoints;
-        Level++;
-        CurrentGame = CreateGameForLevel(Level);
+        OnRoundWon(1, CurrentGame.TilesRevealed);
+        // Level++;
+        CurrentGame = NewGame();
         return true;
     }
 
@@ -69,7 +142,8 @@ public class GameSession
     /// </summary>
     public void RetryCurrentLevel()
     {
-        CurrentGame = CreateGameForLevel(Level);
+        OnHitVoltorb(CurrentGame.TilesRevealed);
+        CurrentGame = NewGame();
     }
 
     /// <summary>
@@ -79,7 +153,7 @@ public class GameSession
     {
         Level = 1;
         SessionPoints = 0;
-        CurrentGame = CreateGameForLevel(1);
+        CurrentGame = NewGame();
     }
 
     private static GameState CreateGameForLevel(int level)
