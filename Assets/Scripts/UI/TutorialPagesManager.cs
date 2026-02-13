@@ -3,6 +3,7 @@ using System.Linq;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.Localization;
 
 public class TutorialPagesManager : MonoBehaviour
 {
@@ -11,11 +12,23 @@ public class TutorialPagesManager : MonoBehaviour
 
     private int currentPage = 0;
 
+    [Header("Buttons")]
     public Button backButton;
     public Button nextButton;
 
-    private TextMeshProUGUI backButtonText;
-    private TextMeshProUGUI nextButtonText;
+    [Header("Button Texts")]
+    public TextMeshProUGUI backButtonText;
+    public TextMeshProUGUI nextButtonText;
+
+    [Header("Texts")]
+    public LocalizedString nextText;
+    public LocalizedString backText;
+    public LocalizedString exitText;
+
+    private string innerNextText;
+    private string innerBackText;
+    private string innerExitText;
+
 
     void Start()
     {
@@ -31,10 +44,33 @@ public class TutorialPagesManager : MonoBehaviour
         backButton.onClick.AddListener(OnBackButtonClick);
         nextButton.onClick.AddListener(OnNextButtonClick);
 
-        backButtonText = backButton.GetComponent<TextMeshProUGUI>();
-        nextButtonText = nextButton.GetComponent<TextMeshProUGUI>();
         ShowPage(currentPage);
 
+        nextText.StringChanged += OnNextTextChanged;
+        backText.StringChanged += OnBackTextChanged;
+        exitText.StringChanged += OnExitTextChanged;
+
+    }
+
+    void OnNextTextChanged(string value)
+    {
+        Debug.Log("NextTextChanged: " + value);
+        innerNextText = value;
+        SetNextButtonText();
+    }
+
+    void OnBackTextChanged(string value)
+    {
+        Debug.Log("BackTextChanged: " + value);
+        innerBackText = value;
+        SetBackButtonText();
+    }
+
+    void OnExitTextChanged(string value)
+    {
+        innerExitText = value;
+        SetBackButtonText();
+        SetNextButtonText();
     }
 
     void OnBackButtonClick()
@@ -59,34 +95,36 @@ public class TutorialPagesManager : MonoBehaviour
         ShowPage(currentPage);
     }
 
+    void SetBackButtonText()
+    {
+        if (backButtonText != null) {
+            if (currentPage == 0) {
+                backButtonText.text = innerExitText;
+            }
+            else {
+                backButtonText.text = innerBackText;
+            }
+        }
+    }
+    void SetNextButtonText()
+    {
+        if (nextButtonText != null) {
+            if (currentPage == tutorialPages.Length - 1) {
+                nextButtonText.text = innerExitText;
+            }
+            else {
+                nextButtonText.text = innerNextText;
+            }
+        }
+    }
+
     public void ShowPage(int pageNumber)
     {
         for (int i = 0; i < tutorialPages.Length; i++)
         {
             tutorialPages[i].SetActive(i == pageNumber);
         }
-
-        if (backButtonText != null)
-        {
-            if (pageNumber == 0)
-            {
-                // backButtonText.text = "Exit";
-            }
-            else
-            {
-                // backButtonText.text = "Back";
-            }
-        }
-        if (nextButtonText != null)
-        {
-            if (pageNumber == tutorialPages.Length - 1)
-            {
-                // nextButtonText.text = "Exit";
-            }
-            else
-            {
-                // nextButtonText.text = "Next";
-            }
-        }
+        SetBackButtonText();
+        SetNextButtonText();
     }
 }
