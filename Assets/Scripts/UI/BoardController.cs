@@ -66,6 +66,14 @@ public class BoardController : MonoBehaviour
 
     GameState gameState => gameSession?.CurrentGame;
 
+    void Awake()
+    {
+        levelEndScreen.gameObject.SetActive(true);
+        levelEndScreen.OnActionButtonClick += OnLevelEndScreenActionButtonClick;
+        memoPad.OnMemoPadClick += OnMemoPadClick;
+        settingsButton.onClick.AddListener(OnSettingsButtonClick);
+        tutorialButton.onClick.AddListener(OnTutorialButtonClick);
+    }
 
     void Start()
     {
@@ -75,10 +83,6 @@ public class BoardController : MonoBehaviour
         s_persistedSession = null;
         ResetBoard(gameSession.CurrentGame);
         UpdateScoreboards();
-        levelEndScreen.OnActionButtonClick += OnLevelEndScreenActionButtonClick;
-        memoPad.OnMemoPadClick += OnMemoPadClick;
-        settingsButton.onClick.AddListener(OnSettingsButtonClick);
-        tutorialButton.onClick.AddListener(OnTutorialButtonClick);
     }
 
     void OnSettingsButtonClick()
