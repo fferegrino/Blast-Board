@@ -12,7 +12,7 @@ public class LevelEndScreen : MonoBehaviour
     [Header("Scoreboards")]
     public Scoreboard levelScoreboard;
     public Scoreboard sessionScoreboard;
-    public Scoreboard levelDisplay;
+    public LevelDisplay levelDisplay;
 
     [Header("Texts")]
     public LocalizedString retryActionText;
@@ -37,6 +37,7 @@ public class LevelEndScreen : MonoBehaviour
         nextActionText.StringChanged += OnNextActionTextChanged;
         wonScreenText.StringChanged += OnWonScreenTextChanged;
         lostScreenText.StringChanged += OnLostScreenTextChanged;
+        actionButton.onClick.AddListener(InnerOnActionButtonClick);
     }
 
     void OnRetryActionTextChanged(string value)
@@ -61,15 +62,13 @@ public class LevelEndScreen : MonoBehaviour
 
     void Start()
     {
-        actionButton.onClick.AddListener(InnerOnActionButtonClick);
-        sessionScoreboard.SetScoreboardText("Session Points");
     }
 
-    public void SetScoreboards(int levelScore, int sessionScore, int level)
+    public void SetScoreboards(int levelScore, int sessionScore, int level, float progress)
     {
         levelScoreboard.SetScoreboardValue(levelScore);
         sessionScoreboard.SetScoreboardValue(sessionScore);
-        levelDisplay.SetScoreboardValue(level);
+        levelDisplay.SetLevel(level, progress);
     }
 
     public void SetLost() {

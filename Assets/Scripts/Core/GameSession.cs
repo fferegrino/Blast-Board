@@ -25,9 +25,8 @@ public class GameSession
     /// <summary>The current level's board and round state.</summary>
     public GameState CurrentGame { get; private set; }
 
-
     public int BoardSize = 5;
-    public float SkillRating = 200f; // 0-400
+    public float SkillRating = 0f; // 0-400
 
     public float LevelProgress
     {

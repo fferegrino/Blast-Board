@@ -161,7 +161,7 @@ MonoBehaviour:
   m_text: Current level points
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ea551f89ad189439494c5cc1841814ba, type: 2}
-  m_sharedMaterial: {fileID: -3680572209003019097, guid: ea551f89ad189439494c5cc1841814ba, type: 2}
+  m_sharedMaterial: {fileID: -6903621869425953048, guid: ea551f89ad189439494c5cc1841814ba, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -295,10 +295,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 03221
+  m_text: 003220
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ea551f89ad189439494c5cc1841814ba, type: 2}
-  m_sharedMaterial: {fileID: -3680572209003019097, guid: ea551f89ad189439494c5cc1841814ba, type: 2}
+  m_sharedMaterial: {fileID: -6903621869425953048, guid: ea551f89ad189439494c5cc1841814ba, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -322,8 +322,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 180
-  m_fontSizeBase: 180
+  m_fontSize: 140
+  m_fontSizeBase: 140
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

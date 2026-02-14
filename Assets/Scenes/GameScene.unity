@@ -3051,17 +3051,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6338011677647759597, guid: e804c20a903b84e6485cb02c1ad45388, type: 3}
   m_PrefabInstance: {fileID: 6491551437346660593}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1081571347 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 181468028045790848, guid: e804c20a903b84e6485cb02c1ad45388, type: 3}
-  m_PrefabInstance: {fileID: 6491551437346660593}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1420318251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c6eb9f4d54854781abb662bac521460, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!1 &1133202701
 GameObject:
   m_ObjectHideFlags: 0
@@ -3149,6 +3138,10 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -6903621869425953048, guid: ea551f89ad189439494c5cc1841814ba, type: 2}
+    - target: {fileID: 1184567885985017899, guid: aab8ca70150e54319b6d47163cd20a71, type: 3}
+      propertyPath: ScoreboardValueFormat
+      value: '{0:D6}'
+      objectReference: {fileID: 0}
     - target: {fileID: 1278388148274821629, guid: aab8ca70150e54319b6d47163cd20a71, type: 3}
       propertyPath: m_Name
       value: SessionScoreboardEndScreen
@@ -3368,7 +3361,7 @@ MonoBehaviour:
   memoPad: {fileID: 1803556525}
   levelScoreboard: {fileID: 829484677}
   sessionScoreboard: {fileID: 1924180905}
-  levelDisplay: {fileID: 1081571347}
+  levelDisplay: {fileID: 6491551437346660597}
   levelEndScreen: {fileID: 1443821180}
   settingsUI: {fileID: 1726765452}
   cardTargetSound: {fileID: 8300000, guid: 6da308746da274dc4ae328e15b36a601, type: 3}
@@ -4747,15 +4740,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1579163638 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 181468028045790848, guid: e804c20a903b84e6485cb02c1ad45388, type: 3}
+  m_CorrespondingSourceObject: {fileID: 212089388981534993, guid: e804c20a903b84e6485cb02c1ad45388, type: 3}
   m_PrefabInstance: {fileID: 1579163636}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c6eb9f4d54854781abb662bac521460, type: 3}
+  m_Script: {fileID: 11500000, guid: 5817e4f17cf0d49068ef5d0500c8a614, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_EditorClassIdentifier: Assembly-CSharp::LevelDisplay
 --- !u!1 &1584386276
 GameObject:
   m_ObjectHideFlags: 0
@@ -5667,6 +5660,10 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -6903621869425953048, guid: ea551f89ad189439494c5cc1841814ba, type: 2}
+    - target: {fileID: 1184567885985017899, guid: aab8ca70150e54319b6d47163cd20a71, type: 3}
+      propertyPath: ScoreboardValueFormat
+      value: '{0:D6}'
+      objectReference: {fileID: 0}
     - target: {fileID: 1278388148274821629, guid: aab8ca70150e54319b6d47163cd20a71, type: 3}
       propertyPath: m_Name
       value: SessionScoreboard
@@ -5935,6 +5932,10 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -6903621869425953048, guid: ea551f89ad189439494c5cc1841814ba, type: 2}
+    - target: {fileID: 1184567885985017899, guid: aab8ca70150e54319b6d47163cd20a71, type: 3}
+      propertyPath: ScoreboardValueFormat
+      value: '{0:D6}'
+      objectReference: {fileID: 0}
     - target: {fileID: 1278388148274821629, guid: aab8ca70150e54319b6d47163cd20a71, type: 3}
       propertyPath: m_Name
       value: LevelScoreboardEndScreen
@@ -6106,6 +6107,10 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -6903621869425953048, guid: ea551f89ad189439494c5cc1841814ba, type: 2}
+    - target: {fileID: 1184567885985017899, guid: aab8ca70150e54319b6d47163cd20a71, type: 3}
+      propertyPath: ScoreboardValueFormat
+      value: '{0:D6}'
+      objectReference: {fileID: 0}
     - target: {fileID: 1278388148274821629, guid: aab8ca70150e54319b6d47163cd20a71, type: 3}
       propertyPath: m_Name
       value: LevelScoreboard
@@ -6415,6 +6420,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 68856968}
     m_Modifications:
+    - target: {fileID: 1835297951749007008, guid: e804c20a903b84e6485cb02c1ad45388, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1835297951749007008, guid: e804c20a903b84e6485cb02c1ad45388, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3714698612453821965, guid: e804c20a903b84e6485cb02c1ad45388, type: 3}
       propertyPath: m_sharedMaterial
       value: 
@@ -6503,6 +6516,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7483313011817847907, guid: e804c20a903b84e6485cb02c1ad45388, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7483313011817847907, guid: e804c20a903b84e6485cb02c1ad45388, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7483313011817847907, guid: e804c20a903b84e6485cb02c1ad45388, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7483313011817847907, guid: e804c20a903b84e6485cb02c1ad45388, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8827915846764486400, guid: e804c20a903b84e6485cb02c1ad45388, type: 3}
       propertyPath: m_Name
       value: LevelDisplay
@@ -6574,6 +6603,17 @@ MonoBehaviour:
   references:
     version: 2
     RefIds: []
+--- !u!114 &6491551437346660597 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 212089388981534993, guid: e804c20a903b84e6485cb02c1ad45388, type: 3}
+  m_PrefabInstance: {fileID: 6491551437346660593}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1420318251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5817e4f17cf0d49068ef5d0500c8a614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelDisplay
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
