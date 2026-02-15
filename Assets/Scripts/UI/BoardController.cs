@@ -56,6 +56,9 @@ public class BoardController : MonoBehaviour
     public Button tutorialButton;
     public Button leaderboardButton;
 
+    [Header("Sizing")]
+    public Canvas canvas;
+
     private Vector3 cardButtonParentPosition;
 
     private CardButton[] cardButtons;
@@ -191,19 +194,22 @@ public class BoardController : MonoBehaviour
         Debug.Log(sb.ToString());
         #endif
 
+        Debug.Log("Canvas scale factor: " + canvas.scaleFactor);
+
+        var scaledLocationX = CARD_LOCATION_X * canvas.scaleFactor;
+        var scaledLocationY = CARD_LOCATION_Y * canvas.scaleFactor;
+        var scaledOffset = CARD_OFFSET * canvas.scaleFactor;
+
         int size = GameState.BoardSize;
         cardButtons = new CardButton[size * size];
         for (int row = 0; row < size; row++)
         {
             for (int col = 0; col < size; col++)
             {
-                var card = Instantiate(cardButton,
-                    new Vector3(
-                        (CARD_LOCATION_X + col * CARD_OFFSET) + cardButtonParentPosition.x,
-                        (CARD_LOCATION_Y - row * CARD_OFFSET) + cardButtonParentPosition.y,
-                        0
-                    ),
-                    Quaternion.identity, cardButtonsParent.transform);
+
+                var positionX = ((scaledLocationX + col * scaledOffset) + cardButtonParentPosition.x);
+                var positionY = ((scaledLocationY - row * scaledOffset) + cardButtonParentPosition.y);
+                var card = Instantiate(cardButton, new Vector3(positionX, positionY, 0), Quaternion.identity, cardButtonsParent.transform);
                 var btn = card.GetComponent<CardButton>();
 
                 card.name = $"CardButton_{row}_{col}";
@@ -366,13 +372,17 @@ public class BoardController : MonoBehaviour
 
     void CreateValueTiles(GameState state)
     {
+        var scaledLocationX = CARD_LOCATION_X * canvas.scaleFactor;
+        var scaledLocationY = CARD_LOCATION_Y * canvas.scaleFactor;
+        var scaledOffset = CARD_OFFSET * canvas.scaleFactor;
+
         int size = GameState.BoardSize;
         for (int i = 0; i < size; i++)
         {
             var tile = Instantiate(valueTile,
                 new Vector3(
-                    (CARD_LOCATION_X + i * CARD_OFFSET) + cardButtonParentPosition.x,
-                    (CARD_LOCATION_Y - size * CARD_OFFSET) + cardButtonParentPosition.y,
+                    (scaledLocationX + i * scaledOffset) + cardButtonParentPosition.x,
+                    (scaledLocationY - size * scaledOffset) + cardButtonParentPosition.y,
                     0
                 ),
                 Quaternion.identity, cardButtonsParent.transform);
@@ -384,8 +394,8 @@ public class BoardController : MonoBehaviour
         {
             var tile = Instantiate(valueTile,
                 new Vector3(
-                    (CARD_LOCATION_X + size * CARD_OFFSET) + cardButtonParentPosition.x,
-                    (CARD_LOCATION_Y - i * CARD_OFFSET) + cardButtonParentPosition.y,
+                    (scaledLocationX + size * scaledOffset) + cardButtonParentPosition.x,
+                    (scaledLocationY - i * scaledOffset) + cardButtonParentPosition.y,
                     0
                 ),
                 Quaternion.identity, cardButtonsParent.transform);

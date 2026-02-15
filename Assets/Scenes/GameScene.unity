@@ -1462,7 +1462,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.7912406}
   m_AnchorMax: {x: 1, y: 0.9592382}
-  m_AnchoredPosition: {x: -9.323425, y: -85.77246}
+  m_AnchoredPosition: {x: -9.323486, y: -85.77246}
   m_SizeDelta: {x: -18.647, y: -281.4553}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &465837122
@@ -3672,6 +3672,8 @@ MonoBehaviour:
   settingsButton: {fileID: 1236270264}
   tutorialButton: {fileID: 1228919952}
   leaderboardButton: {fileID: 393051902}
+  canvasScaler: {fileID: 1526377573}
+  canvas: {fileID: 1526377574}
 --- !u!1 &1228919950
 GameObject:
   m_ObjectHideFlags: 0
@@ -4738,12 +4740,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1206, y: 2622}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.75
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
