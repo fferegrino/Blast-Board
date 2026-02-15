@@ -170,6 +170,7 @@ public class BoardController : MonoBehaviour
 
     void RecreateCards(GameState state)
     {
+        #if UNITY_EDITOR
         StringBuilder sb = new StringBuilder();
         sb.AppendLine($"Board (total points: {state.PointsToWin}) :");
         for (int row = 0; row < GameState.BoardSize; row++)
@@ -181,6 +182,7 @@ public class BoardController : MonoBehaviour
             sb.AppendLine();
         }
         Debug.Log(sb.ToString());
+        #endif
 
         int size = GameState.BoardSize;
         cardButtons = new CardButton[size * size];
