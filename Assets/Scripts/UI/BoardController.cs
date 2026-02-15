@@ -321,12 +321,34 @@ public class BoardController : MonoBehaviour
         }
     }
 
+    void ReportGameCenterScoreOnLevelWin()
+    {
+        if (GameCenterManager.Instance == null)
+        {
+            return;
+        }
+
+        long totalScore = gameSession.SessionPoints + gameState.CurrentPoints;
+        GameCenterManager.Instance.ReportScore(totalScore);
+        int level = gameSession.CurrentLevel;
+        if (level >= 1)
+        {
+            GameCenterManager.Instance.ReportAchievement(GameCenterManager.Instance.achievementFirstWin, 100.0);
+        }
+
+        // if (level >= 5)
+        // {
+        //     GameCenterManager.Instance.ReportAchievement(GameCenterManager.Instance.achievementLevel5, 100.0);
+        // }
+    }
+
     void ShowLevelEndScreen(GameOutcome outcome)
     {
         levelEndScreen.SetScoreboards(gameState.CurrentPoints, gameSession.SessionPoints, gameSession.CurrentLevel, gameSession.LevelProgress);
         if (outcome == GameOutcome.Won)
         {
             levelEndScreen.SetWon();
+            ReportGameCenterScoreOnLevelWin();
         }
         else if (outcome == GameOutcome.Lost)
         {
