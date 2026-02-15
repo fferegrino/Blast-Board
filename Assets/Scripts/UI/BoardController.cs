@@ -54,6 +54,7 @@ public class BoardController : MonoBehaviour
     [Header("UI")]
     public Button settingsButton;
     public Button tutorialButton;
+    public Button leaderboardButton;
 
     private Vector3 cardButtonParentPosition;
 
@@ -73,6 +74,7 @@ public class BoardController : MonoBehaviour
         memoPad.OnMemoPadClick += OnMemoPadClick;
         settingsButton.onClick.AddListener(OnSettingsButtonClick);
         tutorialButton.onClick.AddListener(OnTutorialButtonClick);
+        leaderboardButton.onClick.AddListener(OnLeaderboardButtonClick);
     }
 
     void Start()
@@ -94,6 +96,11 @@ public class BoardController : MonoBehaviour
     {
         s_persistedSession = gameSession;
         SceneManager.LoadScene("TutorialScene");
+    }
+
+    void OnLeaderboardButtonClick()
+    {
+        GameCenterManager.Instance.ShowLeaderboard();
     }
 
     // void PlayBackgroundMusic()
