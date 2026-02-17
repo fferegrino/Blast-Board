@@ -169,7 +169,7 @@ public class BoardController : MonoBehaviour
         if (gameSession == null) return;
         levelScoreboard.SetScoreboardValue(gameState.CurrentPoints);
         sessionScoreboard.SetScoreboardValue(gameSession.SessionPoints);
-        levelDisplay.SetLevel(gameSession.CurrentLevel, gameSession.LevelProgress);
+        levelDisplay.SetLevel(gameSession.UserFacingLevel);
     }
 
     void RecreateCards(GameState state)
@@ -346,7 +346,7 @@ public class BoardController : MonoBehaviour
 
     void ShowLevelEndScreen(GameOutcome outcome)
     {
-        levelEndScreen.SetScoreboards(gameState.CurrentPoints, gameSession.SessionPoints, gameSession.CurrentLevel, gameSession.LevelProgress);
+        levelEndScreen.SetScoreboards(gameState.CurrentPoints, gameSession.SessionPoints, gameSession.UserFacingLevel);
         if (outcome == GameOutcome.Won)
         {
             levelEndScreen.SetWon();

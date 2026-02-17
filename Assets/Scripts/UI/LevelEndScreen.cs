@@ -59,11 +59,11 @@ public class LevelEndScreen : MonoBehaviour
         innerLostScreenText=value;
     }
 
-    public void SetScoreboards(int levelScore, int sessionScore, int level, float progress)
+    public void SetScoreboards(int levelScore, int sessionScore, int level)
     {
         levelScoreboard.SetScoreboardValue(levelScore);
         sessionScoreboard.SetScoreboardValue(sessionScore);
-        levelDisplay.SetLevel(level, progress);
+        levelDisplay.SetLevel(level);
     }
 
     public void SetLost() {

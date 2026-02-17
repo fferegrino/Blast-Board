@@ -154,8 +154,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 950}
-  m_SizeDelta: {x: 1206, y: 309}
+  m_AnchoredPosition: {x: -229.03065, y: 891.318}
+  m_SizeDelta: {x: 747.9387, y: 191.636}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &39914551
 MonoBehaviour:
@@ -3672,7 +3672,6 @@ MonoBehaviour:
   settingsButton: {fileID: 1236270264}
   tutorialButton: {fileID: 1228919952}
   leaderboardButton: {fileID: 393051902}
-  canvasScaler: {fileID: 1526377573}
   canvas: {fileID: 1526377574}
 --- !u!1 &1228919950
 GameObject:

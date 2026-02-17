@@ -7,7 +7,7 @@ using System;
 public class GameSession
 {
 
-    const float SkillRatingPerLevel = 20f;
+    const float SkillRatingPerLevel = 10f;
 
     public int CurrentLevel => VoltorbDifficultyModel.DifficultyFromSR(SkillRating);
 
@@ -30,6 +30,12 @@ public class GameSession
 
             float levelProgress = InverseLerp(levelStartSR, levelEndSR, SkillRating);
             return levelProgress;
+        }
+    }
+
+    public int UserFacingLevel {
+        get {
+            return CurrentLevel + (int)(LevelProgress * SkillRatingPerLevel);
         }
     }
 
