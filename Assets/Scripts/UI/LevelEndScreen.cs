@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Linq;
 using System;
 using UnityEngine.Localization;
 
@@ -58,10 +57,6 @@ public class LevelEndScreen : MonoBehaviour
     void OnLostScreenTextChanged(string value)
     {
         innerLostScreenText=value;
-    }
-
-    void Start()
-    {
     }
 
     public void SetScoreboards(int levelScore, int sessionScore, int level, float progress)

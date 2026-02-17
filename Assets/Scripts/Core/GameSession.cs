@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-// using UnityEngine;
 
 /// <summary>
 /// Tracks level progression and session points across multiple rounds.
@@ -11,10 +8,6 @@ public class GameSession
 {
 
     const float SkillRatingPerLevel = 20f;
-    private static readonly System.Random Rng = new System.Random();
-
-    /// <summary>Current level (1-based).</summary>
-    public int Level { get; private set; }
 
     public int CurrentLevel => VoltorbDifficultyModel.DifficultyFromSR(SkillRating);
 
@@ -66,7 +59,6 @@ public class GameSession
 
     public GameSession()
     {
-        Level = 1;
         SessionPoints = 0;
         CurrentGame = NewGame();
     }
@@ -75,7 +67,6 @@ public class GameSession
     {
         var session = new GameSession
         {
-            Level = 1,
             SessionPoints = 0,
         };
         session.CurrentGame = new GameState(
@@ -97,7 +88,6 @@ public class GameSession
         // Reward wins; scale a bit by multiplier
         SkillRating += 5f + Math.Max(0f, multiplier - 1f) * 2f;
         SkillRating = Math.Clamp(SkillRating, 0f, 400f);
-        // StartNewRound();
     }
 
     public void OnHitVoltorb(int safeTilesFlipped)
@@ -106,15 +96,6 @@ public class GameSession
         float factor = 1f - (safeTilesFlipped / (float)(BoardSize * BoardSize));
         SkillRating -= 7f * factor;
         SkillRating = Math.Clamp(SkillRating, 0f, 400f);
-        // StartNewRound();
-    }
-
-    public void OnQuit(int safeTilesFlipped)
-    {
-        // Mildly positive or neutral
-        SkillRating += 1f;
-        SkillRating = Math.Clamp(SkillRating, 0f, 400f);
-        // StartNewRound();
     }
 
     /// <summary>
@@ -143,34 +124,5 @@ public class GameSession
     {
         OnHitVoltorb(CurrentGame.TilesRevealed);
         CurrentGame = NewGame();
-    }
-
-    /// <summary>
-    /// Starts a new session from level 1 with zero session points.
-    /// </summary>
-    public void StartNewSession()
-    {
-        Level = 1;
-        SessionPoints = 0;
-        CurrentGame = NewGame();
-    }
-
-    private static GameState CreateGameForLevel(int level)
-    {
-        var definitions = GetLevelDefinitions(level);
-        var definition = definitions[Rng.Next(definitions.Count)];
-        var board = new RawBoard(definition);
-        return new GameState(board);
-    }
-
-    private static List<LevelDefinition> GetLevelDefinitions(int level)
-    {
-        if (LevelDefinition.LEVEL_DEFINITIONS.TryGetValue(level, out var list))
-        {
-            return list;
-        }
-
-        int maxLevel = LevelDefinition.LEVEL_DEFINITIONS.Keys.Max();
-        return LevelDefinition.LEVEL_DEFINITIONS[Math.Min(level, maxLevel)];
     }
 }

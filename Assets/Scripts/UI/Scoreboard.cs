@@ -1,7 +1,6 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using System.Collections.Generic;
 
 public class Scoreboard : MonoBehaviour
 {
@@ -12,10 +11,5 @@ public class Scoreboard : MonoBehaviour
     public void SetScoreboardValue(int value)
     {
         ScoreboardValue.text = string.Format(ScoreboardValueFormat, value);
-    }
-
-    public void SetScoreboardText(string text)
-    {
-        ScoreboardText.text = text;
     }
 }

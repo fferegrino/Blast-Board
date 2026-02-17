@@ -106,12 +106,6 @@ public class BoardController : MonoBehaviour
         GameCenterManager.Instance.ShowLeaderboard();
     }
 
-    // void PlayBackgroundMusic()
-    // {
-    //     if (backgroundMusic != null && BackgroundMusicManager.Instance != null)
-    //         BackgroundMusicManager.Instance.Play(backgroundMusic);
-    // }
-
     private void PlaySound(AudioClip audioClip)
     {
         if (audioClip != null && SoundFXManager.Instance != null)
@@ -348,11 +342,6 @@ public class BoardController : MonoBehaviour
         {
             GameCenterManager.Instance.ReportAchievement(GameCenterManager.Instance.achievementFirstWin, 100.0);
         }
-
-        // if (level >= 5)
-        // {
-        //     GameCenterManager.Instance.ReportAchievement(GameCenterManager.Instance.achievementLevel5, 100.0);
-        // }
     }
 
     void ShowLevelEndScreen(GameOutcome outcome)

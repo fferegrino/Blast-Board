@@ -54,14 +54,12 @@ public class TutorialPagesManager : MonoBehaviour
 
     void OnNextTextChanged(string value)
     {
-        Debug.Log("NextTextChanged: " + value);
         innerNextText = value;
         SetNextButtonText();
     }
 
     void OnBackTextChanged(string value)
     {
-        Debug.Log("BackTextChanged: " + value);
         innerBackText = value;
         SetBackButtonText();
     }
