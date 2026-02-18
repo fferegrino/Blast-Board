@@ -8,6 +8,7 @@ public class GameSession
 {
 
     const float SkillRatingPerLevel = 10f;
+    const float MinSkillLevelIncrement = 5f;
 
     public int CurrentLevel => VoltorbDifficultyModel.DifficultyFromSR(SkillRating);
 
@@ -92,7 +93,7 @@ public class GameSession
     public void OnRoundWon(float multiplier, int safeTilesFlipped)
     {
         // Reward wins; scale a bit by multiplier
-        SkillRating += 5f + Math.Max(0f, multiplier - 1f) * 2f;
+        SkillRating += MinSkillLevelIncrement + Math.Max(0f, multiplier - 1f) * 2f;
         SkillRating = Math.Clamp(SkillRating, 0f, 400f);
     }
 
@@ -117,7 +118,6 @@ public class GameSession
 
         SessionPoints += CurrentGame.CurrentPoints;
         OnRoundWon(1, CurrentGame.TilesRevealed);
-        // Level++;
         CurrentGame = NewGame();
         return true;
     }
