@@ -75,15 +75,39 @@ public class GameState
         Outcome = GameOutcome.InProgress;
         tilesRevealed = 0;
 
-        ComputeRowHints(out int[] rowSums, out int[] rowMults, out int[] rowBombs);
-        ComputeColumnHints(out int[] colSums, out int[] colMults, out int[] colBombs);
+        RowSumValues = new int[BoardSize];
+        RowMultValues = new int[BoardSize];
+        RowBombs = new int[BoardSize];
+        ColumnSumValues = new int[BoardSize];
+        ColumnMultValues = new int[BoardSize];
+        ColumnBombs = new int[BoardSize];
 
-        RowSumValues = rowSums;
-        RowMultValues = rowMults;
-        RowBombs = rowBombs;
-        ColumnSumValues = colSums;
-        ColumnMultValues = colMults;
-        ColumnBombs = colBombs;
+        for (int i = 0; i < BoardSize; i++)
+        {
+            ComputeLineHints(i, true, RowSumValues, RowMultValues, RowBombs);
+            ComputeLineHints(i, false, ColumnSumValues, ColumnMultValues, ColumnBombs);
+        }
+    }
+
+    private void ComputeLineHints(int lineIndex, bool isRow, int[] sums, int[] mults, int[] bombs)
+    {
+        int sum = 0, mult = 0, bombCount = 0;
+        for (int k = 0; k < BoardSize; k++)
+        {
+            int value = isRow ? board[lineIndex, k] : board[k, lineIndex];
+            if (value == 0)
+            {
+                bombCount++;
+            }
+            else
+            {
+                sum += value;
+                mult = mult == 0 ? value : mult * value;
+            }
+        }
+        sums[lineIndex] = sum;
+        mults[lineIndex] = mult;
+        bombs[lineIndex] = bombCount;
     }
 
     private int ComputePointsToWin()
@@ -105,62 +129,6 @@ public class GameState
             }
         }
         return product;
-    }
-
-    private void ComputeRowHints(out int[] sums, out int[] mults, out int[] bombs)
-    {
-        sums = new int[BoardSize];
-        mults = new int[BoardSize];
-        bombs = new int[BoardSize];
-
-        for (int row = 0; row < BoardSize; row++)
-        {
-            int sum = 0, mult = 0, bombCount = 0;
-            for (int col = 0; col < BoardSize; col++)
-            {
-                int value = board[row, col];
-                if (value == 0)
-                {
-                    bombCount++;
-                }
-                else
-                {
-                    sum += value;
-                    mult = mult == 0 ? value : mult * value;
-                }
-            }
-            sums[row] = sum;
-            mults[row] = mult;
-            bombs[row] = bombCount;
-        }
-    }
-
-    private void ComputeColumnHints(out int[] sums, out int[] mults, out int[] bombs)
-    {
-        sums = new int[BoardSize];
-        mults = new int[BoardSize];
-        bombs = new int[BoardSize];
-
-        for (int col = 0; col < BoardSize; col++)
-        {
-            int sum = 0, mult = 0, bombCount = 0;
-            for (int row = 0; row < BoardSize; row++)
-            {
-                int value = board[row, col];
-                if (value == 0)
-                {
-                    bombCount++;
-                }
-                else
-                {
-                    sum += value;
-                    mult = mult == 0 ? value : mult * value;
-                }
-            }
-            sums[col] = sum;
-            mults[col] = mult;
-            bombs[col] = bombCount;
-        }
     }
 
     /// <summary>

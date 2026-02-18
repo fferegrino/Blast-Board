@@ -186,13 +186,10 @@ public class BoardController : MonoBehaviour
             sb.AppendLine();
         }
         Debug.Log(sb.ToString());
+        Debug.Log("Canvas scale factor: " + canvas.scaleFactor);
         #endif
 
-        Debug.Log("Canvas scale factor: " + canvas.scaleFactor);
-
-        var scaledLocationX = CARD_LOCATION_X * canvas.scaleFactor;
-        var scaledLocationY = CARD_LOCATION_Y * canvas.scaleFactor;
-        var scaledOffset = CARD_OFFSET * canvas.scaleFactor;
+        GetScaledLayout(out float scaledLocationX, out float scaledLocationY, out float scaledOffset);
 
         int size = GameState.BoardSize;
         cardButtons = new CardButton[size * size];
@@ -259,13 +256,11 @@ public class BoardController : MonoBehaviour
                 RefreshCardFromState(r, c);
                 if (gameState.Outcome == GameOutcome.Lost)
                 {
-                    if (cardExplodeSound != null && SoundFXManager.Instance != null)
-                        SoundFXManager.Instance.PlaySound(cardExplodeSound, transform);
+                    PlaySound(cardExplodeSound);
                     StartCoroutine(LoseGame());
                     return;
                 }
-                if (cardRevealSound != null && SoundFXManager.Instance != null)
-                    SoundFXManager.Instance.PlaySound(cardRevealSound, transform);
+                PlaySound(cardRevealSound);
                 if (gameState.Outcome == GameOutcome.Won)
                 {
                     UpdateScoreboards();
@@ -287,8 +282,7 @@ public class BoardController : MonoBehaviour
                 if (prevR >= 0 && prevC >= 0)
                     RefreshCardFromState(prevR, prevC);
                 RefreshCardFromState(r, c);
-                if (cardTargetSound != null && SoundFXManager.Instance != null)
-                    SoundFXManager.Instance.PlaySound(cardTargetSound, transform);
+                PlaySound(cardTargetSound);
             }
         }
         UpdateScoreboards();
@@ -318,11 +312,7 @@ public class BoardController : MonoBehaviour
             {
                 yield return new WaitForSeconds(delay);
                 card.SetCellState(CellState.Revealed);
-                if (cardRevealSound != null && SoundFXManager.Instance != null)
-                    if (card.Value == 0)
-                        SoundFXManager.Instance.PlaySound(cardExplodeSound, transform);
-                    else
-                        SoundFXManager.Instance.PlaySound(cardRevealSound, transform);
+                PlaySound(card.Value == 0 ? cardExplodeSound : cardRevealSound);
             }
             yield return new WaitForSeconds(delay);
         }
@@ -359,11 +349,17 @@ public class BoardController : MonoBehaviour
         levelEndScreen.gameObject.SetActive(true);
     }
 
+    void GetScaledLayout(out float scaledLocationX, out float scaledLocationY, out float scaledOffset)
+    {
+        float scale = canvas != null ? canvas.scaleFactor : 1f;
+        scaledLocationX = CARD_LOCATION_X * scale;
+        scaledLocationY = CARD_LOCATION_Y * scale;
+        scaledOffset = CARD_OFFSET * scale;
+    }
+
     void CreateValueTiles(GameState state)
     {
-        var scaledLocationX = CARD_LOCATION_X * canvas.scaleFactor;
-        var scaledLocationY = CARD_LOCATION_Y * canvas.scaleFactor;
-        var scaledOffset = CARD_OFFSET * canvas.scaleFactor;
+        GetScaledLayout(out float scaledLocationX, out float scaledLocationY, out float scaledOffset);
 
         int size = GameState.BoardSize;
         for (int i = 0; i < size; i++)

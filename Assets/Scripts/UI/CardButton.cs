@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-using System.Linq;
 using UnityEngine.UI;
 using System;
 
@@ -40,16 +39,14 @@ public class CardButton : MonoBehaviour, UnityEngine.EventSystems.IPointerDownHa
         OnClick?.Invoke(this);
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        var allChildren = GetComponentsInChildren<Transform>();
+        // Prefer transform.Find for direct children to avoid GetComponentsInChildren + Linq allocation
+        var target = transform.Find("Target");
+        targetAnimator = target != null ? target.GetComponent<Animator>() : null;
 
-        var target = allChildren.First(child => child.name == "Target");
-        targetAnimator = target.GetComponent<Animator>();
-
-        var cardReveal = allChildren.First(child => child.name == "CardCover");
-        cardRevealAnimator = cardReveal.GetComponent<Animator>();
+        var cardReveal = transform.Find("CardCover");
+        cardRevealAnimator = cardReveal != null ? cardReveal.GetComponent<Animator>() : null;
     }
 
     /// <summary>
