@@ -50,6 +50,18 @@ public class GameState
     /// <summary>Total number of bomb tiles on the board.</summary>
     public int TotalBombTiles => zeroLocations.Count;
 
+    /// <summary>
+    /// Ratio of valuable tiles revealed to total tiles revealed. Equals 1 when only valuable tiles have been revealed;
+    /// decreases toward 0 as more non-valuable (value 1) safe tiles are revealed. Returns 0 when no tiles have been revealed.
+    /// </summary>
+    public double RevealedToValuableRatio => TilesRevealed == 0 ? 0 : (double)ValuableTilesFlipped / TilesRevealed;
+
+    /// <summary>
+    /// Ratio of remaining safe tiles to total safe tiles. Equals 1 when no safe tiles have been revealed;
+    /// tends to 0 as more safe tiles are revealed.
+    /// </summary>
+    public double SafeProgressRatio => TotalSafeTiles == 0 ? 1.0 : (double)(TotalSafeTiles - TilesRevealed) / TotalSafeTiles;
+
     public int[] ColumnSumValues { get; }
     public int[] RowSumValues { get; }
     public int[] ColumnMultValues { get; }

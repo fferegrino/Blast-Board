@@ -489,4 +489,153 @@ public class GameStateTests
         Assert.That(state.ValuableTilesFlipped, Is.EqualTo(0));
         Assert.That(state.TilesRevealed, Is.EqualTo(0));
     }
+
+    [Test]
+    public void RevealedToValuableRatio_IsOne_WhenOnlyValuableTilesRevealed()
+    {
+        // 3 valuable tiles at (0,0)=2, (0,1)=2, (0,2)=3. Reveal only those -> ratio = 3/3 = 1
+        var board = new RawBoard(new int[,]
+        {
+            { 2, 2, 3, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 }
+        });
+        var state = new GameState(board);
+
+        state.TryRevealCell(0, 0);
+        state.TryRevealCell(0, 1);
+        Assert.That(state.RevealedToValuableRatio, Is.EqualTo(1.0).Within(0.0001)); // only valuable revealed
+
+        state.TryRevealCell(0, 2);
+        Assert.That(state.RevealedToValuableRatio, Is.EqualTo(1.0).Within(0.0001));
+    }
+
+    [Test]
+    public void RevealedToValuableRatio_DecreasesWhenExtraNonValuableTilesRevealed()
+    {
+        // 2 valuable at (0,0)=2, (0,1)=2. Reveal those plus a 1 -> 2 valuable / 3 revealed = 2/3
+        var board = new RawBoard(new int[,]
+        {
+            { 2, 2, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 }
+        });
+        var state = new GameState(board);
+
+        state.TryRevealCell(0, 0);
+        state.TryRevealCell(0, 1);
+        Assert.That(state.RevealedToValuableRatio, Is.EqualTo(1.0).Within(0.0001));
+
+        state.TryRevealCell(0, 2); // value 1, not valuable
+        Assert.That(state.RevealedToValuableRatio, Is.EqualTo(2.0 / 3).Within(0.0001));
+    }
+
+    [Test]
+    public void RevealedToValuableRatio_IsZero_WhenNoTilesRevealed()
+    {
+        var board = new RawBoard(new int[,]
+        {
+            { 2, 2, 2, 2, 2 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 }
+        });
+        var state = new GameState(board);
+
+        Assert.That(state.RevealedToValuableRatio, Is.EqualTo(0.0));
+    }
+
+    [Test]
+    public void RevealedToValuableRatio_IsZero_WhenOnlyNonValuableTilesRevealed()
+    {
+        var board = new RawBoard(new int[,]
+        {
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 }
+        });
+        var state = new GameState(board);
+        state.TryRevealCell(0, 0);
+        state.TryRevealCell(0, 1);
+
+        Assert.That(state.RevealedToValuableRatio, Is.EqualTo(0.0));
+    }
+
+    [Test]
+    public void SafeProgressRatio_IsZero_WhenAllSafeTilesRevealed()
+    {
+        // 24 safe, 1 bomb at (2,2). Reveal all safe tiles (skip bomb).
+        var board = new RawBoard(new int[,]
+        {
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 0, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 }
+        });
+        var state = new GameState(board);
+
+        Assert.That(state.SafeProgressRatio, Is.EqualTo(1.0).Within(0.0001)); // none revealed
+
+        for (int i = 0; i < GameState.BoardSize; i++)
+        {
+            for (int j = 0; j < GameState.BoardSize; j++)
+            {
+                if (i != 2 || j != 2)
+                {
+                    state.TryRevealCell(i, j);
+                }
+            }
+        }
+
+        Assert.That(state.TilesRevealed, Is.EqualTo(state.TotalSafeTiles));
+        Assert.That(state.SafeProgressRatio, Is.EqualTo(0.0).Within(0.0001));
+    }
+
+    [Test]
+    public void SafeProgressRatio_DecreasesAsMoreSafeTilesRevealed()
+    {
+        var board = new RawBoard(new int[,]
+        {
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 }
+        });
+        var state = new GameState(board);
+        int totalSafe = state.TotalSafeTiles;
+
+        Assert.That(state.SafeProgressRatio, Is.EqualTo(1.0).Within(0.0001)); // none revealed
+
+        state.TryRevealCell(0, 0);
+        Assert.That(state.SafeProgressRatio, Is.EqualTo((double)(totalSafe - 1) / totalSafe).Within(0.0001));
+
+        state.TryRevealCell(0, 1);
+        state.TryRevealCell(0, 2);
+        Assert.That(state.SafeProgressRatio, Is.EqualTo((double)(totalSafe - 3) / totalSafe).Within(0.0001));
+    }
+
+    [Test]
+    public void SafeProgressRatio_IsOne_WhenNoSafeTilesOnBoard()
+    {
+        var board = new RawBoard(new int[,]
+        {
+            { 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0 }
+        });
+        var state = new GameState(board);
+
+        Assert.That(state.SafeProgressRatio, Is.EqualTo(1.0).Within(0.0001));
+    }
 }
