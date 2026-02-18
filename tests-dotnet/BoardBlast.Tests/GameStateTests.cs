@@ -386,4 +386,107 @@ public class GameStateTests
         Assert.That(state.TargetedRow, Is.EqualTo(-1));
         Assert.That(state.TargetedColumn, Is.EqualTo(-1));
     }
+
+    [Test]
+    public void TotalSafeTiles_TotalBombTiles_ReflectBoardContents()
+    {
+        // 3 bombs (0s), 22 safe tiles
+        var board = new RawBoard(new int[,]
+        {
+            { 1, 2, 0, 2, 1 },
+            { 1, 1, 1, 0, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 0, 1, 1 }
+        });
+        var state = new GameState(board);
+
+        Assert.That(state.TotalBombTiles, Is.EqualTo(3));
+        Assert.That(state.TotalSafeTiles, Is.EqualTo(22));
+        Assert.That(state.TotalSafeTiles + state.TotalBombTiles, Is.EqualTo(GameState.BoardSize * GameState.BoardSize));
+    }
+
+    [Test]
+    public void TotalValuableTiles_CountsOnlyTilesWithValueGreaterThanOne()
+    {
+        // Valuable (value > 1): (0,1)=2, (0,3)=2, (1,2)=3 -> 3 valuable. Rest are 1 or 0.
+        var board = new RawBoard(new int[,]
+        {
+            { 1, 2, 0, 2, 1 },
+            { 1, 1, 3, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 }
+        });
+        var state = new GameState(board);
+
+        Assert.That(state.TotalValuableTiles, Is.EqualTo(3)); // 2, 2, 3
+    }
+
+    [Test]
+    public void ValuableTilesFlipped_OnlyIncrementsWhenRevealingValueGreaterThanOne()
+    {
+        var board = new RawBoard(new int[,]
+        {
+            { 1, 2, 1, 3, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 }
+        });
+        var state = new GameState(board);
+
+        state.TryRevealCell(0, 0); // value 1 -> safe but not valuable
+        Assert.That(state.TilesRevealed, Is.EqualTo(1));
+        Assert.That(state.ValuableTilesFlipped, Is.EqualTo(0));
+
+        state.TryRevealCell(0, 1); // value 2 -> valuable
+        Assert.That(state.TilesRevealed, Is.EqualTo(2));
+        Assert.That(state.ValuableTilesFlipped, Is.EqualTo(1));
+
+        state.TryRevealCell(0, 2); // value 1
+        state.TryRevealCell(0, 3); // value 3 -> valuable
+        Assert.That(state.TilesRevealed, Is.EqualTo(4));
+        Assert.That(state.ValuableTilesFlipped, Is.EqualTo(2));
+    }
+
+    [Test]
+    public void ValuableTilesFlipped_DoesNotIncrementWhenRevealingBomb()
+    {
+        var board = new RawBoard(new int[,]
+        {
+            { 2, 2, 0, 2, 2 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 }
+        });
+        var state = new GameState(board);
+
+        state.TryRevealCell(0, 0);
+        state.TryRevealCell(0, 1);
+        Assert.That(state.ValuableTilesFlipped, Is.EqualTo(2));
+
+        state.TryRevealCell(0, 2); // bomb -> game lost
+        Assert.That(state.Outcome, Is.EqualTo(GameOutcome.Lost));
+        Assert.That(state.ValuableTilesFlipped, Is.EqualTo(2));
+        Assert.That(state.TilesRevealed, Is.EqualTo(2));
+    }
+
+    [Test]
+    public void NewGame_HasZeroValuableTilesFlippedAndZeroTilesRevealed()
+    {
+        var board = new RawBoard(new int[,]
+        {
+            { 2, 3, 2, 3, 2 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 },
+            { 1, 1, 1, 1, 1 }
+        });
+        var state = new GameState(board);
+
+        Assert.That(state.ValuableTilesFlipped, Is.EqualTo(0));
+        Assert.That(state.TilesRevealed, Is.EqualTo(0));
+    }
 }

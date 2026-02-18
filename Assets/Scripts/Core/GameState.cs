@@ -37,6 +37,19 @@ public class GameState
     private int tilesRevealed = 0;
     public int TilesRevealed => tilesRevealed;
 
+    private int valuableTilesFlipped = 0;
+    /// <summary>Number of valuable (value &gt; 1) tiles the user has revealed. Use with <see cref="TotalValuableTiles"/> for progress ratios.</summary>
+    public int ValuableTilesFlipped => valuableTilesFlipped;
+
+    /// <summary>Total number of valuable (value &gt; 1) tiles on the board.</summary>
+    public int TotalValuableTiles { get; }
+
+    /// <summary>Total number of safe (non-bomb) tiles on the board.</summary>
+    public int TotalSafeTiles => BoardSize * BoardSize - zeroLocations.Count;
+
+    /// <summary>Total number of bomb tiles on the board.</summary>
+    public int TotalBombTiles => zeroLocations.Count;
+
     public int[] ColumnSumValues { get; }
     public int[] RowSumValues { get; }
     public int[] ColumnMultValues { get; }
@@ -71,9 +84,11 @@ public class GameState
         }
 
         PointsToWin = ComputePointsToWin();
+        TotalValuableTiles = ComputeTotalValuableTiles();
         CurrentPoints = 0;
         Outcome = GameOutcome.InProgress;
         tilesRevealed = 0;
+        valuableTilesFlipped = 0;
 
         RowSumValues = new int[BoardSize];
         RowMultValues = new int[BoardSize];
@@ -131,6 +146,22 @@ public class GameState
         return product;
     }
 
+    private int ComputeTotalValuableTiles()
+    {
+        int count = 0;
+        for (int i = 0; i < BoardSize; i++)
+        {
+            for (int j = 0; j < BoardSize; j++)
+            {
+                if (board[i, j] > 1)
+                {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
     /// <summary>
     /// Tries to reveal the cell at (row, col). Fails (returns false) if the game is over or the cell is already revealed.
     /// When a cell is revealed: if it's a bomb (0) the game is lost; otherwise points are multiplied and win is checked.
@@ -159,6 +190,10 @@ public class GameState
         }
 
         tilesRevealed++;
+        if (value > 1)
+        {
+            valuableTilesFlipped++;
+        }
 
         CurrentPoints = CurrentPoints == 0 ? value : CurrentPoints * value;
         if (CurrentPoints >= PointsToWin)
