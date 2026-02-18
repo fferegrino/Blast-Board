@@ -21,9 +21,12 @@ public class LevelEndScreen : MonoBehaviour
 
     [Header("Buttons")]
     public Button actionButton;
+
+    [Header("Labels")]
     public TextMeshProUGUI actionButtonText;
 
     public TextMeshProUGUI screenText;
+    public TextMeshProUGUI levelDeltaText;
 
     private string innerRetryActionText;
     private string innerNextActionText;
@@ -59,11 +62,12 @@ public class LevelEndScreen : MonoBehaviour
         innerLostScreenText=value;
     }
 
-    public void SetScoreboards(int levelScore, int sessionScore, int level)
+    public void SetScoreboards(int levelScore, int sessionScore, int level, int levelDelta)
     {
         levelScoreboard.SetScoreboardValue(levelScore);
         sessionScoreboard.SetScoreboardValue(sessionScore);
         levelDisplay.SetLevel(level);
+        levelDeltaText.text = levelDelta.ToString();
     }
 
     public void SetLost() {

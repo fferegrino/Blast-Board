@@ -336,16 +336,19 @@ public class BoardController : MonoBehaviour
 
     void ShowLevelEndScreen(GameOutcome outcome)
     {
-        levelEndScreen.SetScoreboards(gameState.CurrentPoints, gameSession.SessionPoints, gameSession.CurrentLevel);
+        int levelDelta = 0;
         if (outcome == GameOutcome.Won)
         {
+            levelDelta = gameSession.GetLevelDeltaIfWin();
             levelEndScreen.SetWon();
             ReportGameCenterScoreOnLevelWin();
         }
         else if (outcome == GameOutcome.Lost)
         {
+            levelDelta = gameSession.GetLevelDeltaIfLose();
             levelEndScreen.SetLost();
         }
+        levelEndScreen.SetScoreboards(gameState.CurrentPoints, gameSession.SessionPoints, gameSession.CurrentLevel, levelDelta);
         levelEndScreen.gameObject.SetActive(true);
     }
 

@@ -22,16 +22,16 @@ public class GameSession
     public GameState CurrentGame { get; private set; }
 
     public int BoardSize = 5;
-    public float SkillRating = 0f; // 0-400
+    private float skillRating = 0f; // 0-400, internal; use CurrentLevel for display
 
 
     public int CurrentLevel {
         get {
-            int currentLevel = VoltorbDifficultyModel.DifficultyFromSR(SkillRating);
+            int currentLevel = VoltorbDifficultyModel.DifficultyFromSR(skillRating);
             float levelStartSR = (currentLevel - 1) * SkillRatingPerLevel;
             float levelEndSR = currentLevel * SkillRatingPerLevel;
 
-            float levelProgress = InverseLerp(levelStartSR, levelEndSR, SkillRating);
+            float levelProgress = InverseLerp(levelStartSR, levelEndSR, skillRating);
 
             return currentLevel + (int)(levelProgress * SkillRatingPerLevel);
         }
@@ -53,7 +53,7 @@ public class GameSession
 
     private GameState NewGame()
     {
-        int d = VoltorbDifficultyModel.DifficultyFromSR(SkillRating);
+        int d = VoltorbDifficultyModel.DifficultyFromSR(skillRating);
         var diff = VoltorbDifficultyModel.GetDifficultyParams(d, BoardSize);
 
         VoltorbBoard currentBoard = generator.GenerateBoard(BoardSize, diff);
@@ -86,20 +86,53 @@ public class GameSession
     }
 
 
+    /// <summary>Returns the skill rating change if a win reward were applied (does not modify SkillRating).</summary>
+    public float GetSkillRatingDeltaIfWin() =>
+        MinSkillLevelIncrement + (float)(CurrentGame?.RevealedToValuableRatio ?? 0) * MaxRewardSkillRating;
+
+    /// <summary>Returns the skill rating change if a bomb penalty were applied (does not modify SkillRating).</summary>
+    public float GetSkillRatingDeltaIfLose() =>
+        -(MinSkillLevelIncrement + (float)(CurrentGame?.SafeProgressRatio ?? 0) * MaxRewardSkillRating);
+
+    /// <summary>Returns the level that would result from the given skill rating.</summary>
+    public int GetLevelFromSkillRating(float sr)
+    {
+        float clamped = Math.Clamp(sr, MinSkillRating, MaxSkillRating);
+        int d = VoltorbDifficultyModel.DifficultyFromSR(clamped);
+        float levelStartSR = (d - 1) * SkillRatingPerLevel;
+        float levelEndSR = d * SkillRatingPerLevel;
+        float levelProgress = InverseLerp(levelStartSR, levelEndSR, clamped);
+        return d + (int)(levelProgress * SkillRatingPerLevel);
+    }
+
+    /// <summary>Returns the level that would result if the current round were won (does not modify state).</summary>
+    public int GetLevelIfWin() =>
+        GetLevelFromSkillRating(Math.Clamp(skillRating + GetSkillRatingDeltaIfWin(), MinSkillRating, MaxSkillRating));
+
+    /// <summary>Returns the level that would result if the current round were lost (does not modify state).</summary>
+    public int GetLevelIfLose() =>
+        GetLevelFromSkillRating(Math.Clamp(skillRating + GetSkillRatingDeltaIfLose(), MinSkillRating, MaxSkillRating));
+
+    /// <summary>Returns the level difference (level after win minus current level). Positive when winning would level up.</summary>
+    public int GetLevelDeltaIfWin() => GetLevelIfWin() - CurrentLevel;
+
+    /// <summary>Returns the level difference (level after lose minus current level). Negative when losing would level down.</summary>
+    public int GetLevelDeltaIfLose() => GetLevelIfLose() - CurrentLevel;
+
     /// <summary>Applies skill rating reward for winning; scaled by how efficiently valuable tiles were revealed.</summary>
     public void ApplyWinReward()
     {
         // Reward wins; scale a bit by multiplier
-        SkillRating += MinSkillLevelIncrement + (float)CurrentGame.RevealedToValuableRatio * MaxRewardSkillRating;
-        SkillRating = Math.Clamp(SkillRating, MinSkillRating, MaxSkillRating);
+        skillRating += MinSkillLevelIncrement + (float)CurrentGame.RevealedToValuableRatio * MaxRewardSkillRating;
+        skillRating = Math.Clamp(skillRating, MinSkillRating, MaxSkillRating);
     }
 
     /// <summary>Applies skill rating penalty for hitting a bomb; penalizes more when dying early (fewer tiles revealed).</summary>
     public void ApplyBombPenalty()
     {
         // Penalize more if you died early
-        SkillRating -= (MinSkillLevelIncrement + (float)CurrentGame.SafeProgressRatio * MaxRewardSkillRating);
-        SkillRating = Math.Clamp(SkillRating, MinSkillRating, MaxSkillRating);
+        skillRating -= (MinSkillLevelIncrement + (float)CurrentGame.SafeProgressRatio * MaxRewardSkillRating);
+        skillRating = Math.Clamp(skillRating, MinSkillRating, MaxSkillRating);
     }
 
     /// <summary>
