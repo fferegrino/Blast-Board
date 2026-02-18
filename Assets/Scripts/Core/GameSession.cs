@@ -8,7 +8,11 @@ public class GameSession
 {
 
     const float SkillRatingPerLevel = 10f;
-    const float MinSkillLevelIncrement = 5f;
+    const float MinSkillLevelIncrement = 1f;
+
+    const float MaxRewardSkillRating = 5f;
+    const float MaxSkillRating = 400f;
+    const float MinSkillRating = 0f;
 
     public int CurrentLevel => VoltorbDifficultyModel.DifficultyFromSR(SkillRating);
 
@@ -90,19 +94,18 @@ public class GameSession
     }
 
 
-    public void OnRoundWon(float multiplier, int safeTilesFlipped)
+    public void OnRoundWon()
     {
         // Reward wins; scale a bit by multiplier
-        SkillRating += MinSkillLevelIncrement + Math.Max(0f, multiplier - 1f) * 2f;
-        SkillRating = Math.Clamp(SkillRating, 0f, 400f);
+        SkillRating += MinSkillLevelIncrement + (float)CurrentGame.RevealedToValuableRatio * MaxRewardSkillRating;
+        SkillRating = Math.Clamp(SkillRating, MinSkillRating, MaxSkillRating);
     }
 
     public void OnHitVoltorb(int safeTilesFlipped)
     {
         // Penalize more if you died early
-        float factor = 1f - (safeTilesFlipped / (float)(BoardSize * BoardSize));
-        SkillRating -= 7f * factor;
-        SkillRating = Math.Clamp(SkillRating, 0f, 400f);
+        SkillRating -= (MinSkillLevelIncrement + (float)CurrentGame.SafeProgressRatio * MaxRewardSkillRating);
+        SkillRating = Math.Clamp(SkillRating, MinSkillRating, MaxSkillRating);
     }
 
     /// <summary>
@@ -117,7 +120,7 @@ public class GameSession
         }
 
         SessionPoints += CurrentGame.CurrentPoints;
-        OnRoundWon(1, CurrentGame.TilesRevealed);
+        OnRoundWon();
         CurrentGame = NewGame();
         return true;
     }
