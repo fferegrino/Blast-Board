@@ -14,8 +14,6 @@ public class GameSession
     const float MaxSkillRating = 400f;
     const float MinSkillRating = 0f;
 
-    public int CurrentLevel => VoltorbDifficultyModel.DifficultyFromSR(SkillRating);
-
 
     /// <summary>Total points accumulated this session (sum of CurrentPoints at each level win).</summary>
     public int SessionPoints { get; private set; }
@@ -26,21 +24,16 @@ public class GameSession
     public int BoardSize = 5;
     public float SkillRating = 0f; // 0-400
 
-    public float LevelProgress
-    {
-        get
-        {
-            float levelStartSR = (CurrentLevel - 1) * SkillRatingPerLevel;
-            float levelEndSR = CurrentLevel * SkillRatingPerLevel;
+
+    public int CurrentLevel {
+        get {
+            int currentLevel = VoltorbDifficultyModel.DifficultyFromSR(SkillRating);
+            float levelStartSR = (currentLevel - 1) * SkillRatingPerLevel;
+            float levelEndSR = currentLevel * SkillRatingPerLevel;
 
             float levelProgress = InverseLerp(levelStartSR, levelEndSR, SkillRating);
-            return levelProgress;
-        }
-    }
 
-    public int UserFacingLevel {
-        get {
-            return CurrentLevel + (int)(LevelProgress * SkillRatingPerLevel);
+            return currentLevel + (int)(levelProgress * SkillRatingPerLevel);
         }
     }
 
@@ -63,7 +56,6 @@ public class GameSession
         int d = VoltorbDifficultyModel.DifficultyFromSR(SkillRating);
         var diff = VoltorbDifficultyModel.GetDifficultyParams(d, BoardSize);
 
-        // Debug.Log($"NewGame: SkillRating = {SkillRating} - Difficulty = {d} - LevelProgress = {LevelProgress}");
         VoltorbBoard currentBoard = generator.GenerateBoard(BoardSize, diff);
         return new GameState(new RawBoard(currentBoard));
     }
