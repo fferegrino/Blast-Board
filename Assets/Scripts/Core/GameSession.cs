@@ -94,14 +94,16 @@ public class GameSession
     }
 
 
-    public void OnRoundWon()
+    /// <summary>Applies skill rating reward for winning; scaled by how efficiently valuable tiles were revealed.</summary>
+    public void ApplyWinReward()
     {
         // Reward wins; scale a bit by multiplier
         SkillRating += MinSkillLevelIncrement + (float)CurrentGame.RevealedToValuableRatio * MaxRewardSkillRating;
         SkillRating = Math.Clamp(SkillRating, MinSkillRating, MaxSkillRating);
     }
 
-    public void OnHitVoltorb(int safeTilesFlipped)
+    /// <summary>Applies skill rating penalty for hitting a bomb; penalizes more when dying early (fewer tiles revealed).</summary>
+    public void ApplyBombPenalty()
     {
         // Penalize more if you died early
         SkillRating -= (MinSkillLevelIncrement + (float)CurrentGame.SafeProgressRatio * MaxRewardSkillRating);
@@ -112,7 +114,7 @@ public class GameSession
     /// Call when the current round is won. Adds this round's points to SessionPoints, increments Level,
     /// and starts a new round for the next level. Returns true if advanced.
     /// </summary>
-    public bool AdvanceToNextLevel()
+    public bool WinLevel()
     {
         if (CurrentGame.Outcome != GameOutcome.Won)
         {
@@ -120,7 +122,7 @@ public class GameSession
         }
 
         SessionPoints += CurrentGame.CurrentPoints;
-        OnRoundWon();
+        ApplyWinReward();
         CurrentGame = NewGame();
         return true;
     }
@@ -129,9 +131,16 @@ public class GameSession
     /// Starts a new round for the current level (e.g. after a loss, to retry).
     /// Session points and level are unchanged.
     /// </summary>
-    public void RetryCurrentLevel()
+    public bool LoseLevel()
     {
-        OnHitVoltorb(CurrentGame.TilesRevealed);
+        if (CurrentGame.Outcome != GameOutcome.Lost)
+        {
+            return false;
+        }
+
+        SessionPoints += CurrentGame.CurrentPoints;
+        ApplyBombPenalty();
         CurrentGame = NewGame();
+        return true;
     }
 }

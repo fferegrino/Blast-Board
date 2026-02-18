@@ -135,12 +135,12 @@ public class BoardController : MonoBehaviour
     {
         if (gameState.Outcome == GameOutcome.Won)
         {
-            gameSession.AdvanceToNextLevel();
+            gameSession.WinLevel();
             ResetBoard(gameSession.CurrentGame);
         }
         else if (gameState.Outcome == GameOutcome.Lost)
         {
-            gameSession.RetryCurrentLevel();
+            gameSession.LoseLevel();
             ResetBoard(gameSession.CurrentGame);
         }
         else
