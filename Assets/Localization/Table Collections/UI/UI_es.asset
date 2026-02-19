@@ -118,6 +118,16 @@ MonoBehaviour:
     m_Localized: Siguiente
     m_Metadata:
       m_Items: []
+  - m_Id: 2906957663952896
+    m_Localized: "Subir de nivel: Puedes subir m\xE1s de un nivel a la vez, solo
+      conc\xE9ntrate en las fichas valiosas"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2907353677553664
+    m_Localized: "Bajar de nivel: Pero perder\xE1s m\xE1s niveles si pierdes un tablero
+      demasiado r\xE1pido"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

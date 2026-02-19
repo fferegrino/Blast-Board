@@ -186,7 +186,6 @@ public class BoardController : MonoBehaviour
             sb.AppendLine();
         }
         Debug.Log(sb.ToString());
-        Debug.Log("Canvas scale factor: " + canvas.scaleFactor);
         #endif
 
         GetScaledLayout(out float scaledLocationX, out float scaledLocationY, out float scaledOffset);
@@ -326,8 +325,8 @@ public class BoardController : MonoBehaviour
         }
 
         long totalScore = gameSession.SessionPoints + gameState.CurrentPoints;
-        GameCenterManager.Instance.ReportScore(totalScore);
         int level = gameSession.CurrentLevel;
+        GameCenterManager.Instance.ReportScore(level);
         if (level >= 1)
         {
             GameCenterManager.Instance.ReportAchievement(GameCenterManager.Instance.achievementFirstWin, 100.0);

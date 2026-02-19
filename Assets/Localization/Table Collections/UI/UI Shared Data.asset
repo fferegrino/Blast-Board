@@ -107,6 +107,14 @@ MonoBehaviour:
     m_Key: Next Level
     m_Metadata:
       m_Items: []
+  - m_Id: 2906957663952896
+    m_Key: Level Up Explainer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2907353677553664
+    m_Key: Level Down Explainer
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

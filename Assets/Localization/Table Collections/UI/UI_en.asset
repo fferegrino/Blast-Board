@@ -129,6 +129,16 @@ MonoBehaviour:
     m_Localized: Next
     m_Metadata:
       m_Items: []
+  - m_Id: 2906957663952896
+    m_Localized: 'Level Up: You can level up more than 1 level at a time, just focus
+      on the valuable tiles'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2907353677553664
+    m_Localized: 'Level Down: But you will lose more levels if you lose a board too
+      fast'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

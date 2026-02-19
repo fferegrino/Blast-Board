@@ -67,7 +67,24 @@ public class LevelEndScreen : MonoBehaviour
         levelScoreboard.SetScoreboardValue(levelScore);
         sessionScoreboard.SetScoreboardValue(sessionScore);
         levelDisplay.SetLevel(level);
-        levelDeltaText.text = levelDelta.ToString();
+        if (levelDelta == 0)
+        {
+            levelDeltaText.text = "0";
+            levelDeltaText.color = Color.white;
+            levelDeltaText.gameObject.SetActive(false);
+        }
+        else if (levelDelta > 0)
+        {
+            levelDeltaText.text = "+" + levelDelta.ToString() + "!";
+            levelDeltaText.color = Color.green;
+            levelDeltaText.gameObject.SetActive(true);
+        }
+        else
+        {
+            levelDeltaText.text = levelDelta.ToString() + "!";
+            levelDeltaText.color = Color.red;
+            levelDeltaText.gameObject.SetActive(true);
+        }
     }
 
     public void SetLost() {

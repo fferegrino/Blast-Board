@@ -17,7 +17,7 @@ public class GameCenterManager : MonoBehaviour
 
     [Header("Game Center IDs (set in App Store Connect)")]
     [Tooltip("Leaderboard ID for session/high score (e.g. com.yourcompany.boardblast.bestscore)")]
-    public string leaderboardId = "boardblast.session_score";
+    public string leaderboardId = "boardblast.highest_level";
 
     [Tooltip("Achievement: complete first level (optional)")]
     public string achievementFirstWin = "boardblast.first_win";
@@ -71,7 +71,7 @@ public class GameCenterManager : MonoBehaviour
     }
 
     /// <summary>Report a score to the configured leaderboard. Only runs on iOS.</summary>
-    public void ReportScore(long score, Action<bool> onComplete = null)
+    public void ReportScore(int level, Action<bool> onComplete = null)
     {
         if (!_authenticated || string.IsNullOrEmpty(leaderboardId))
         {
@@ -79,10 +79,10 @@ public class GameCenterManager : MonoBehaviour
             return;
         }
 
-        Social.ReportScore(score, leaderboardId, success =>
+        Social.ReportScore((long)level, leaderboardId, success =>
         {
             if (success)
-                Debug.Log("[GameCenter] Score reported: " + score);
+                Debug.Log("[GameCenter] Score reported: " + level);
             else
                 Debug.LogWarning("[GameCenter] Failed to report score.");
             onComplete?.Invoke(success);
