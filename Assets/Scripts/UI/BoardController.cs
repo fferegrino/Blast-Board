@@ -156,6 +156,8 @@ public class BoardController : MonoBehaviour
             Destroy(child.gameObject);
         }
 
+        GameCenterManager.Instance.ReportScore(gameSession.CurrentLevel);
+
         RecreateCards(state);
         CreateValueTiles(state);
         UpdateScoreboards();
@@ -326,7 +328,6 @@ public class BoardController : MonoBehaviour
 
         long totalScore = gameSession.SessionPoints + gameState.CurrentPoints;
         int level = gameSession.CurrentLevel;
-        GameCenterManager.Instance.ReportScore(level);
         if (level >= 1)
         {
             GameCenterManager.Instance.ReportAchievement(GameCenterManager.Instance.achievementFirstWin, 100.0);
