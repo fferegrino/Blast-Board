@@ -80,3 +80,9 @@ crashlytics-build.properties
 exports/
 
 .utmp/
+
+uv.lock
+
+Assets/AddressableAssetsData/link.xml
+
+Assets/AddressableAssetsData/link.xml.meta

@@ -115,6 +115,10 @@ MonoBehaviour:
     m_Key: Level Down Explainer
     m_Metadata:
       m_Items: []
+  - m_Id: 3993808223068160
+    m_Key: version
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
