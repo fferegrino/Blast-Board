@@ -67,5 +67,6 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "BoardBlast.slnx"
+    "dotnet.defaultSolution": "BoardBlast.slnx",
+    "dotrush.roslyn.projectOrSolutionFiles": []
 }
