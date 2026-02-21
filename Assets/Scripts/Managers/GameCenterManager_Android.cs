@@ -18,6 +18,8 @@ public partial class GameCenterManager : MonoBehaviour
 
 #if UNITY_ANDROID
 
+    const string LeaderboardId = "CgkIpczdyKoREAIQAg";
+
     public bool IsAuthenticated => _authenticated;
 
      public void RequestSignIn(Action<bool> onComplete = null) {
@@ -90,6 +92,7 @@ public partial class GameCenterManager : MonoBehaviour
         }
         else {
             Debug.Log("[GameCenter] Showing leaderboard Android");
+            PlayGamesPlatform.Instance.SetDefaultLeaderboardForUI(LeaderboardId);
             PlayGamesPlatform.Instance.ShowLeaderboardUI();
             onDismiss?.Invoke();
         }
