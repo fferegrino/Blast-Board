@@ -116,8 +116,6 @@ public partial class GameCenterManager : MonoBehaviour
         onDismiss?.Invoke();
     }
 
-    public bool IsAuthenticated => _authenticated;
-
 #endif
 
 }
