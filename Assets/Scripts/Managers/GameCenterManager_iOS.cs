@@ -6,11 +6,6 @@ using UnityEngine.SocialPlatforms;
 #pragma warning disable 0618 // Unity's Social API is deprecated but still the standard for Game Center on iOS
 #endif
 
-#if UNITY_ANDROID
-using GooglePlayGames;
-using GooglePlayGames.BasicApi;
-using UnityEngine.SocialPlatforms;
-#endif
 
 /// <summary>
 /// Apple Game Center integration for iOS. All Game Center code is compiled and runs only on iOS.

@@ -62,6 +62,8 @@ public partial class GameCenterManager : MonoBehaviour
     {
         #if UNITY_IOS
         AuthenticateIOS(onComplete);
+        #elif UNITY_ANDROID
+        AuthenticateAndroid(onComplete);
         #else
         onComplete?.Invoke(false);
         #endif
@@ -91,6 +93,8 @@ public partial class GameCenterManager : MonoBehaviour
     {
         #if UNITY_IOS
         ShowLeaderboardIOS(onDismiss);
+        #elif UNITY_ANDROID
+        ShowLeaderboardAndroid(onDismiss);
         #else
         onDismiss?.Invoke();
         #endif
@@ -107,7 +111,7 @@ public partial class GameCenterManager : MonoBehaviour
     }
 
 
-#if !UNITY_IOS
+#if !UNITY_IOS && !UNITY_ANDROID
     public bool IsAuthenticated => false;
 #endif
 

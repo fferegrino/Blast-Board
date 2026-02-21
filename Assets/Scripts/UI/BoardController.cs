@@ -174,7 +174,7 @@ public class BoardController : MonoBehaviour
 
     void RecreateCards(GameState state)
     {
-        #if UNITY_EDITOR
+        #if UNITY_EDITOR || UNITY_ANDROID
         StringBuilder sb = new StringBuilder();
         sb.AppendLine($"Board (total points: {state.PointsToWin}) :");
         for (int row = 0; row < GameState.BoardSize; row++)
