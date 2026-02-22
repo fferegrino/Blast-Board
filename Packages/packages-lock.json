@@ -1,13 +1,13 @@
 {
   "dependencies": {
     "com.apple.unityplugin.core": {
-      "version": "file:/Users/antonioferegrino/hub/unityplugins/Build/com.apple.unityplugin.core-3.2.0.tgz",
+      "version": "file:local/com.apple.unityplugin.core-3.2.0.tgz",
       "depth": 0,
       "source": "local-tarball",
       "dependencies": {}
     },
     "com.apple.unityplugin.gamekit": {
-      "version": "file:/Users/antonioferegrino/hub/unityplugins/Build/com.apple.unityplugin.gamekit-4.0.1.tgz",
+      "version": "file:local/com.apple.unityplugin.gamekit-4.0.1.tgz",
       "depth": 0,
       "source": "local-tarball",
       "dependencies": {
@@ -15,11 +15,10 @@
       }
     },
     "com.bitbebop.ios-app-icon-appearance": {
-      "version": "https://github.com/artstorm/ios-app-icon-appearance.git?path=/Packages/com.bitbebop.ios-app-icon-appearance",
+      "version": "file:local/com.bitbebop.ios-app-icon-appearance-1.0.2.tgz",
       "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "944d3bf2cf65171d2d1e77f8a4327a5685bdcab6"
+      "source": "local-tarball",
+      "dependencies": {}
     },
     "com.unity.2d.animation": {
       "version": "13.0.2",
