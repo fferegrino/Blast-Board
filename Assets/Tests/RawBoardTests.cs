@@ -1,8 +1,6 @@
 using System.Linq;
 using NUnit.Framework;
 
-namespace BoardBlast.Tests;
-
 public class RawBoardTests
 {
     [Test]

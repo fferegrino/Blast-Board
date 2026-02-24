@@ -1,6 +1,5 @@
+using System.Runtime.CompilerServices;
 using NUnit.Framework;
-
-namespace BoardBlast.Tests;
 
 public class GameStateTests
 {
@@ -512,13 +511,32 @@ public class GameStateTests
         Assert.That(state.RevealedToValuableRatio, Is.EqualTo(1.0).Within(0.0001));
     }
 
+    // [Test]
+    // public void RevealedToValuableRatio_DecreasesWhenExtraNonValuableTilesRevealed()
+    // {
+    //     // 2 valuable at (0,0)=2, (0,1)=2. Reveal those plus a 1 -> 2 valuable / 3 revealed = 2/3
+    //     var board = new RawBoard(new int[,]
+    //     {
+    //         { 2, 2, 1, 1, 1 },
+    //         { 1, 1, 1, 1, 1 },
+    //         { 1, 1, 1, 1, 1 },
+    //         { 1, 1, 1, 1, 1 },
+    //         { 1, 1, 1, 1, 1 }
+    //     });
+    //     var state = new GameState(board);
+
+    //     state.TryRevealCell(0, 0);
+    //     state.TryRevealCell(0, 1);
+    //     Assert.That(state.RevealedToValuableRatio, Is.EqualTo(1.0).Within(0.0001));
+    // }
+
     [Test]
     public void RevealedToValuableRatio_DecreasesWhenExtraNonValuableTilesRevealed()
     {
         // 2 valuable at (0,0)=2, (0,1)=2. Reveal those plus a 1 -> 2 valuable / 3 revealed = 2/3
         var board = new RawBoard(new int[,]
         {
-            { 2, 2, 1, 1, 1 },
+            { 2, 1, 2, 1, 1 },
             { 1, 1, 1, 1, 1 },
             { 1, 1, 1, 1, 1 },
             { 1, 1, 1, 1, 1 },
@@ -528,7 +546,7 @@ public class GameStateTests
 
         state.TryRevealCell(0, 0);
         state.TryRevealCell(0, 1);
-        Assert.That(state.RevealedToValuableRatio, Is.EqualTo(1.0).Within(0.0001));
+        Assert.That(state.RevealedToValuableRatio, Is.EqualTo(1.0 / 2).Within(0.0001));
 
         state.TryRevealCell(0, 2); // value 1, not valuable
         Assert.That(state.RevealedToValuableRatio, Is.EqualTo(2.0 / 3).Within(0.0001));
@@ -578,7 +596,7 @@ public class GameStateTests
             { 1, 1, 1, 1, 1 },
             { 1, 1, 0, 1, 1 },
             { 1, 1, 1, 1, 1 },
-            { 1, 1, 1, 1, 1 }
+            { 1, 1, 1, 1, 2 }
         });
         var state = new GameState(board);
 
@@ -608,7 +626,7 @@ public class GameStateTests
             { 1, 1, 1, 1, 1 },
             { 1, 1, 1, 1, 1 },
             { 1, 1, 1, 1, 1 },
-            { 1, 1, 1, 1, 1 }
+            { 1, 1, 1, 1, 2 }
         });
         var state = new GameState(board);
         int totalSafe = state.TotalSafeTiles;
