@@ -1,17 +1,41 @@
 using System;
 
+/// <summary>
+/// Single source of truth for skill rating (SR), display level, and board difficulty.
+/// SR is in [0, 400]. Display level is 1–400 (1 SR per level, strictly increasing).
+/// Difficulty for board generation is 1–20 (20 SR per step, used by GetDifficultyParams).
+/// </summary>
 public static class VoltorbDifficultyModel
 {
-    // SR in [0, 400] -> d in [1, 21], clamp as you like
+    public const float MinSkillRating = 0f;
+    public const float MaxSkillRating = 100f;
+
+    /// <summary>Maximum display level (400 levels, 1 SR each).</summary>
+    public const int MaxLevel = 100;
+
+    /// <summary>SR per display level; 1 SR = 1 level for even distribution over [0, 400].</summary>
+    public const float SkillRatingPerLevel = 1f;
+
+    /// <summary>SR span per difficulty step; difficulty = 1 + (int)(sr / 20).</summary>
+    const float SkillRatingPerDifficultyStep = 20f;
+
+    /// <summary>Display level from skill rating (1–400). Strictly increasing with SR; use for UI and deltas.</summary>
+    public static int LevelFromSR(float sr)
+    {
+        sr = Math.Clamp(sr, MinSkillRating, MaxSkillRating);
+        return Math.Clamp(1 + (int)(sr / SkillRatingPerLevel), 1, MaxLevel);
+    }
+
+    /// <summary>Board difficulty from skill rating (1–20). Used only for GetDifficultyParams.</summary>
     public static int DifficultyFromSR(float sr)
     {
-        sr = Math.Clamp(sr, 0f, 400f);
-        return Math.Clamp((int)(sr / 20f) + 1, 1, 20);
+        sr = Math.Clamp(sr, MinSkillRating, MaxSkillRating);
+        return Math.Clamp((int)(sr / SkillRatingPerDifficultyStep) + 1, 1, 20);
     }
 
     public static VoltorbDifficulty GetDifficultyParams(int d, int boardSize = 5)
     {
-        d = Math.Clamp(d, 1, 20);
+        d = Math.Clamp(d, 1, (int)SkillRatingPerDifficultyStep);
         int totalTiles = boardSize * boardSize;
 
         int voltorbs = Math.Clamp(4 + (int)(0.3f * d), 3, totalTiles - 4);

@@ -2,10 +2,8 @@ using System.Reflection;
 using NUnit.Framework;
 
 /// <summary>
-/// Tests that reproduce the bug where every 3rd game (when crossing a difficulty boundary)
-/// the level delta calculation shows the opposite sign (e.g. negative on win, positive on lose).
-/// Root cause: skill rating boundaries in DifficultyFromSR vs level mapping cause CurrentLevel
-/// to jump when crossing SR boundaries, so GetLevelDeltaIfWin() can become negative on a win.
+/// Tests that the level delta calculation never shows the wrong sign (e.g. negative on win).
+/// Level is now defined solely by VoltorbDifficultyModel.LevelFromSR (monotonic in SR).
 /// </summary>
 public class LevelDeltaTests
 {
@@ -55,10 +53,7 @@ public class LevelDeltaTests
     [Test]
     public void LevelDeltaIfWin_WhenSkillRatingJustBelowDifficultyBoundary_ShouldBeNonNegative()
     {
-        // DifficultyFromSR uses (int)(sr/20)+1, so SR [0,20) -> d=1, [20,40) -> d=2.
-        // Level is computed from levelStartSR=(d-1)*10, levelEndSR=d*10. So at SR=19.9 we're
-        // at the end of the first band (level 20); after a small win we cross to SR>=20,
-        // GetLevelFromSkillRating maps that to the start of band 2 (level 2). So delta = 2 - 20 = -18 (wrong).
+        // SR just below 20 used to cause a level drop (old formula). LevelFromSR is now monotonic.
         var session = new GameSession();
         SetSkillRating(session, 19.9f);
         SetCurrentGame(session, CreateWonGameState());
